@@ -13,7 +13,7 @@ enableRobotsTXT = true
 
 [languages]
   [languages.en]
-    title = "My Portfolio"
+    title = "Home"
     weight = 1
     contentDir = "content/en"
  
