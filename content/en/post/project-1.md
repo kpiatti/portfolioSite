@@ -2,7 +2,6 @@
 date: 2021-04-09T10:58:08-04:00
 description: "Analyzing effectiveness of WiFi fingerprinting technology for locating people indoors."
 featured_image: "/images/Pope-Edouard-de-Beaumont-1844.jpg"
-tags: ["Scene"]
 title: "Project 1: Analysis of WiFi Fingerprinting"
 ---
 
