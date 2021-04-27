@@ -1,7 +1,7 @@
 ---
 title: "About"
 description: "A little bit about me."
-featured_image: ''
+featured_image: '/images/us_map.jpg'
 ---
 {{< figure src="/images/Victor_Hugo-Hunchback.jpg" title="Illustration from Victor Hugo et son temps (1881)" >}}
 
