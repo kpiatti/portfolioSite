@@ -1,4 +1,4 @@
-title = "Notre-Dame de Paris"
+title = "My Portfolio"
 baseURL = "https://example.com"
 languageCode = "en-us"
 theme = "ananke"
@@ -13,7 +13,7 @@ enableRobotsTXT = true
 
 [languages]
   [languages.en]
-    title = "My blog"
+    title = "My Portfolio"
     weight = 1
     contentDir = "content/en"
   [languages.fr]
