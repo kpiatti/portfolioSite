@@ -1,6 +1,6 @@
 ---
-title: "Ananke: a Hugo Theme"
+title: "Katherine Piatti"
 featured_image: '/images/gohugo-default-sample-hero-image.jpg'
-description: "The last theme you'll ever need. Maybe."
+description: "PORTFOLIO"
 ---
-Welcome to my blog with some of my work in progress. I've been working on this book idea. You can read some of the chapters below.
+Welcome to my portfolio with some of my data science and e-learning projects.
