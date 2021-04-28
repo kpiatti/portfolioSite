@@ -17,7 +17,7 @@ canonifyURLs = true
     title = "Home"
     weight = 1
     contentDir = "content/en"
- 
+
 
 [sitemap]
   changefreq = "monthly"
@@ -27,7 +27,7 @@ canonifyURLs = true
 [params]
   favicon = ""
   site_logo = ""
-  description = "The last theme you'll ever need. Maybe."
+  description = ""
   facebook = ""
   twitter = ""
   instagram = ""
