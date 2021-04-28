@@ -1,6 +1,6 @@
 ---
 title: Contact
-featured_image: "/images/half_circle_light.jpg"
+featured_image: "/images/half_circle_light_resized.jpg"
 omit_header_text: true
 description: I'd love to hear from you
 type: page

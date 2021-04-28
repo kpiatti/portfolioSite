@@ -1,7 +1,7 @@
 ---
 title: "About"
 description: " "
-featured_image: '/images/us_map.jpg'
+featured_image: '/images/us_map_resized.jpg'
 ---
 {{< figure src="/images/duck-rabbit.jpg" title="Duck-Rabbit Gestalt Illusion" width="200" >}}
 
