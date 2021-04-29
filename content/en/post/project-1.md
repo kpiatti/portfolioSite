@@ -2,7 +2,8 @@
 date: 2021-04-09T10:58:08-04:00
 description: "Analyzing effectiveness of WiFi fingerprinting technology for locating people indoors."
 featured_image: "/images/fingerprint.jpg"
-title: "Project 1: Analysis of WiFi Fingerprinting"
+title: "Analysis of WiFi Fingerprinting"
+show_reading_time: true
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
