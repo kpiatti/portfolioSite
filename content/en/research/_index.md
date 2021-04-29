@@ -1,5 +1,5 @@
 ---
-title: "Research"
+title: "PhD Research"
 description: " "
-featured_image: '/images/us_map_resized.jpg'
+featured_image: '/images/brain-light.jpg'
 ---
