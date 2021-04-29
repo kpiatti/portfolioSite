@@ -44,6 +44,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://katherinepiatti.com/research/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://katherinepiatti.com/resume/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://katherinepiatti.com/tags/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
