@@ -8,41 +8,71 @@
     <language>en-us</language>
     <lastBuildDate>Sun, 11 Apr 2021 11:13:32 -0400</lastBuildDate><atom:link href="https://katherinepiatti.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Project 3</title>
-      <link>https://katherinepiatti.com/post/project-3/</link>
+      <title>Market Basket Analysis</title>
+      <link>https://katherinepiatti.com/post/market_basket_analysis/</link>
       <pubDate>Sun, 11 Apr 2021 11:13:32 -0400</pubDate>
       
-      <guid>https://katherinepiatti.com/post/project-3/</guid>
+      <guid>https://katherinepiatti.com/post/market_basket_analysis/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
  Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to GitHub Repository Link to RPubs</description>
     </item>
     
     <item>
-      <title>Analysis of WiFi Fingerprinting</title>
-      <link>https://katherinepiatti.com/post/project-1/</link>
+      <title>WiFi Fingerprinting</title>
+      <link>https://katherinepiatti.com/post/mobile_sentiment_analysis/</link>
       <pubDate>Fri, 09 Apr 2021 10:58:08 -0400</pubDate>
       
-      <guid>https://katherinepiatti.com/post/project-1/</guid>
+      <guid>https://katherinepiatti.com/post/mobile_sentiment_analysis/</guid>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
+ Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.  library(tidyverse)   Data Vizualization   Link to GitHub Repository Link to RPubs</description>
+    </item>
+    
+    <item>
+      <title>My Website</title>
+      <link>https://katherinepiatti.com/post/my_website/</link>
+      <pubDate>Wed, 10 Mar 2021 11:00:59 -0400</pubDate>
+      
+      <guid>https://katherinepiatti.com/post/my_website/</guid>
+      <description>While doing research for another project, I stumbled across a tutorial on how to build your own static website using Hugo (open source) and adding content using markdown files. I decided to try it. What you&amp;rsquo;re looking at is the result.
+  Data Vizualization   Link to GitHub Repository Link to RPubs</description>
+    </item>
+    
+    <item>
+      <title>Project 2</title>
+      <link>https://katherinepiatti.com/post/brand_pref_analysis/</link>
+      <pubDate>Tue, 10 Nov 2020 11:00:59 -0400</pubDate>
+      
+      <guid>https://katherinepiatti.com/post/brand_pref_analysis/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
  Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to GitHub Repository Link to RPubs</description>
     </item>
     
     <item>
       <title>Project 2</title>
-      <link>https://katherinepiatti.com/post/project-2/</link>
+      <link>https://katherinepiatti.com/post/creditone_project/</link>
       <pubDate>Tue, 10 Nov 2020 11:00:59 -0400</pubDate>
       
-      <guid>https://katherinepiatti.com/post/project-2/</guid>
+      <guid>https://katherinepiatti.com/post/creditone_project/</guid>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
+ Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to GitHub Repository Link to RPubs</description>
+    </item>
+    
+    <item>
+      <title>Project 2</title>
+      <link>https://katherinepiatti.com/post/customer_purchasing_analysis/</link>
+      <pubDate>Tue, 10 Nov 2020 11:00:59 -0400</pubDate>
+      
+      <guid>https://katherinepiatti.com/post/customer_purchasing_analysis/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
  Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to GitHub Repository Link to RPubs</description>
     </item>
     
     <item>
       <title>Project 4</title>
-      <link>https://katherinepiatti.com/post/project-4/</link>
+      <link>https://katherinepiatti.com/post/wifi_fingerprinting/</link>
       <pubDate>Wed, 12 Apr 2017 11:14:48 -0400</pubDate>
       
-      <guid>https://katherinepiatti.com/post/project-4/</guid>
+      <guid>https://katherinepiatti.com/post/wifi_fingerprinting/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
  Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to GitHub Repository Link to RPubs</description>
     </item>
@@ -62,7 +92,16 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://katherinepiatti.com/resume/</guid>
-      <description>#the-canvas {border: 1px solid black;direction: ltr;width: 100%;height: auto;}#paginator{text-align: center;margin-bottom: 10px;}PreviousNext&amp;nbsp; &amp;nbsp;Page:  / window.onload = function() {var url = &#34;https:\/\/katherinepiatti.com&#34; + &#39;static\/js\/kp_analyst_resume_2020-12-31.pdf&#39;;var hidePaginator = &#34;true&#34;;var pdfjsLib = window[&#39;pdfjs-dist/build/pdf&#39;];pdfjsLib.GlobalWorkerOptions.workerSrc = &#34;https:\/\/katherinepiatti.com&#34; + &#39;/js/pdf-js/build/pdf.worker.js&#39;;var pdfDoc = null,pageNum = 1,pageRendering = false,pageNumPending = null,scale = 3,canvas = document.</description>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Resume | Contact</title>
+      <link>https://katherinepiatti.com/resume_contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://katherinepiatti.com/resume_contact/</guid>
+      <description>  Contact Me Your Name Email Address An email address is required.  Message   </description>
     </item>
     
   </channel>
