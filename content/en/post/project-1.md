@@ -1,6 +1,6 @@
 ---
 date: 2021-04-09T10:58:08-04:00
-description: "Analyzing effectiveness of WiFi fingerprinting technology for locating people indoors."
+description: "WiFi Fingerprinting technology for locating people indoors."
 featured_image: "/images/fingerprint.jpg"
 title: "Analysis of WiFi Fingerprinting"
 show_reading_time: true
