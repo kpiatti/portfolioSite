@@ -62,7 +62,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://katherinepiatti.com/resume/</guid>
-      <description></description>
+      <description>#the-canvas {border: 1px solid black;direction: ltr;width: 100%;height: auto;}#paginator{text-align: center;margin-bottom: 10px;}PreviousNext&amp;nbsp; &amp;nbsp;Page:  / window.onload = function() {var url = &#34;https:\/\/katherinepiatti.com&#34; + &#39;static\/js\/kp_analyst_resume_2020-12-31.pdf&#39;;var hidePaginator = &#34;true&#34;;var pdfjsLib = window[&#39;pdfjs-dist/build/pdf&#39;];pdfjsLib.GlobalWorkerOptions.workerSrc = &#34;https:\/\/katherinepiatti.com&#34; + &#39;/js/pdf-js/build/pdf.worker.js&#39;;var pdfDoc = null,pageNum = 1,pageRendering = false,pageNumPending = null,scale = 3,canvas = document.</description>
     </item>
     
   </channel>

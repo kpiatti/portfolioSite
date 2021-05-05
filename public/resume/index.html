@@ -6,7 +6,7 @@
     
     <title>Resume | Home</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="#the-canvas {border: 1px solid black;direction: ltr;width: 100%;height: auto;}#paginator{text-align: center;margin-bottom: 10px;}PreviousNext&nbsp; &nbsp;Page:  / window.onload = function() {var url = &#34;https:\/\/katherinepiatti.com&#34; &#43; &#39;static\/js\/kp_analyst_resume_2020-12-31.pdf&#39;;var hidePaginator = &#34;true&#34;;var pdfjsLib = window[&#39;pdfjs-dist/build/pdf&#39;];pdfjsLib.GlobalWorkerOptions.workerSrc = &#34;https:\/\/katherinepiatti.com&#34; &#43; &#39;/js/pdf-js/build/pdf.worker.js&#39;;var pdfDoc = null,pageNum = 1,pageRendering = false,pageNumPending = null,scale = 3,canvas = document.">
     <meta name="generator" content="Hugo 0.82.1" />
     
     
@@ -31,19 +31,19 @@
     
     
     <meta property="og:title" content="Resume" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="#the-canvas {border: 1px solid black;direction: ltr;width: 100%;height: auto;}#paginator{text-align: center;margin-bottom: 10px;}PreviousNext&nbsp; &nbsp;Page:  / window.onload = function() {var url = &#34;https:\/\/katherinepiatti.com&#34; &#43; &#39;static\/js\/kp_analyst_resume_2020-12-31.pdf&#39;;var hidePaginator = &#34;true&#34;;var pdfjsLib = window[&#39;pdfjs-dist/build/pdf&#39;];pdfjsLib.GlobalWorkerOptions.workerSrc = &#34;https:\/\/katherinepiatti.com&#34; &#43; &#39;/js/pdf-js/build/pdf.worker.js&#39;;var pdfDoc = null,pageNum = 1,pageRendering = false,pageNumPending = null,scale = 3,canvas = document." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://katherinepiatti.com/resume/" /><meta property="article:section" content="" />
 
 <meta property="og:site_name" content="Home" />
 
 <meta itemprop="name" content="Resume">
-<meta itemprop="description" content="">
+<meta itemprop="description" content="#the-canvas {border: 1px solid black;direction: ltr;width: 100%;height: auto;}#paginator{text-align: center;margin-bottom: 10px;}PreviousNext&nbsp; &nbsp;Page:  / window.onload = function() {var url = &#34;https:\/\/katherinepiatti.com&#34; &#43; &#39;static\/js\/kp_analyst_resume_2020-12-31.pdf&#39;;var hidePaginator = &#34;true&#34;;var pdfjsLib = window[&#39;pdfjs-dist/build/pdf&#39;];pdfjsLib.GlobalWorkerOptions.workerSrc = &#34;https:\/\/katherinepiatti.com&#34; &#43; &#39;/js/pdf-js/build/pdf.worker.js&#39;;var pdfDoc = null,pageNum = 1,pageRendering = false,pageNumPending = null,scale = 3,canvas = document.">
 
-<meta itemprop="wordCount" content="0">
+<meta itemprop="wordCount" content="171">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Resume"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="#the-canvas {border: 1px solid black;direction: ltr;width: 100%;height: auto;}#paginator{text-align: center;margin-bottom: 10px;}PreviousNext&nbsp; &nbsp;Page:  / window.onload = function() {var url = &#34;https:\/\/katherinepiatti.com&#34; &#43; &#39;static\/js\/kp_analyst_resume_2020-12-31.pdf&#39;;var hidePaginator = &#34;true&#34;;var pdfjsLib = window[&#39;pdfjs-dist/build/pdf&#39;];pdfjsLib.GlobalWorkerOptions.workerSrc = &#34;https:\/\/katherinepiatti.com&#34; &#43; &#39;/js/pdf-js/build/pdf.worker.js&#39;;var pdfDoc = null,pageNum = 1,pageRendering = false,pageNumPending = null,scale = 3,canvas = document."/>
 
 	
   </head>
@@ -156,7 +156,136 @@
         </h1>
       </header>
       <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        <script type="text/javascript" src="https://katherinepiatti.com/js/pdf-js/build/pdf.js"></script>
+<style>
+#the-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+}
+#paginator{
+    text-align: center;
+    margin-bottom: 10px;
+}
+</style>
+
+<div id="paginator">
+    <button id="prev">Previous</button>
+    <button id="next">Next</button>
+    &nbsp; &nbsp;
+    <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+</div>
+<div id="embed-pdf-container">
+    <canvas id="the-canvas"></canvas>
+</div>
+
+<script type="text/javascript">
+window.onload = function() {
+
+
+var url = "https:\/\/katherinepiatti.com" + 'static\/js\/kp_analyst_resume_2020-12-31.pdf';
+var hidePaginator = "true";
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/katherinepiatti.com" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    canvas = document.getElementById('the-canvas'),
+    ctx = canvas.getContext('2d');
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      if (pageNumPending !== null) {
         
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+  
+  document.getElementById('page_num').textContent = num;
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+if (hidePaginator) {
+  document.getElementById("paginator").style.display = 'none';
+}
+
+
+
+function onPrevPage() {
+  if (pageNum <= 1) {
+    return;
+  }
+  pageNum--;
+  queueRenderPage(pageNum);
+}
+document.getElementById('prev').addEventListener('click', onPrevPage);
+
+
+
+function onNextPage() {
+  if (pageNum >= pdfDoc.numPages) {
+    return;
+  }
+  pageNum++;
+  queueRenderPage(pageNum);
+}
+document.getElementById('next').addEventListener('click', onNextPage);
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  document.getElementById('page_count').textContent = pdfDoc.numPages;
+
+  
+  renderPage(pageNum);
+});
+}
+
+</script>
+
+
       </div>
     </article>
   </div>
