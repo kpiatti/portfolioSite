@@ -26,7 +26,7 @@ canonifyURLs = true
 
 [params]
   favicon = ""
-  site_logo = "/images/necker_cube_rs19.webp"
+  site_logo = "/images/diamond2.gif"
   description = ""
   facebook = ""
   twitter = ""
