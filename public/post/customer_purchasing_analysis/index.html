@@ -49,7 +49,7 @@ The purpose of this project was to learn how to use Anaconda, Python, Jupyter La
 Project Setup At the beginning of every new project you need to do a few things before creating your project jupyter notebook:
  Create a dedicated project directory (accessible to your Anaconda installation."><meta itemprop="datePublished" content="2020-10-10T11:00:59-04:00" />
 <meta itemprop="dateModified" content="2020-10-10T11:00:59-04:00" />
-<meta itemprop="wordCount" content="2462">
+<meta itemprop="wordCount" content="4137">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Understanding Customer Purchasing Patterns"/>
 <meta name="twitter:description" content="Link to GitHub Repository
@@ -254,7 +254,8 @@ Project Setup At the beginning of every new project you need to do a few things 
 <span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#import data file</span>
 df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;Demographic_Data.csv&#39;</span>)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#view first 5 lines of dataframe to confirm it looks as expected</span>
+
+<span style="color:#75715e">#view first 5 lines of dataframe to verify imports</span>
 df<span style="color:#f92672">.</span>head()
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#view characteristics of each variable in the dataframe</span>
 df<span style="color:#f92672">.</span>info()
@@ -273,7 +274,10 @@ memory usage: 3.1 MB
 </code></pre>
 <h1 id="data-wrangling">Data Wrangling</h1>
 <p>The data was in good shape when I got it, so there wasn&rsquo;t much I needed to do to prepare it for analysis.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#get rid of duplicate transactions</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#look for duplicate observations/cases</span>
+data<span style="color:#f92672">.</span>duplicated()
+
+<span style="color:#75715e">#get rid of duplicate transactions</span>
 df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>drop_duplicates()
 </code></pre></div><p>This removed 70 rows.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#check for missing values</span>
@@ -676,6 +680,15 @@ car<span style="color:#f92672">.</span>legend<span style="color:#f92672">.</span
     <img src="https://katherinepiatti.com/images/output_87_0.png"/> 
 </figure>
 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">gen_spending_boxen <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>catplot(data<span style="color:#f92672">=</span>df,
+x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;region_name&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;amount&#39;</span>, hue<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gen&#39;</span>, kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;boxen&#39;</span>, height<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>, aspect<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+
+gen_spending_boxen<span style="color:#f92672">.</span>set(xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Region&#39;</span>, ylabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Amount Spent&#39;</span>,
+                            title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Spending by Age Group&#39;</span>)
+</code></pre></div><figure>
+    <img src="https://katherinepiatti.com/images/output_91_1.png"/> 
+</figure>
+
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#calculate mean of age, items, &amp; amount for each gen within each region</span>
 gen_mean<span style="color:#f92672">=</span>df<span style="color:#f92672">.</span>groupby([<span style="color:#e6db74">&#39;region_name&#39;</span>, <span style="color:#e6db74">&#39;gen&#39;</span>])[<span style="color:#e6db74">&#39;age&#39;</span>, <span style="color:#e6db74">&#39;items&#39;</span>, <span style="color:#e6db74">&#39;amount&#39;</span>]<span style="color:#f92672">.</span>mean()
 <span style="color:#66d9ef">print</span>(gen_mean)
@@ -703,16 +716,232 @@ West        Gen Z (8-23)        21.098558  4.564197  1266.141474
             Boomer (56-74)      59.264597  4.491659  1545.107915
             Silent Gen (75-95)        NaN       NaN          NaN
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">gen_spending_boxen <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>catplot(data<span style="color:#f92672">=</span>df,
-x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;region_name&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;amount&#39;</span>, hue<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gen&#39;</span>, kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;boxen&#39;</span>, height<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>, aspect<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+<h1 id="modeling">Modeling</h1>
+<ul>
+<li>In this project the goal is just to train and test a decision tree classifier model to &ldquo;predict&rdquo; (or correctly classify) the region each transaction is from using the other four variables.</li>
+<li>Aiming for a model that correctly predicts at least 75% of transactions (&gt; 75% accuracy).</li>
+</ul>
+<h3 id="import-libraries">Import Libraries</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#DS Basics</span>
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
 
-gen_spending_boxen<span style="color:#f92672">.</span>set(xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Region&#39;</span>, ylabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Amount Spent&#39;</span>,
-                            title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Spending by Age Group&#39;</span>)
+<span style="color:#75715e">#SKLearn Stuff</span>
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
+<span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> accuracy_score, classification_report
+<span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> RandomForestClassifier, GradientBoostingClassifier
+<span style="color:#f92672">from</span> sklearn.tree <span style="color:#f92672">import</span> DecisionTreeClassifier
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> cross_val_score
+<span style="color:#f92672">from</span> sklearn <span style="color:#f92672">import</span> metrics
+
+<span style="color:#75715e">#helpers</span>
+<span style="color:#f92672">%</span>matplotlib inline
+</code></pre></div><h2 id="data-preparation">Data Preparation</h2>
+<p>Because modeling is not central to the analysis in this project, I&rsquo;m not doing any additional data prep before modeling. In a more typical scenario in addition to the  wrangling/processing done before exploration, there would likely be additional preparation to do before modeling.  <strong>Data Normalization/Standardization</strong></p>
+<h1 id="decision-tree-classifier">Decision Tree Classifier</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#specify the independent variables (features/attributes) for the model</span>
+X <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">4</span>]
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Summary of feature sample&#39;</span>)
+X<span style="color:#f92672">.</span>head()
+
+<span style="color:#75715e">#specify the dependent variable (target) for the model</span>
+y <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;region&#39;</span>]
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#split df into a training set and testing set</span>
+X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(X, y, test_size <span style="color:#f92672">=</span> <span style="color:#f92672">.</span><span style="color:#ae81ff">30</span>,
+                                                   random_state <span style="color:#f92672">=</span> <span style="color:#ae81ff">123</span>)
+</code></pre></div><p><em>Coding Notes</em></p>
+<ul>
+<li><code>test_size = .30</code> specifies 70% of the data for training and 30% for testing.</li>
+<li><code>random_state = 123</code> ensures the same observations are selected for the training and testing sets every time the code is run (for reproducibility). 123 is not important (any other number would work just as well).</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#instatiate the decision tree algorithm</span>
+algo <span style="color:#f92672">=</span> DecisionTreeClassifier(max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+
+<span style="color:#75715e">#train the model on the training data set</span>
+model <span style="color:#f92672">=</span> algo<span style="color:#f92672">.</span>fit(X_train, y_train)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#test the model on testing data to see how good the predictions are</span>
+preds <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(X_test)
+
+<span style="color:#75715e">#create classification report on how well model did on the testing data</span>
+<span style="color:#66d9ef">print</span>(classification_report(y_test, preds))
+
+<span style="color:#75715e">#create confusion matrix showing model predictions for each class</span>
+<span style="color:#66d9ef">print</span>(metrics<span style="color:#f92672">.</span>confusion_matrix(y_test, preds))
+</code></pre></div><p><em>Coding Notes</em></p>
+<ul>
+<li><code>preds = model.predict(X_test)</code>is where we are giving our trained model some new sets of X values (<code>X_test</code>) and asking it predict what region each is from.</li>
+<li>In <code>print(classification_report(y_test, preds))</code> we are comparing the prediction the model made for each observation in X_test, comparing the predicted region to the actual region for each observation (i.e. the values in <code>y_test</code>), and generating a classification report</li>
+<li><strong>Understanding the Classification Report:</strong>
+<ul>
+<li><em>precison</em> = the true positives/true positives + false positives</li>
+<li><em>recall</em> = true positives/true positives + false negatives' f1-score = a balance between precision and recall</li>
+<li><em>support</em> = the number of observations in X_test that were in each region.</li>
+<li><em>accuracy</em> = number of correct predictions/ total number of predictions
+<ul>
+<li>accuracy is only meaningful if test set is roughly balanced between the classes.
+Suppose 98% of the observations were in region 1, then the model could get 98% accuracy just by predicting that all observations are from region 1.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The confusion matrix is telling us for the observations actually from each region (rows), how many the model predicted in each region (e.g. for the cases actually in region 1, the model predicted 3,266 were in 1, 0 were in 2, 494 were in 3, and 1078 were in 4)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#print a text-only representation of the decison tree model</span>
+text_representation <span style="color:#f92672">=</span> tree<span style="color:#f92672">.</span>export_text(model)
+<span style="color:#66d9ef">print</span>(text_representation)
+</code></pre></div><h3 id="tree-plot">Tree Plot</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#import pkgs</span>
+<span style="color:#f92672">from</span> sklearn.tree <span style="color:#f92672">import</span> plot_tree
+<span style="color:#75715e">#graphviz creates better visualizations of decision trees</span>
+<span style="color:#f92672">import</span> graphviz
+<span style="color:#75715e"># pkgs also needed to plot tree using graphviz</span>
+<span style="color:#f92672">from</span> sklearn <span style="color:#f92672">import</span> tree
+<span style="color:#f92672">import</span> pydotplus
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#plot the decision tree</span>
+fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">15</span>))
+tree <span style="color:#f92672">=</span> plot_tree(model, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, feature_names<span style="color:#f92672">=</span>X<span style="color:#f92672">.</span>columns,
+                 class_names <span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;0&#39;</span>,<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>,<span style="color:#e6db74">&#39;3&#39;</span>],
+                 filled <span style="color:#f92672">=</span> True, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#change y values into strings because graphviz requires dv to be strings</span>
+y_str<span style="color:#f92672">=</span>y<span style="color:#f92672">.</span>astype(str)
+
+<span style="color:#75715e">#apply the graphviz tree plotting function to my model and data</span>
+dot_data <span style="color:#f92672">=</span> tree<span style="color:#f92672">.</span>export_graphviz(model, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,  
+                                feature_names<span style="color:#f92672">=</span>X<span style="color:#f92672">.</span>columns,  
+                                class_names<span style="color:#f92672">=</span>y_str,
+                                filled<span style="color:#f92672">=</span>True)
+<span style="color:#75715e"># Draw graph</span>
+pydot_graph <span style="color:#f92672">=</span> pydotplus<span style="color:#f92672">.</span>graph_from_dot_data(dot_data)
+pydot_graph<span style="color:#f92672">.</span>set_size(<span style="color:#e6db74">&#39;&#34;8,8!&#34;&#39;</span>)
+<span style="color:#75715e">#pydot_graph.write_png(&#39;resized_tree.png&#39;)</span>
+
+graph <span style="color:#f92672">=</span> graphviz<span style="color:#f92672">.</span>Source(dot_data, format<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;png&#34;</span>)
+<span style="color:#66d9ef">print</span>(graph)
+
+<span style="color:#75715e">#output a .png file of graphviz tree &amp; save to directory with jup nb</span>
+graph<span style="color:#f92672">.</span>render(<span style="color:#e6db74">&#34;decision_tree_graphivz&#34;</span>)
 </code></pre></div><figure>
-    <img src="https://katherinepiatti.com/images/output_91_1.png"/> 
+    <img src="https://katherinepiatti.com/images/c1_decision_tree_plot.png"/> 
 </figure>
 
-<ul class="pa0">
+<p><em>Coding Notes</em></p>
+<ul>
+<li>The tree from <code>plot_tree()</code> was too crowded, so I used the graphviz pkg instead.</li>
+<li>Each node of the tree tells us the <em>feature-value</em> the model selected for splitting the data during each iteration (e.g. first split at amount &lt;= to 499.95).</li>
+<li>Each node/leaf also tells us the <em>gini co-efficient</em> for that node. Gini is a measure of impurity—lower values are better.
+<ul>
+<li>If a partition has all and only observations within a single region, the gini will be 0.</li>
+</ul>
+</li>
+<li>samples = tells us how many observations from the data set are in that partition, so as we move down a branch from top to bottom the sample = number should be getting smaller and smaller as the model partitions the data into smaller and smaller sections.</li>
+<li>the value = line tells us how many observations are in each partition at that node/leaf. (e.g. in the age&lt;= 55.5 node we find out that there are 4091 obs. in region 1, 0 in region 2, 3676 in region 3, and 2047 in region 4).</li>
+<li>class = is telling us the what region the model is predicting (at that point in the tree) for all the observations in that partition&hellip;i&rsquo;m not sure this make sense, review later.</li>
+<li>decision trees can also be plotted using the dtreeviz pkg—these are the best looking. For more info see <a href="https://github.com/parrt/dtreeviz">this github post</a>.</li>
+</ul>
+<h3 id="parameter-experimentation">Parameter Experimentation</h3>
+<h4 id="gini--entropy">gini → entropy</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#changing default gini criterion to entropy</span>
+algo_ent <span style="color:#f92672">=</span> DecisionTreeClassifier(criterion<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;entropy&#39;</span>, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+
+<span style="color:#75715e">#train the decision tree algorithm on the training data</span>
+model_ent <span style="color:#f92672">=</span> algo_ent<span style="color:#f92672">.</span>fit(X_train, y_train)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#run model on X_test and predict values in y_test</span>
+preds_ent <span style="color:#f92672">=</span> model_ent<span style="color:#f92672">.</span>predict(X_test)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#check model&#39;s predicted values against actual values (ground truth) in y_test</span>
+<span style="color:#75715e">#and report the results</span>
+<span style="color:#66d9ef">print</span>(classification_report(y_test, preds_ent))
+</code></pre></div><hr>
+<h3 id="tree-depth">Tree Depth</h3>
+<p>This parameter controls/limits how wide and deep the decision tree can get. All decision trees begin with a single origin node which branches into 2 or more child nodes. Those of those child nodes then branches to further child nodes, which can then branch to a further layer of child nodes, and so on on.</p>
+<p>However, decision tree models are pone to overfitting. One way to reduce the risk of model overfitting is to limit how  deep the tree can get&ndash;the number of layers.</p>
+<p>For this project, if the model is allowed to terminate on its own, the resulting tree has a depth of more than 50. In my initial model, I limited the tree depth (max_depth) to 3.</p>
+<h4 id="max_depth--4">max_depth = 4</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#change max depth from 3 to 4</span>
+algo_ent4 <span style="color:#f92672">=</span> DecisionTreeClassifier(criterion<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;entropy&#39;</span>, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+
+<span style="color:#75715e">#train the decision tree algorithm on the training data</span>
+model_ent4 <span style="color:#f92672">=</span> algo_ent4<span style="color:#f92672">.</span>fit(X_train, y_train)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#run model on X_test and predict values in y_test</span>
+preds_ent4 <span style="color:#f92672">=</span> model_ent4<span style="color:#f92672">.</span>predict(X_test)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#check model&#39;s predicted values against actual values (ground truth) in y_test</span>
+<span style="color:#75715e">#and report the results</span>
+<span style="color:#66d9ef">print</span>(classification_report(y_test, preds_ent4))
+</code></pre></div><p><em>Notes</em></p>
+<ul>
+<li>these scores are identical to scores for max depth 3 model. not sure if that&rsquo;s b/c i did something wrong or the model doesn&rsquo;t gain any predictive power after depth 3
+<ul>
+<li>ben said it&rsquo;s b/c the model doesn&rsquo;t improve beyond max depth 3</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="max-depth--1">max depth = 1</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#change max depth from 4 to 1</span>
+algo_ent1 <span style="color:#f92672">=</span> DecisionTreeClassifier(criterion<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;entropy&#39;</span>, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+
+<span style="color:#75715e">#train the decision tree algorithm on the training data</span>
+model_ent1 <span style="color:#f92672">=</span> algo_ent1<span style="color:#f92672">.</span>fit(X_train, y_train)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#run model on X_test and predict values in y_test</span>
+preds_ent1 <span style="color:#f92672">=</span> model_ent1<span style="color:#f92672">.</span>predict(X_test)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#check model&#39;s predicted values against actual values (ground truth)</span>
+<span style="color:#75715e">#in y_test and report the results</span>
+<span style="color:#66d9ef">print</span>(classification_report(y_test, preds_ent1))
+</code></pre></div><p><em>Notes</em></p>
+<ul>
+<li>i think this warning appeared because there were no observations in regions 3 &amp; 4 after the split represented in the root node of the tree. but with max depth of the tree set to 1, there are no more splits in the data (<em><strong>verify</strong></em>)</li>
+</ul>
+<hr>
+<h2 id="model-performance">Model Performance</h2>
+<h3 id="cross-validation">Cross Validation</h3>
+<p>how does cross validation decrease the chance that a ML model will be overfit?</p>
+<ul>
+<li>basically because you are testing and training the model on several smaller datasets (the folds), and then averaging the results of each of those to come up with the final model, it&rsquo;s more likely the overfitting will be smoothed out in the average. say the first model is overfit by .6, <em><strong>I DON&rsquo;T THINK THIS IS CORRECT. I&rsquo;VE DONE A LOT OF RESEARCH AND CANNOT FIND A SATISFACTORY ANSWER</strong></em></li>
+</ul>
+<h4 id="3-fold-cv">3-fold CV</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#instatiate cross validation model with decision tree algorithm</span>
+cv_model <span style="color:#f92672">=</span> DecisionTreeClassifier(random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">123</span>)
+
+<span style="color:#75715e">#apply model with 3 fold to dataset</span>
+scores <span style="color:#f92672">=</span> cross_val_score(cv_model, X, y, cv <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+<span style="color:#66d9ef">print</span>(scores)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#calculate mean of accuracy scores from each fold</span>
+avg_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(scores)
+<span style="color:#66d9ef">print</span>(avg_score)
+</code></pre></div><h4 id="4-fold-cv">4-fold CV</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#apply 4-fold-model to data</span>
+scores <span style="color:#f92672">=</span> cross_val_score(cv_model, X, y, cv <span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+<span style="color:#66d9ef">print</span>(scores)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#calculate mean of accuracy scores from each fold</span>
+avg_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(scores)
+<span style="color:#66d9ef">print</span>(avg_score)
+</code></pre></div><h4 id="8-fold-cv">8-fold CV</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#apply 8-fold model to data</span>
+scores <span style="color:#f92672">=</span> cross_val_score(cv_model, X, y, cv <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>)
+<span style="color:#66d9ef">print</span>(scores)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#calculate mean of accuracy scores from each fold</span>
+avg_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(scores)
+<span style="color:#66d9ef">print</span>(avg_score)
+</code></pre></div><h4 id="20-fold-cv">20-fold CV</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#apply 20 fold model to data</span>
+scores <span style="color:#f92672">=</span> cross_val_score(cv_model, X, y, cv <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>)
+<span style="color:#66d9ef">print</span>(scores)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#calculate mean of accuracy scores from each fold</span>
+avg_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(scores)
+<span style="color:#66d9ef">print</span>(avg_score)
+</code></pre></div><p><em>Notes</em></p>
+<ul>
+<li>i&rsquo;m not sure how to choose the optimal number of folds.</li>
+<li>i expected the accuracy of the model to improve at least slightly (up to a point) the more folds you used in the cv model because i was mistakenly thinking that in a cv model, the model was adjusted after being trained on each fold, so that after training the final model was basically the average of the models trained on each fold.</li>
+<li>however, after talking to david i now know that is not how it works.</li>
+<li>when you specify the type of algorithm (e.g. decision tree, random forest), set the various parameters, and specify your feature and target variables—the model is set. the model is not changed/refined in the training on each fold. the same model is used on every fold</li>
+<li>but then how does cross validation cut the risk of overfitting? basically, the accuracy scores on each fold should be roughly the same. if one accuracy score is very different than the others, you know that something is going on with that part of the data and you need to investigate to figure it out. (<em><strong>verify: i&rsquo;m not sure about this</strong></em>)</li>
+</ul>
+<h3 id="feature-importance">Feature Importance</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># use pandas and random forest model to see which features within the df are most important</span>
+feature_imp <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>series(model<span style="color:#f92672">.</span>feature_importances_, index<span style="color:#f92672">=</span>data<span style="color:#f92672">.</span>feature<span style="color:#f92672">.</span>names)
+    <span style="color:#f92672">.</span>sort_values(ascending<span style="color:#f92672">=</span>False)
+</code></pre></div><ul class="pa0">
   
 </ul>
 <div class="mt6 instapaper_ignoref">
