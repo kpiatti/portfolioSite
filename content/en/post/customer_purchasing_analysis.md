@@ -44,10 +44,8 @@ import seaborn as sns
 ```python
 #import data file
 df = pd.read_csv('Demographic_Data.csv')
-```
 
-```python
-#view first 5 lines of dataframe to confirm it looks as expected
+#view first 5 lines of dataframe to verify imports
 df.head()
 ```
 
@@ -75,6 +73,9 @@ df.info()
 The data was in good shape when I got it, so there wasn't much I needed to do to prepare it for analysis.
 
 ```python
+#look for duplicate observations/cases
+data.duplicated()
+
 #get rid of duplicate transactions
 df = df.drop_duplicates()
 ```
@@ -523,6 +524,17 @@ car.legend.set_title('')
 ```
 {{< figure src="/images/output_87_0.png" >}}
 
+
+```python
+gen_spending_boxen = sns.catplot(data=df,
+x='region_name', y='amount', hue='gen', kind='boxen', height=6, aspect=2)
+
+gen_spending_boxen.set(xlabel='Region', ylabel='Amount Spent',
+                            title='Spending by Age Group')
+```
+
+{{< figure src="/images/output_91_1.png" >}}
+
 ```python
 #calculate mean of age, items, & amount for each gen within each region
 gen_mean=df.groupby(['region_name', 'gen'])['age', 'items', 'amount'].mean()
@@ -556,12 +568,340 @@ print(gen_mean)
 
 
 
-```python
-gen_spending_boxen = sns.catplot(data=df,
-x='region_name', y='amount', hue='gen', kind='boxen', height=6, aspect=2)
 
-gen_spending_boxen.set(xlabel='Region', ylabel='Amount Spent',
-                            title='Spending by Age Group')
+
+
+# Modeling
+
+* In this project the goal is just to train and test a decision tree classifier model to "predict" (or correctly classify) the region each transaction is from using the other four variables.
+* Aiming for a model that correctly predicts at least 75% of transactions (> 75% accuracy).
+
+### Import Libraries
+
+```python
+#DS Basics
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+#SKLearn Stuff
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import cross_val_score
+from sklearn import metrics
+
+#helpers
+%matplotlib inline
 ```
 
-{{< figure src="/images/output_91_1.png" >}}
+## Data Preparation
+
+Because modeling is not central to the analysis in this project, I'm not doing any additional data prep before modeling. In a more typical scenario in addition to the  wrangling/processing done before exploration, there would likely be additional preparation to do before modeling.  **Data Normalization/Standardization**
+
+
+# Decision Tree Classifier
+
+```python
+#specify the independent variables (features/attributes) for the model
+X = data.iloc[:, 0:4]
+print('Summary of feature sample')
+X.head()
+
+#specify the dependent variable (target) for the model
+y = data['region']
+```
+
+
+```python
+#split df into a training set and testing set
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .30,
+                                                   random_state = 123)
+```
+
+*Coding Notes*  
+* ```test_size = .30``` specifies 70% of the data for training and 30% for testing.
+* ```random_state = 123``` ensures the same observations are selected for the training and testing sets every time the code is run (for reproducibility). 123 is not important (any other number would work just as well).
+
+
+```python
+#instatiate the decision tree algorithm
+algo = DecisionTreeClassifier(max_depth=3)
+
+#train the model on the training data set
+model = algo.fit(X_train, y_train)
+```
+
+
+```python
+#test the model on testing data to see how good the predictions are
+preds = model.predict(X_test)
+
+#create classification report on how well model did on the testing data
+print(classification_report(y_test, preds))
+
+#create confusion matrix showing model predictions for each class
+print(metrics.confusion_matrix(y_test, preds))
+```
+
+*Coding Notes*
+* ```preds = model.predict(X_test)```is where we are giving our trained model some new sets of X values (```X_test```) and asking it predict what region each is from.
+* In ```print(classification_report(y_test, preds))``` we are comparing the prediction the model made for each observation in X_test, comparing the predicted region to the actual region for each observation (i.e. the values in ```y_test```), and generating a classification report
+* **Understanding the Classification Report:**
+  - *precison* = the true positives/true positives + false positives
+  - *recall* = true positives/true positives + false negatives' f1-score = a balance between precision and recall
+  - *support* = the number of observations in X_test that were in each region.
+  - *accuracy* = number of correct predictions/ total number of predictions
+    - accuracy is only meaningful if test set is roughly balanced between the classes.
+    Suppose 98% of the observations were in region 1, then the model could get 98% accuracy just by predicting that all observations are from region 1.
+* The confusion matrix is telling us for the observations actually from each region (rows), how many the model predicted in each region (e.g. for the cases actually in region 1, the model predicted 3,266 were in 1, 0 were in 2, 494 were in 3, and 1078 were in 4)
+
+```python
+#print a text-only representation of the decison tree model
+text_representation = tree.export_text(model)
+print(text_representation)
+```
+
+### Tree Plot
+
+```python
+#import pkgs
+from sklearn.tree import plot_tree
+#graphviz creates better visualizations of decision trees
+import graphviz
+# pkgs also needed to plot tree using graphviz
+from sklearn import tree
+import pydotplus
+```
+
+
+```python
+#plot the decision tree
+fig = plt.figure(figsize=(30,15))
+tree = plot_tree(model, max_depth=3, feature_names=X.columns,
+                 class_names =['0','1', '2','3'],
+                 filled = True, fontsize=14)
+```
+
+
+```python
+#change y values into strings because graphviz requires dv to be strings
+y_str=y.astype(str)
+
+#apply the graphviz tree plotting function to my model and data
+dot_data = tree.export_graphviz(model, max_depth=3,  
+                                feature_names=X.columns,  
+                                class_names=y_str,
+                                filled=True)
+# Draw graph
+pydot_graph = pydotplus.graph_from_dot_data(dot_data)
+pydot_graph.set_size('"8,8!"')
+#pydot_graph.write_png('resized_tree.png')
+
+graph = graphviz.Source(dot_data, format="png")
+print(graph)
+
+#output a .png file of graphviz tree & save to directory with jup nb
+graph.render("decision_tree_graphivz")
+```
+
+{{< figure src="/images/c1_decision_tree_plot.png" >}}
+
+
+*Coding Notes*
+
+* The tree from ```plot_tree()``` was too crowded, so I used the graphviz pkg instead.
+* Each node of the tree tells us the *feature-value* the model selected for splitting the data during each iteration (e.g. first split at amount <= to 499.95).
+* Each node/leaf also tells us the *gini co-efficient* for that node. Gini is a measure of impurity—lower values are better.
+  * If a partition has all and only observations within a single region, the gini will be 0.
+* samples = tells us how many observations from the data set are in that partition, so as we move down a branch from top to bottom the sample = number should be getting smaller and smaller as the model partitions the data into smaller and smaller sections.
+* the value = line tells us how many observations are in each partition at that node/leaf. (e.g. in the age<= 55.5 node we find out that there are 4091 obs. in region 1, 0 in region 2, 3676 in region 3, and 2047 in region 4).
+* class = is telling us the what region the model is predicting (at that point in the tree) for all the observations in that partition...i'm not sure this make sense, review later.  
+* decision trees can also be plotted using the dtreeviz pkg—these are the best looking. For more info see [this github post](https://github.com/parrt/dtreeviz).
+
+### Parameter Experimentation
+
+#### gini → entropy
+
+
+```python
+#changing default gini criterion to entropy
+algo_ent = DecisionTreeClassifier(criterion='entropy', max_depth=3)
+
+#train the decision tree algorithm on the training data
+model_ent = algo_ent.fit(X_train, y_train)
+```
+
+
+```python
+#run model on X_test and predict values in y_test
+preds_ent = model_ent.predict(X_test)
+```
+
+
+```python
+#check model's predicted values against actual values (ground truth) in y_test
+#and report the results
+print(classification_report(y_test, preds_ent))
+```
+
+
+---
+
+### Tree Depth
+This parameter controls/limits how wide and deep the decision tree can get. All decision trees begin with a single origin node which branches into 2 or more child nodes. Those of those child nodes then branches to further child nodes, which can then branch to a further layer of child nodes, and so on on.
+
+However, decision tree models are pone to overfitting. One way to reduce the risk of model overfitting is to limit how  deep the tree can get--the number of layers.
+
+For this project, if the model is allowed to terminate on its own, the resulting tree has a depth of more than 50. In my initial model, I limited the tree depth (max_depth) to 3.
+
+#### max_depth = 4
+
+
+```python
+#change max depth from 3 to 4
+algo_ent4 = DecisionTreeClassifier(criterion='entropy', max_depth=4)
+
+#train the decision tree algorithm on the training data
+model_ent4 = algo_ent4.fit(X_train, y_train)
+```
+
+
+```python
+#run model on X_test and predict values in y_test
+preds_ent4 = model_ent4.predict(X_test)
+```
+
+
+```python
+#check model's predicted values against actual values (ground truth) in y_test
+#and report the results
+print(classification_report(y_test, preds_ent4))
+```
+
+*Notes*  
+* these scores are identical to scores for max depth 3 model. not sure if that's b/c i did something wrong or the model doesn't gain any predictive power after depth 3
+    * ben said it's b/c the model doesn't improve beyond max depth 3
+
+---
+
+#### max depth = 1
+
+
+```python
+#change max depth from 4 to 1
+algo_ent1 = DecisionTreeClassifier(criterion='entropy', max_depth=1)
+
+#train the decision tree algorithm on the training data
+model_ent1 = algo_ent1.fit(X_train, y_train)
+```
+
+
+```python
+#run model on X_test and predict values in y_test
+preds_ent1 = model_ent1.predict(X_test)
+```
+
+
+```python
+#check model's predicted values against actual values (ground truth)
+#in y_test and report the results
+print(classification_report(y_test, preds_ent1))
+```
+
+*Notes*
+* i think this warning appeared because there were no observations in regions 3 & 4 after the split represented in the root node of the tree. but with max depth of the tree set to 1, there are no more splits in the data (***verify***)  
+---
+
+## Model Performance
+
+### Cross Validation
+
+how does cross validation decrease the chance that a ML model will be overfit?
+* basically because you are testing and training the model on several smaller datasets (the folds), and then averaging the results of each of those to come up with the final model, it's more likely the overfitting will be smoothed out in the average. say the first model is overfit by .6, ***I DON'T THINK THIS IS CORRECT. I'VE DONE A LOT OF RESEARCH AND CANNOT FIND A SATISFACTORY ANSWER***
+
+#### 3-fold CV
+
+
+```python
+#instatiate cross validation model with decision tree algorithm
+cv_model = DecisionTreeClassifier(random_state=123)
+
+#apply model with 3 fold to dataset
+scores = cross_val_score(cv_model, X, y, cv = 3)
+print(scores)
+```
+
+
+```python
+#calculate mean of accuracy scores from each fold
+avg_score = np.mean(scores)
+print(avg_score)
+```
+
+#### 4-fold CV
+
+
+```python
+#apply 4-fold-model to data
+scores = cross_val_score(cv_model, X, y, cv =4)
+print(scores)
+```
+
+
+```python
+#calculate mean of accuracy scores from each fold
+avg_score = np.mean(scores)
+print(avg_score)
+```
+
+#### 8-fold CV
+
+
+```python
+#apply 8-fold model to data
+scores = cross_val_score(cv_model, X, y, cv = 8)
+print(scores)
+```
+
+
+```python
+#calculate mean of accuracy scores from each fold
+avg_score = np.mean(scores)
+print(avg_score)
+```
+
+#### 20-fold CV
+
+
+```python
+#apply 20 fold model to data
+scores = cross_val_score(cv_model, X, y, cv = 20)
+print(scores)
+```
+
+
+```python
+#calculate mean of accuracy scores from each fold
+avg_score = np.mean(scores)
+print(avg_score)
+```
+
+*Notes*  
+* i'm not sure how to choose the optimal number of folds.
+* i expected the accuracy of the model to improve at least slightly (up to a point) the more folds you used in the cv model because i was mistakenly thinking that in a cv model, the model was adjusted after being trained on each fold, so that after training the final model was basically the average of the models trained on each fold.
+* however, after talking to david i now know that is not how it works.
+* when you specify the type of algorithm (e.g. decision tree, random forest), set the various parameters, and specify your feature and target variables—the model is set. the model is not changed/refined in the training on each fold. the same model is used on every fold
+* but then how does cross validation cut the risk of overfitting? basically, the accuracy scores on each fold should be roughly the same. if one accuracy score is very different than the others, you know that something is going on with that part of the data and you need to investigate to figure it out. (***verify: i'm not sure about this***)
+
+
+
+### Feature Importance
+
+
+```python
+# use pandas and random forest model to see which features within the df are most important
+feature_imp = pd.series(model.feature_importances_, index=data.feature.names)
+    .sort_values(ascending=False)
+```
