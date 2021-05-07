@@ -9,9 +9,8 @@ tag: "data wrangling"
 
 [comment]: <> (add image files like coord_flip_ex.png to the image folder inside the static folder)
 
-[Link to GitHub Repository](https://github.com/kpiatti/WIFI-Fingerprinting-Project)
+[Link to GitHub Repository](https://github.com/kpiatti/customer-purchasing-patterns)
 
-# Project Setup, Wrangling, & EDA
 
 The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
 
@@ -178,42 +177,391 @@ sns.displot(
 )
 ```
 
+
+### Correlation
+   * Pearson Correlation Coefficient—use when testing continuous variables that have a linear relationship.
+   * Spearman Correlation Coefficient—use when testing variables with a non-linear relationship
+
+```python
+#generate correlation matrix
+corr_mat = df.corr()
+print(corr_mat)
+```
+
+              in-store       age     items    amount    region
+    in-store  1.000000 -0.178180 -0.003897 -0.085573 -0.133171
+    age      -0.178180  1.000000  0.000657 -0.282033 -0.235370
+    items    -0.003897  0.000657  1.000000  0.000384 -0.001904
+    amount   -0.085573 -0.282033  0.000384  1.000000  0.403486
+    region   -0.133171 -0.235370 -0.001904  0.403486  1.000000
+
+
+*Notes*  
+
+* I don't think the correlation co-efficients for in-store and region are meaningful.
+* There is a slight negative correlation between amount spent per transaction and age, suggesting that as age increases, the amount spent per transaction decreases. But I know from the scatter plot I generated earlier that the negative correlation between age and amount spent doesn't kick in until around age 62-65, when you see a sharp dropoff. Prior to that there doesn't appear to be any correlation between the two variables.
+
+### Covariance
+
+```python
+#generate covariance matrix
+cov_mat = df.cov()
+print(cov_mat)
+```
+
+               in-store          age     items         amount      region
+    in-store   0.250003    -1.400071 -0.004017     -30.860425   -0.075019
+    age       -1.400071   246.966189  0.021270   -3196.782841   -4.167305
+    items     -0.004017     0.021270  4.248751       0.570791   -0.004421
+    amount   -30.860425 -3196.782841  0.570791  520221.252295  327.874873
+    region    -0.075019    -4.167305 -0.004421     327.874873    1.269321
+
+## Visualization Options
+
+This is primarily a learning exercise in how to create core types of data vizualizations in Python.
+
+### *Line Plots*
+
 {{< figure src="/images/output_29_1.png" >}}
 
-{{< figure src="/images/output_37_0.png" >}}
+*Coding Notes*  
 
-{{< figure src="/images/output_41_0.png" >}}
+  - *fix*: title and axes labels appeared on a empty figure because ```plt.show()``` command was below the ```ax.plot()``` command.
+  - You don't need to use ```plt.show()``` in Jupyter notebooks to generate matplotlib visualisations. But including it suppresses several lines of code that would otherwise appear above your graph/plot.
+
+### *Scatter Plots*
+
+```python
+#create a var that is a random sample of 1000 observations from the dataset
+data_sample100 = df.sample(1000)
+
+#set x-axis to 'age' and y-axis to 'amount'
+x = data_sample['age']
+y = data_sample['amount']
+
+#create a scatter plot
+plt.scatter(x,y, marker='o')
+
+#add a title
+plt.title('Amount Spent Per Purchase by Age, Sample of 1000')
+#add labels to x and y axes
+plt.xlabel('Age')
+plt.ylabel('Spending/Purchase')
+
+plt.show()
+```
 
 {{< figure src="/images/output_43_0.png" >}}
 
+*Coding Notes*  
+
+  - SyntaxError fix: after adding title and label lines and running, got a syntax error indicating problem with ```plt.xlabel('Age')```. But problem was a missing close paren.
+  - ```data.sample(n)``` takes a *random* sample of n observations from the dataset, so unless specified, the sample will include different obs. every time the code is run.
+  - To fix which obs. are sampled (for reproducibility) use ```random_state```. See [Pandas documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html) for more information.
+
+Can't tell much from this scatter plot alone, except there is less variability in spending for customers 70+. (Turns out this pattern is a product of intentional data manipulation.)
+
+
+### *Boxplots*
+
+Box plots are especially good for:  
+* finding outliers
+* getting rough idea of how your data is distributed
+* how tightly your data is grouped
+
+
+```python
+#create object to represent the amount feature
+A = df['amount']
+
+#generate boxplot of amount feature
+plt.boxplot(A,0,'gD')
+
+#add plot title and label y-axis
+plt.title('Amount Spent Per Purchase')
+plt.ylabel ('$ Spent')
+
+plt.show()
+```
+
 {{< figure src="/images/output_47_0.png" >}}
+
+*Coding Notes*   
+  * The 0 parameter is determining whether the plot has notches. 0=No, 1=Yes.
+  * The 'gD' parameter is determinint the color and shape of the smybol representing outliers.
+    * To supress symbols altogether use ```plt.boxplot(A, 0, ' ')```
+    * To generate a basic box plot just use ```plt.boxplot(A)```
+    * To generate a horizontal box plot use ```plt.boxplot(A, 0, 'rs', 0)```
+    * To generate boxplot *without* definining a new object use ```plt.boxplot(data['amount'])```
+
+
+# Regional Analysis
+
+In this section I'll use the information about the data I've gathered so far and do some additional analysis to answer Blackwell's questions about regional differences in customer spending.
+
+## *Do customers in different regions spend more per transaction?*
+
+```python
+# get variable means for each region
+ df.groupby('region').mean()
+ df.groupby('region').median()
+ df.groupby('region').std()
+```
+*Insights*
+* Customers in the South spend the *least* per transaction (about $252). Customers in the East spend the most (about $1284).
+* All transactions in the North occurred in-store.
+* All transactions in the South occurred online.
+* The avg. customer in the East is 15 years younger than the average customer in the South.
+* The avg. number of items purchased in each transaction is 4.5 in all regions.
+* Median spending per transaction is significantly lower than the mean in the North and West, suggesting there are high outlier transactions in those regions.
+* The relatively small standard deviation in amount spent per transaction in the East suggests most purchases are in a small range around the mean of $250.
+
+```python
+#add new var that maps region #s to names, temp set all values to North
+df['region_name']='North'
+
+#change 2s to South
+df.loc[df['region']==2,'region_name']='South'
+#change 3s to East
+df.loc[df['region']==3,'region_name']='East'
+#change 4s to West
+df.loc[df['region']==4,'region_name']='West'
+
+df.head()
+```
+
+
+```python
+#create violin plot of amount variable in each region
+abr=sns.catplot(x = 'region_name', y = 'amount', data = df, kind = 'violin',
+            aspect = 1.5)
+abr.set_xticklabels( rotation = 45) #argument({'tic 1', 'tic 2',...}, rotation=45)
+abr.fig.suptitle('Regional Spending')
+abr.fig.subplots_adjust(top=0.9)
+abr.set_axis_labels('Region', 'Spending per Transaction')
+```
 
 {{< figure src="/images/output_60_0.png" >}}
 
-{{< figure src="/images/output_61_0.png" >}}
 
-{{< figure src="/images/output_64_1.png" >}}
+*Summary*  
+
+Short answer: *YES*. A quick look at the average amount spent in each region reveals that the Southern region spends the least (~$252.00$). Although it looks like the Eastern region spends the most per transaction (~$1284), further investigation reveals that number is heavily skewed by several outlier transactions. When the outliers are left aside, we can see that typical spendintg in the Eastern and Northern regions are very similar. We can also see that customers in the Western region typically spend the most. One final thing to note is that the amount spent per transaction in the Southern region spans a noteably smaller range than the other three areas, and is concentrated at the low end.
+
+## *Which regions spend the most/least?*
+
+We saw earlier that customers in the **South** typically spend to *least* per transaction (~ $250.00) and customers in the **West** typically spend the *most* (~ $1230.00).
+
+But perhaps the question is *which region(s) bring in the most/least revenue?*
+
+```python
+#caluculate regional sums
+region_sum=df.groupby(['region']).sum()
+print(region_sum)
+```
+               items      amount
+    region                                         
+    1          72151     1.191762e+07
+    2          90229     5.040442e+06
+    3          80892     1.652345e+07
+    4          117044    3.336699e+07
+
+
+```python
+# create pie chart showing % of total revenue for each region
+labels = 'North', 'South', 'East', 'West'
+sizes = [17.8, 7.5, 24.7, 49.9]
+explode = (0, 0.1, 0, 0.1)  # "explode" 2nd and 3rd slices
+#explode highlights regions of interest
+
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+        shadow=True, startangle=90)
+ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+#add plot title
+fig1.suptitle('Revenue by Region', fontsize=16)
+```
 
 {{< figure src="/images/output_67_0.png" >}}
 
-{{< figure src="/images/output_29_1.png" >}}
+The pie chart nicely illustrates that the West brings in the most revenue and the South brings in the least.
 
+
+## *Are there regional differences in online vs. in-store spending?*
+
+```python
+df.groupby('in-store').describe()['amount']
+```
+
+```python
+#revenue online vs. in-store by region
+oir = sns.catplot(data=df, kind='box',
+                  x='region_name', y='amount', hue='in-store', height=6)
+oir.despine(left=True)
+#oir.title("Online vs. In-Store Spending by Region")<--doesn't work
+oir.set_xticklabels( rotation=45)
+oir.set_axis_labels('Region', 'Spending')
+oir.legend.set_title('')
+#NA--oir.subplots_adjust(top=0.9)
+oir.fig.suptitle("Online vs. In-Store Spending",
+                  fontsize=16, fontdict={"weight": "bold"}, y = 1.05)
+```
 {{< figure src="/images/output_72_0.png" >}}
+
+
+***Observations***
+
+* As you can see in the above plot, the Southern region has **only online** sales, and the Northern region has **no online** sales. Assuming the data is sound, the complete lack of online sales in the South presents a big opportunity for the company.
+* Wwe can also see in the above graph that online sales account for all the high dollar transactions. Almost all the sales above $2,100.00$ are online transactions. This suggests potential value in developing a strategy aimed at growing high-dollar purchases in-store.
+
+
+# Age Analysis
+
+## *Create Categorical Age Variables*
+
+*Discretization* is the process of taking a continuous variable, like age or amount, and turning it into a categorical variable by putting all values into discreet bins (e.g. over 65 and under 65). [This](https://s3.amazonaws.com/gbstool/courses/1094/docs/An%20Introduction%20to%20Discretization%20Techniques%20for%20Data%20Scientists.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20201023T205053Z&X-Amz-SignedHeaders=host&X-Amz-Expires=36900&X-Amz-Credential=AKIAJBIZLMJQ2O6DKIAA%2F20201023%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=4e9e02e0403840c946cd9a5a9fe5270c8146878715dcdb9853fa908ee0821602) article contains the pkgs and commands needed to do various kinds of discretization.
+
+***The Value of Discretization***
+
+* Results can be *more meaningful* and *easier to understand* when the data has been binned into categories that have been thoughtfully constructed to fit the question(s) we are trying to answer. (e.g.  binning age into generations--baby boomers, millenials, gen z, etc.--to uncover generational differences in consumer behavior.     - Certain statistical methods/models are only appropriate when working with categorical variables.
+* Binning data can reduce the impact of noise in the data.
+
+***Approaches to discretization***
+
+- *equal width* — separate all values into 'N' number of bins, each having the same width (i.e. span of values)
+- *equal frequency* — separate the values in 'N' number of bins, each containing the same number of observations.
+- *K-means* — use k-means clustering to to group data.
+
+### Over 65 vs. Under 65
+
+```python
+#define new discritized age variable, two bins: under 65 and 65+
+young = pd.cut(df.age, bins=[18,63,84], labels=['Under 65', '65+'])
+
+#add new young variable to df
+df['young']=young
+
+df.head()
+```
+
+```python
+ca = sns.countplot(data=df,
+                  x='region_name', y=None, hue='young')
+ca.set(xlabel='Region', ylabel='Count')
+ca.legend().set_title('')
+```
 
 {{< figure src="/images/output_78_0.png" >}}
 
+
+* This bar chart tells us that (1) all customers in the Western region are under 65, and the Southern region has the most number of customers over 65. This suggests marketing target at age groups may be more successful in those two regions.
+* That being said, the relatively small size of Blackwell's customer base that is 65+ makes it an area for big potential gains.
+
+### Generational Analysis
+
+```python
+#define new generation variable
+gen = pd.cut(df.age,
+             bins=[18,23,39,55,74,85],
+             labels =['Gen Z (8-23)',
+                      'Millenial (24-39)',
+                      'Gen X (40-55)',
+                      'Boomer (56-74)',
+                      'Silent Gen (75-95)'])
+
+#add new gen variable to df
+df['gen']=gen
+df.head()
+```
+
+
+```python
+#create generational spending plot
+gen_plot = sns.catplot(data=df,
+                  x='region_name', y=None, hue='gen', kind='count',
+                      height=4, aspect=1)
+gen_plot.set(xlabel='Region', ylabel='Count',
+            title='Regional Transactions by Age Group')
+gen_plot.set_xticklabels(rotation=45)
+
+gen_plot.legend.set_title('')
+
+gen_plot.savefig('pic_gen_plot.png')
+```
+
+*Coding Notes*
+- None of the following worked when creating the generation bar chart.
+  - gen_plot_leg=gen_plot.legend()
+  - gen_plot.fig.legend(title='', labels=[])
+  - legend = gen_plot.legend()
+  - legend.texts[0].set_text('')
+  - fig=gen_plot.get_figure()
+
 {{< figure src="/images/output_80_0.png" >}}
 
-{{< figure src="/images/output_83_1.png" >}}
+***Observations***
 
-{{< figure src="/images/output_85_0.png" >}}
+* All customers of the Silent Generation are in the South.
+* Generation Z (ages 18-24) is the smallest cohort of customers in 3 of 4 regions.
+* There are no Gen Z customers in the South.
 
+## *Do the generations differ in their purchasing?*
+
+```python
+#violin plot of spending by customers under 65 and 65+ in each region
+car = sns.catplot(data=df, kind='violin',
+                  x='region_name', y='amount', hue='young',
+                  palette='rocket', legend_out=True, ci = None)
+car.despine(left=True)
+car.set_xticklabels( rotation=45)
+car.set_axis_labels('', 'Spending per Transaction')
+car.fig.suptitle("Customer Spending by Age: Under 65 vs 65+",
+                  fontsize=16, fontdict={"weight": "bold"})
+#car.fig.legend(title="", labels=['Online', 'In-store'])
+car.legend.set_title('')
+```
 {{< figure src="/images/output_87_0.png" >}}
 
-{{< figure src="/images/output_89_0.png" >}}
+```python
+#calculate mean of age, items, & amount for each gen within each region
+gen_mean=df.groupby(['region_name', 'gen'])['age', 'items', 'amount'].mean()
+print(gen_mean)
 
-{{< figure src="/images/output_90_0.png" >}}
+```
+
+                                          age     items       amount
+    region_name gen                                                 
+    East        Gen Z (8-23)        20.954082  4.503827  1584.896097
+                Millenial (24-39)   31.656688  4.467841   958.103526
+                Gen X (40-55)       47.476020  4.508320   927.122623
+                Boomer (56-74)      63.478210  4.496804   751.545588
+                Silent Gen (75-95)        NaN       NaN          NaN
+    North       Gen Z (8-23)        21.157093  4.478312  1018.099817
+                Millenial (24-39)   31.661903  4.515131   804.479170
+                Gen X (40-55)       47.337918  4.499066   771.135680
+                Boomer (56-74)      64.708195  4.529785   520.992073
+                Silent Gen (75-95)        NaN       NaN          NaN
+    South       Gen Z (8-23)              NaN       NaN          NaN
+                Millenial (24-39)   33.685424  4.500248   250.351972
+                Gen X (40-55)       47.550467  4.505747   252.129675
+                Boomer (56-74)      64.981328  4.522211   252.277828
+                Silent Gen (75-95)  79.886164  4.520128   253.608984
+    West        Gen Z (8-23)        21.098558  4.564197  1266.141474
+                Millenial (24-39)   31.466787  4.485318  1264.815006
+                Gen X (40-55)       47.407644  4.504028  1251.748461
+                Boomer (56-74)      59.264597  4.491659  1545.107915
+                Silent Gen (75-95)        NaN       NaN          NaN
+
+
+
+
+```python
+gen_spending_boxen = sns.catplot(data=df,
+x='region_name', y='amount', hue='gen', kind='boxen', height=6, aspect=2)
+
+gen_spending_boxen.set(xlabel='Region', ylabel='Amount Spent',
+                            title='Spending by Age Group')
+```
 
 {{< figure src="/images/output_91_1.png" >}}
-
-{{< figure src="/images/output_98_2.png" >}}
