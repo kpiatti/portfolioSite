@@ -1,8 +1,8 @@
 ---
-date: 2017-04-12T11:14:48-04:00
+date: 2021-05-05T11:14:48-04:00
 description: ""
-featured_image: ""
-title: "Project 4"
+featured_image: "/images/fingerprint.jpg"
+title: "Wifi Fingerprinting"
 ---
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
 - Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.
