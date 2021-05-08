@@ -23,9 +23,8 @@
       <pubDate>Fri, 09 Apr 2021 10:58:08 -0400</pubDate>
       
       <guid>https://katherinepiatti.com/post/mobile_sentiment_analysis/</guid>
-      <description>Link to GitHub Repository Link to RPubs
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
- Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.  library(tidyverse)   Data Vizualization   </description>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
+ Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.  library(tidyverse)   Data Vizualization   Link to Project GitHub Repository Link to RPubs</description>
     </item>
     
     <item>
@@ -34,9 +33,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis se
       <pubDate>Wed, 10 Mar 2021 11:00:59 -0400</pubDate>
       
       <guid>https://katherinepiatti.com/post/my_website/</guid>
-      <description>Link to GitHub Repository
-While doing research for another project, I stumbled across a tutorial on how to build your own static website using Hugo (open source) and adding content using markdown files. I decided to try it. What you&amp;rsquo;re looking at is the result.
-  Data Vizualization   </description>
+      <description>While doing research for another project, I stumbled across a tutorial on how to build your own static website using Hugo (open source) and adding content using markdown files. I decided to try it. What you&amp;rsquo;re looking at is the result.
+  Data Vizualization   Link to GitHub Repository</description>
     </item>
     
     <item>
@@ -45,24 +43,22 @@ While doing research for another project, I stumbled across a tutorial on how to
       <pubDate>Sat, 09 Jan 2021 11:13:32 -0400</pubDate>
       
       <guid>https://katherinepiatti.com/post/market_basket_analysis/</guid>
-      <description>Link to GitHub Repository Link to RPubs
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
- Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   </description>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
+ Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to Project GitHub Repository Link to RPubs</description>
     </item>
     
     <item>
-      <title>Predicting Product Sales</title>
-      <link>https://katherinepiatti.com/post/product_sales_prediction/</link>
-      <pubDate>Tue, 10 Nov 2020 11:00:59 -0400</pubDate>
+      <title>Credit One Project</title>
+      <link>https://katherinepiatti.com/post/creditone_project/</link>
+      <pubDate>Sun, 13 Dec 2020 11:00:59 -0400</pubDate>
       
-      <guid>https://katherinepiatti.com/post/product_sales_prediction/</guid>
-      <description>Link to GitHub Repository Link to RPubs
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
- Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   </description>
+      <guid>https://katherinepiatti.com/post/creditone_project/</guid>
+      <description>#import required packages from sqlalchemy import create_engine import pymysql import pandas as pd import numpy as np Obtain Data The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database for the data, get the data (formatted as dataframe), and finally export the data as a .csv file.
+Even though it&amp;rsquo;s not necessary, I prefer to export the raw data as a .</description>
     </item>
     
     <item>
-      <title>Project 2</title>
+      <title>Brand Preference Analysis</title>
       <link>https://katherinepiatti.com/post/brand_pref_analysis/</link>
       <pubDate>Tue, 10 Nov 2020 11:00:59 -0400</pubDate>
       
@@ -72,25 +68,24 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis se
     </item>
     
     <item>
+      <title>Predicting Product Sales</title>
+      <link>https://katherinepiatti.com/post/product_sales_prediction/</link>
+      <pubDate>Tue, 10 Nov 2020 11:00:59 -0400</pubDate>
+      
+      <guid>https://katherinepiatti.com/post/product_sales_prediction/</guid>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
+ Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to Project GitHub Repository Link to RPubs</description>
+    </item>
+    
+    <item>
       <title>Understanding Customer Purchasing Patterns</title>
       <link>https://katherinepiatti.com/post/customer_purchasing_analysis/</link>
       <pubDate>Sat, 10 Oct 2020 11:00:59 -0400</pubDate>
       
       <guid>https://katherinepiatti.com/post/customer_purchasing_analysis/</guid>
-      <description>Link to GitHub Repository
-The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
+      <description>The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
 Project Setup At the beginning of every new project you need to do a few things before creating your project jupyter notebook:
  Create a dedicated project directory (accessible to your Anaconda installation.</description>
-    </item>
-    
-    <item>
-      <title>Credit One Project</title>
-      <link>https://katherinepiatti.com/post/creditone_project/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://katherinepiatti.com/post/creditone_project/</guid>
-      <description>Link to GitHub Repository
-  Data Vizualization   </description>
     </item>
     
     <item>

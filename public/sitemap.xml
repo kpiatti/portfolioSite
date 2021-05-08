@@ -27,12 +27,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://katherinepiatti.com/post/product_sales_prediction/</loc>
-    <lastmod>2020-11-10T11:00:59-04:00</lastmod>
+    <loc>https://katherinepiatti.com/post/creditone_project/</loc>
+    <lastmod>2020-12-13T11:00:59-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://katherinepiatti.com/post/brand_pref_analysis/</loc>
+    <lastmod>2020-11-10T11:00:59-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://katherinepiatti.com/post/product_sales_prediction/</loc>
     <lastmod>2020-11-10T11:00:59-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -52,10 +57,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://katherinepiatti.com/categories/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://katherinepiatti.com/post/creditone_project/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>

@@ -6,8 +6,8 @@
     
     <title>Credit One Project | Home</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Link to GitHub Repository
-  Data Vizualization   ">
+    <meta name="description" content="#import required packages from sqlalchemy import create_engine import pymysql import pandas as pd import numpy as np Obtain Data The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database for the data, get the data (formatted as dataframe), and finally export the data as a .csv file.
+Even though it&rsquo;s not necessary, I prefer to export the raw data as a .">
     <meta name="generator" content="Hugo 0.82.1" />
     
     
@@ -32,22 +32,22 @@
     
     
     <meta property="og:title" content="Credit One Project" />
-<meta property="og:description" content="Link to GitHub Repository
-  Data Vizualization   " />
+<meta property="og:description" content="#import required packages from sqlalchemy import create_engine import pymysql import pandas as pd import numpy as np Obtain Data The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database for the data, get the data (formatted as dataframe), and finally export the data as a .csv file.
+Even though it&rsquo;s not necessary, I prefer to export the raw data as a ." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://katherinepiatti.com/post/creditone_project/" /><meta property="article:section" content="post" />
-
-<meta property="og:site_name" content="Home" />
+<meta property="article:published_time" content="2020-12-13T11:00:59-04:00" />
+<meta property="article:modified_time" content="2020-12-13T11:00:59-04:00" /><meta property="og:site_name" content="Home" />
 
 <meta itemprop="name" content="Credit One Project">
-<meta itemprop="description" content="Link to GitHub Repository
-  Data Vizualization   ">
-
-<meta itemprop="wordCount" content="6">
+<meta itemprop="description" content="#import required packages from sqlalchemy import create_engine import pymysql import pandas as pd import numpy as np Obtain Data The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database for the data, get the data (formatted as dataframe), and finally export the data as a .csv file.
+Even though it&rsquo;s not necessary, I prefer to export the raw data as a ."><meta itemprop="datePublished" content="2020-12-13T11:00:59-04:00" />
+<meta itemprop="dateModified" content="2020-12-13T11:00:59-04:00" />
+<meta itemprop="wordCount" content="2381">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Credit One Project"/>
-<meta name="twitter:description" content="Link to GitHub Repository
-  Data Vizualization   "/>
+<meta name="twitter:description" content="#import required packages from sqlalchemy import create_engine import pymysql import pandas as pd import numpy as np Obtain Data The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database for the data, get the data (formatted as dataframe), and finally export the data as a .csv file.
+Even though it&rsquo;s not necessary, I prefer to export the raw data as a ."/>
 
 	
   </head>
@@ -209,18 +209,562 @@
       <h1 class="f1 athelas mt3 mb1">Credit One Project</h1>
       
       
-      <time class="f6 mv4 dib tracked" datetime="0001-01-01T00:00:00Z">January 1, 0001</time>
+      <time class="f6 mv4 dib tracked" datetime="2020-12-13T11:00:59-04:00">December 13, 2020</time>
 
       
       
+        <span class="f6 mv4 dib tracked"> - 12 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 2381 words</span>
+      
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p><a href="https://github.com/kpiatti/creditone-project">Link to GitHub Repository</a></p>
-<figure>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#import required packages</span>
+<span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
+<span style="color:#f92672">import</span> pymysql
+<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+</code></pre></div><h2 id="obtain-data"><em>Obtain Data</em></h2>
+<p>The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database for the data, get the data (formatted as dataframe), and finally export the data as a .csv file.</p>
+<p>Even though it&rsquo;s not necessary, I prefer to export the raw data as a .csv before doing any processing/wrangling. This way I have a untouched copy of data that I can use for comparisons and verification.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#connect python to MySQL server (database?)</span>
+db_connection_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;mysql+pymysql://deepanalytics:Sqltask1234!@34.73.222.197/deepanalytics&#39;</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#create engine for SQLalchemy to interface with the database API (see notes below)</span>
+db_connection <span style="color:#f92672">=</span> create_engine(db_connection_str)
+
+<span style="color:#75715e">#query the credit one data and extract it into a pd df</span>
+sql_query <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_sql(<span style="color:#e6db74">&#39;SELECT * FROM credit&#39;</span>, con<span style="color:#f92672">=</span>db_connection)
+
+<span style="color:#75715e">#create pandas df from SQL query</span>
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(sql_query)
+</code></pre></div><p><em>Coding Note</em></p>
+<ul>
+<li>Initially missed the <code>db_connection = create_engine(db_connection_str)</code> command. Resulted in a <code>nameerror: 'db_connection' not defined</code>. I removed the _str from the first line, re-ran the cell, and was able to successfully execute the query. So I&rsquo;m unsure why (or if) the <code>create_engine()</code> command is needed. (See my SQL collection in Zotero).</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#verify data was properly extracted</span>
+df<span style="color:#f92672">.</span>head()<span style="color:#f92672">.</span>to_markdown
+<span style="color:#f92672">---</span>
+
+    <span style="color:#f92672">&lt;</span>bound method DataFrame<span style="color:#f92672">.</span>to_markdown of   MyUnknownColumn         X1      X2          X3        X4   X5     X6     X7  \
+    <span style="color:#ae81ff">0</span>              ID  LIMIT_BAL     SEX   EDUCATION  MARRIAGE  AGE  PAY_0  PAY_2   
+    <span style="color:#ae81ff">1</span>               <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">20000</span>  female  university         <span style="color:#ae81ff">1</span>   <span style="color:#ae81ff">24</span>      <span style="color:#ae81ff">2</span>      <span style="color:#ae81ff">2</span>   
+    <span style="color:#ae81ff">2</span>               <span style="color:#ae81ff">2</span>     <span style="color:#ae81ff">120000</span>  female  university         <span style="color:#ae81ff">2</span>   <span style="color:#ae81ff">26</span>     <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">2</span>   
+    <span style="color:#ae81ff">3</span>               <span style="color:#ae81ff">3</span>      <span style="color:#ae81ff">90000</span>  female  university         <span style="color:#ae81ff">2</span>   <span style="color:#ae81ff">34</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">4</span>               <span style="color:#ae81ff">4</span>      <span style="color:#ae81ff">50000</span>  female  university         <span style="color:#ae81ff">1</span>   <span style="color:#ae81ff">37</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>   
+
+          X8     X9  <span style="color:#f92672">...</span>        X15        X16        X17       X18       X19  \
+    <span style="color:#ae81ff">0</span>  PAY_3  PAY_4  <span style="color:#f92672">...</span>  BILL_AMT4  BILL_AMT5  BILL_AMT6  PAY_AMT1  PAY_AMT2   
+    <span style="color:#ae81ff">1</span>     <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>     <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#f92672">...</span>          <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">689</span>   
+    <span style="color:#ae81ff">2</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span>       <span style="color:#ae81ff">3272</span>       <span style="color:#ae81ff">3455</span>       <span style="color:#ae81ff">3261</span>         <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">1000</span>   
+    <span style="color:#ae81ff">3</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span>      <span style="color:#ae81ff">14331</span>      <span style="color:#ae81ff">14948</span>      <span style="color:#ae81ff">15549</span>      <span style="color:#ae81ff">1518</span>      <span style="color:#ae81ff">1500</span>   
+    <span style="color:#ae81ff">4</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span>      <span style="color:#ae81ff">28314</span>      <span style="color:#ae81ff">28959</span>      <span style="color:#ae81ff">29547</span>      <span style="color:#ae81ff">2000</span>      <span style="color:#ae81ff">2019</span>   
+
+            X20       X21       X22       X23                           Y  
+    <span style="color:#ae81ff">0</span>  PAY_AMT3  PAY_AMT4  PAY_AMT5  PAY_AMT6  default payment next month  
+    <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>                     default  
+    <span style="color:#ae81ff">2</span>      <span style="color:#ae81ff">1000</span>      <span style="color:#ae81ff">1000</span>         <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">2000</span>                     default  
+    <span style="color:#ae81ff">3</span>      <span style="color:#ae81ff">1000</span>      <span style="color:#ae81ff">1000</span>      <span style="color:#ae81ff">1000</span>      <span style="color:#ae81ff">5000</span>                 <span style="color:#f92672">not</span> default  
+    <span style="color:#ae81ff">4</span>      <span style="color:#ae81ff">1200</span>      <span style="color:#ae81ff">1100</span>      <span style="color:#ae81ff">1069</span>      <span style="color:#ae81ff">1000</span>                 <span style="color:#f92672">not</span> default  
+
+    [<span style="color:#ae81ff">5</span> rows x <span style="color:#ae81ff">25</span> columns]<span style="color:#f92672">&gt;</span>
+</code></pre></div><ul>
+<li><em>Data Source</em> — academic paper found <a href="https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/dsi_05_classification_databases/2.1-lesson/assets/datasets/DefaultCreditCardClients_yeh_2009.pdf">here</a></li>
+<li><em>Dats Supplement</em> — for variable definitions see creditone_data_info.pdf (<a href="https://katherinepiatti.com/folder/creditone_data_info1.pdf">here</a>).</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#get info about df variables</span>
+df<span style="color:#f92672">.</span>info()
+<span style="color:#f92672">---</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">pandas</span><span style="color:#f92672">.</span>core<span style="color:#f92672">.</span>frame<span style="color:#f92672">.</span>DataFrame<span style="color:#e6db74">&#39;&gt;</span>
+    RangeIndex: <span style="color:#ae81ff">30204</span> entries, <span style="color:#ae81ff">0</span> to <span style="color:#ae81ff">30203</span>
+    Data columns (total <span style="color:#ae81ff">25</span> columns):
+     <span style="color:#75715e">#   Column           Non-Null Count  Dtype</span>
+    <span style="color:#f92672">---</span>  <span style="color:#f92672">------</span>           <span style="color:#f92672">--------------</span>  <span style="color:#f92672">-----</span>
+     <span style="color:#ae81ff">0</span>   MyUnknownColumn  <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">1</span>   X1               <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">2</span>   X2               <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">3</span>   X3               <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">4</span>   X4               <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">5</span>   X5               <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">6</span>   X6               <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">7</span>   X7               <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">8</span>   X8               <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">9</span>   X9               <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">10</span>  X10              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">11</span>  X11              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">12</span>  X12              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">13</span>  X13              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">14</span>  X14              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">15</span>  X15              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">16</span>  X16              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">17</span>  X17              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">18</span>  X18              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">19</span>  X19              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">20</span>  X20              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">21</span>  X21              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">22</span>  X22              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">23</span>  X23              <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+     <span style="color:#ae81ff">24</span>  Y                <span style="color:#ae81ff">30204</span> non<span style="color:#f92672">-</span>null  object
+    dtypes: object(<span style="color:#ae81ff">25</span>)
+    memory usage: <span style="color:#ae81ff">5.8</span><span style="color:#f92672">+</span> MB
+</code></pre></div><h3 id="export-raw-data-as-csv"><em>Export Raw Data As .csv</em></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#export df as .csv file</span>
+df<span style="color:#f92672">.</span>to_csv (<span style="color:#e6db74">&#39;raw_creditone_data.csv&#39;</span>, index <span style="color:#f92672">=</span> False)
+</code></pre></div><h1 id="data-wrangling">Data Wrangling</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#import exported csv file with raw data</span>
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;raw_credit_one_data.csv&#39;</span>)
+
+<span style="color:#75715e">#verify imported data looks as expected</span>
+df<span style="color:#f92672">.</span>head()
+
+<span style="color:#75715e"># number of rows and columns in df as benchmark before making any changes</span>
+df<span style="color:#f92672">.</span>shape
+<span style="color:#f92672">---</span>
+    (<span style="color:#ae81ff">30204</span>, <span style="color:#ae81ff">25</span>)
+</code></pre></div><p><em>Data Stats</em></p>
+<ul>
+<li>23 features/independent variables</li>
+<li>1 dependent variable</li>
+<li>1 ID column</li>
+<li>30,204 rows</li>
+</ul>
+<h3 id="change-column-headings"><em>Change Column Headings</em></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#change column headings to values in index (row) 0</span>
+df<span style="color:#f92672">.</span>columns <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">0</span>]
+
+<span style="color:#75715e">#verify change was successful</span>
+df<span style="color:#f92672">.</span>head()<span style="color:#f92672">.</span>to_markdown
+<span style="color:#f92672">---</span>
+    <span style="color:#f92672">&lt;</span>bound method DataFrame<span style="color:#f92672">.</span>to_markdown of <span style="color:#ae81ff">0</span>  ID  LIMIT_BAL     SEX   EDUCATION  MARRIAGE  AGE  PAY_0  PAY_2  PAY_3  \
+    <span style="color:#ae81ff">0</span>  ID  LIMIT_BAL     SEX   EDUCATION  MARRIAGE  AGE  PAY_0  PAY_2  PAY_3   
+    <span style="color:#ae81ff">1</span>   <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">20000</span>  female  university         <span style="color:#ae81ff">1</span>   <span style="color:#ae81ff">24</span>      <span style="color:#ae81ff">2</span>      <span style="color:#ae81ff">2</span>     <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>   
+    <span style="color:#ae81ff">2</span>   <span style="color:#ae81ff">2</span>     <span style="color:#ae81ff">120000</span>  female  university         <span style="color:#ae81ff">2</span>   <span style="color:#ae81ff">26</span>     <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">2</span>      <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">3</span>   <span style="color:#ae81ff">3</span>      <span style="color:#ae81ff">90000</span>  female  university         <span style="color:#ae81ff">2</span>   <span style="color:#ae81ff">34</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">4</span>   <span style="color:#ae81ff">4</span>      <span style="color:#ae81ff">50000</span>  female  university         <span style="color:#ae81ff">1</span>   <span style="color:#ae81ff">37</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>   
+
+    <span style="color:#ae81ff">0</span>  PAY_4  <span style="color:#f92672">...</span>  BILL_AMT4  BILL_AMT5  BILL_AMT6  PAY_AMT1  PAY_AMT2  PAY_AMT3  \
+    <span style="color:#ae81ff">0</span>  PAY_4  <span style="color:#f92672">...</span>  BILL_AMT4  BILL_AMT5  BILL_AMT6  PAY_AMT1  PAY_AMT2  PAY_AMT3   
+    <span style="color:#ae81ff">1</span>     <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#f92672">...</span>          <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">0</span>          <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">689</span>         <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">2</span>      <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span>       <span style="color:#ae81ff">3272</span>       <span style="color:#ae81ff">3455</span>       <span style="color:#ae81ff">3261</span>         <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">1000</span>      <span style="color:#ae81ff">1000</span>   
+    <span style="color:#ae81ff">3</span>      <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span>      <span style="color:#ae81ff">14331</span>      <span style="color:#ae81ff">14948</span>      <span style="color:#ae81ff">15549</span>      <span style="color:#ae81ff">1518</span>      <span style="color:#ae81ff">1500</span>      <span style="color:#ae81ff">1000</span>   
+    <span style="color:#ae81ff">4</span>      <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span>      <span style="color:#ae81ff">28314</span>      <span style="color:#ae81ff">28959</span>      <span style="color:#ae81ff">29547</span>      <span style="color:#ae81ff">2000</span>      <span style="color:#ae81ff">2019</span>      <span style="color:#ae81ff">1200</span>   
+
+    <span style="color:#ae81ff">0</span>  PAY_AMT4  PAY_AMT5  PAY_AMT6  default payment next month  
+    <span style="color:#ae81ff">0</span>  PAY_AMT4  PAY_AMT5  PAY_AMT6  default payment next month  
+    <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>                     default  
+    <span style="color:#ae81ff">2</span>      <span style="color:#ae81ff">1000</span>         <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">2000</span>                     default  
+    <span style="color:#ae81ff">3</span>      <span style="color:#ae81ff">1000</span>      <span style="color:#ae81ff">1000</span>      <span style="color:#ae81ff">5000</span>                 <span style="color:#f92672">not</span> default  
+    <span style="color:#ae81ff">4</span>      <span style="color:#ae81ff">1100</span>      <span style="color:#ae81ff">1069</span>      <span style="color:#ae81ff">1000</span>                 <span style="color:#f92672">not</span> default  
+
+
+    [<span style="color:#ae81ff">5</span> rows x <span style="color:#ae81ff">25</span> columns]<span style="color:#f92672">&gt;</span>
+</code></pre></div><p><em>Coding Notes</em></p>
+<ul>
+<li>See <a href="https://stackoverflow.com/questions/26147180/convert-row-to-column-header-for-pandas-dataframe">Stack Overflow</a> for more info.</li>
+<li><code>df.iloc[pd.RangeIndex(len(df)).drop(0)]</code> is for situations where df either doesn&rsquo;t have or you don&rsquo;t know if it has <strong>unique index numbers</strong> for each row. Otherwise use <code>df.drop(df.index[0])</code>.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#drop row 0 that contains column headings</span>
+df<span style="color:#f92672">.</span>drop(df<span style="color:#f92672">.</span>index[<span style="color:#ae81ff">0</span>], inplace <span style="color:#f92672">=</span> True)
+
+<span style="color:#75715e">#verify df is -1 row</span>
+len(df)
+
+<span style="color:#75715e">#verify column headings row was dropped</span>
+df<span style="color:#f92672">.</span>head()
+</code></pre></div><h3 id="remove-duplicate-data"><em>Remove Duplicate Data</em></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#find and print all duplicate rows in the df</span>
+duplicate_rows <span style="color:#f92672">=</span> df[df<span style="color:#f92672">.</span>duplicated()]
+<span style="color:#66d9ef">print</span>(duplicate_rows)
+<span style="color:#f92672">---</span>
+
+    <span style="color:#ae81ff">0</span>     ID LIMIT_BAL     SEX        EDUCATION MARRIAGE AGE PAY_0 PAY_2 PAY_3  \
+    <span style="color:#ae81ff">204</span>    <span style="color:#ae81ff">1</span>     <span style="color:#ae81ff">20000</span>  female       university        <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">24</span>     <span style="color:#ae81ff">2</span>     <span style="color:#ae81ff">2</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>   
+    <span style="color:#ae81ff">205</span>    <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">120000</span>  female       university        <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">26</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>     <span style="color:#ae81ff">2</span>     <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">206</span>    <span style="color:#ae81ff">3</span>     <span style="color:#ae81ff">90000</span>  female       university        <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">34</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">207</span>    <span style="color:#ae81ff">4</span>     <span style="color:#ae81ff">50000</span>  female       university        <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">37</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">208</span>    <span style="color:#ae81ff">5</span>     <span style="color:#ae81ff">50000</span>    male       university        <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">57</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>     <span style="color:#ae81ff">0</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>   
+    <span style="color:#f92672">..</span>   <span style="color:#f92672">...</span>       <span style="color:#f92672">...</span>     <span style="color:#f92672">...</span>              <span style="color:#f92672">...</span>      <span style="color:#f92672">...</span>  <span style="color:#f92672">..</span>   <span style="color:#f92672">...</span>   <span style="color:#f92672">...</span>   <span style="color:#f92672">...</span>   
+    <span style="color:#ae81ff">400</span>  <span style="color:#ae81ff">197</span>    <span style="color:#ae81ff">150000</span>  female       university        <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">34</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>   
+    <span style="color:#ae81ff">401</span>  <span style="color:#ae81ff">198</span>     <span style="color:#ae81ff">20000</span>  female  graduate school        <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">22</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">402</span>  <span style="color:#ae81ff">199</span>    <span style="color:#ae81ff">500000</span>  female  graduate school        <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">34</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>   
+    <span style="color:#ae81ff">403</span>  <span style="color:#ae81ff">200</span>     <span style="color:#ae81ff">30000</span>  female      high school        <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">22</span>     <span style="color:#ae81ff">1</span>     <span style="color:#ae81ff">2</span>     <span style="color:#ae81ff">2</span>   
+    <span style="color:#ae81ff">404</span>  <span style="color:#ae81ff">201</span>    <span style="color:#ae81ff">180000</span>  female  graduate school        <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">38</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>   
+
+    <span style="color:#ae81ff">0</span>   PAY_4  <span style="color:#f92672">...</span> BILL_AMT4 BILL_AMT5 BILL_AMT6 PAY_AMT1 PAY_AMT2 PAY_AMT3  \
+    <span style="color:#ae81ff">204</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#f92672">...</span>         <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">689</span>        <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">205</span>     <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span>      <span style="color:#ae81ff">3272</span>      <span style="color:#ae81ff">3455</span>      <span style="color:#ae81ff">3261</span>        <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">1000</span>     <span style="color:#ae81ff">1000</span>   
+    <span style="color:#ae81ff">206</span>     <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span>     <span style="color:#ae81ff">14331</span>     <span style="color:#ae81ff">14948</span>     <span style="color:#ae81ff">15549</span>     <span style="color:#ae81ff">1518</span>     <span style="color:#ae81ff">1500</span>     <span style="color:#ae81ff">1000</span>   
+    <span style="color:#ae81ff">207</span>     <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span>     <span style="color:#ae81ff">28314</span>     <span style="color:#ae81ff">28959</span>     <span style="color:#ae81ff">29547</span>     <span style="color:#ae81ff">2000</span>     <span style="color:#ae81ff">2019</span>     <span style="color:#ae81ff">1200</span>   
+    <span style="color:#ae81ff">208</span>     <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span>     <span style="color:#ae81ff">20940</span>     <span style="color:#ae81ff">19146</span>     <span style="color:#ae81ff">19131</span>     <span style="color:#ae81ff">2000</span>    <span style="color:#ae81ff">36681</span>    <span style="color:#ae81ff">10000</span>   
+    <span style="color:#f92672">..</span>    <span style="color:#f92672">...</span>  <span style="color:#f92672">...</span>       <span style="color:#f92672">...</span>       <span style="color:#f92672">...</span>       <span style="color:#f92672">...</span>      <span style="color:#f92672">...</span>      <span style="color:#f92672">...</span>      <span style="color:#f92672">...</span>   
+    <span style="color:#ae81ff">400</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#f92672">...</span>       <span style="color:#ae81ff">116</span>         <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">1500</span>        <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">116</span>   
+    <span style="color:#ae81ff">401</span>     <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span>      <span style="color:#ae81ff">8332</span>     <span style="color:#ae81ff">18868</span>     <span style="color:#ae81ff">19247</span>     <span style="color:#ae81ff">1500</span>     <span style="color:#ae81ff">1032</span>      <span style="color:#ae81ff">541</span>   
+    <span style="color:#ae81ff">402</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#f92672">...</span>      <span style="color:#ae81ff">1251</span>      <span style="color:#ae81ff">1206</span>      <span style="color:#ae81ff">1151</span>      <span style="color:#ae81ff">138</span>     <span style="color:#ae81ff">2299</span>     <span style="color:#ae81ff">1251</span>   
+    <span style="color:#ae81ff">403</span>     <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span>     <span style="color:#ae81ff">29836</span>      <span style="color:#ae81ff">1630</span>         <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">1000</span>       <span style="color:#ae81ff">85</span>     <span style="color:#ae81ff">1714</span>   
+    <span style="color:#ae81ff">404</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#f92672">...</span>         <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>   
+
+    <span style="color:#ae81ff">0</span>   PAY_AMT4 PAY_AMT5 PAY_AMT6 default payment next month  
+    <span style="color:#ae81ff">204</span>        <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>                    default  
+    <span style="color:#ae81ff">205</span>     <span style="color:#ae81ff">1000</span>        <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">2000</span>                    default  
+    <span style="color:#ae81ff">206</span>     <span style="color:#ae81ff">1000</span>     <span style="color:#ae81ff">1000</span>     <span style="color:#ae81ff">5000</span>                <span style="color:#f92672">not</span> default  
+    <span style="color:#ae81ff">207</span>     <span style="color:#ae81ff">1100</span>     <span style="color:#ae81ff">1069</span>     <span style="color:#ae81ff">1000</span>                <span style="color:#f92672">not</span> default  
+    <span style="color:#ae81ff">208</span>     <span style="color:#ae81ff">9000</span>      <span style="color:#ae81ff">689</span>      <span style="color:#ae81ff">679</span>                <span style="color:#f92672">not</span> default  
+    <span style="color:#f92672">..</span>       <span style="color:#f92672">...</span>      <span style="color:#f92672">...</span>      <span style="color:#f92672">...</span>                        <span style="color:#f92672">...</span>  
+    <span style="color:#ae81ff">400</span>        <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">1500</span>        <span style="color:#ae81ff">0</span>                <span style="color:#f92672">not</span> default  
+    <span style="color:#ae81ff">401</span>    <span style="color:#ae81ff">20000</span>      <span style="color:#ae81ff">693</span>     <span style="color:#ae81ff">1000</span>                <span style="color:#f92672">not</span> default  
+    <span style="color:#ae81ff">402</span>     <span style="color:#ae81ff">1206</span>     <span style="color:#ae81ff">1151</span>    <span style="color:#ae81ff">15816</span>                <span style="color:#f92672">not</span> default  
+    <span style="color:#ae81ff">403</span>      <span style="color:#ae81ff">104</span>        <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>                    default  
+    <span style="color:#ae81ff">404</span>        <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>                <span style="color:#f92672">not</span> default  
+
+    [<span style="color:#ae81ff">201</span> rows x <span style="color:#ae81ff">25</span> columns]
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#drop duplicate rows from the df</span>
+df<span style="color:#f92672">.</span>drop_duplicates(inplace <span style="color:#f92672">=</span> True)  <span style="color:#75715e">#inplace=True is to make change to df permanent</span>
+
+<span style="color:#75715e">#verify rows were dropped</span>
+len(df)
+<span style="color:#f92672">---</span>
+    <span style="color:#ae81ff">30002</span>
+</code></pre></div><h3 id="handle-missing-values"><em>Handle Missing Values</em></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#check for missing values</span>
+<span style="color:#66d9ef">print</span>(df<span style="color:#f92672">.</span>isnull()<span style="color:#f92672">.</span>sum())
+<span style="color:#f92672">---</span>
+    <span style="color:#ae81ff">0</span>
+    ID                            <span style="color:#ae81ff">1</span>
+    LIMIT_BAL                     <span style="color:#ae81ff">0</span>
+    SEX                           <span style="color:#ae81ff">0</span>
+    EDUCATION                     <span style="color:#ae81ff">0</span>
+    MARRIAGE                      <span style="color:#ae81ff">0</span>
+    AGE                           <span style="color:#ae81ff">0</span>
+    PAY_0                         <span style="color:#ae81ff">0</span>
+    PAY_2                         <span style="color:#ae81ff">0</span>
+    PAY_3                         <span style="color:#ae81ff">0</span>
+    PAY_4                         <span style="color:#ae81ff">0</span>
+    PAY_5                         <span style="color:#ae81ff">0</span>
+    PAY_6                         <span style="color:#ae81ff">0</span>
+    BILL_AMT1                     <span style="color:#ae81ff">0</span>
+    BILL_AMT2                     <span style="color:#ae81ff">0</span>
+    BILL_AMT3                     <span style="color:#ae81ff">0</span>
+    BILL_AMT4                     <span style="color:#ae81ff">0</span>
+    BILL_AMT5                     <span style="color:#ae81ff">0</span>
+    BILL_AMT6                     <span style="color:#ae81ff">0</span>
+    PAY_AMT1                      <span style="color:#ae81ff">0</span>
+    PAY_AMT2                      <span style="color:#ae81ff">0</span>
+    PAY_AMT3                      <span style="color:#ae81ff">0</span>
+    PAY_AMT4                      <span style="color:#ae81ff">0</span>
+    PAY_AMT5                      <span style="color:#ae81ff">0</span>
+    PAY_AMT6                      <span style="color:#ae81ff">0</span>
+    default payment next month    <span style="color:#ae81ff">0</span>
+    dtype: int64
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#drop the row with missing ID</span>
+df<span style="color:#f92672">.</span>dropna(inplace<span style="color:#f92672">=</span>True)
+
+<span style="color:#75715e">#verify 1 row dropped</span>
+len(df)
+<span style="color:#f92672">---</span>
+    <span style="color:#ae81ff">30001</span>
+</code></pre></div><h3 id="invalid-data"><em>Invalid Data</em></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#locate rows 201-206 (not inclusive)</span>
+df<span style="color:#f92672">.</span>loc[<span style="color:#ae81ff">201</span>:<span style="color:#ae81ff">206</span>]
+
+<span style="color:#75715e">#drop row 203 containing original column headings</span>
+df<span style="color:#f92672">.</span>drop(<span style="color:#ae81ff">203</span>, inplace<span style="color:#f92672">=</span>True)
+
+<span style="color:#75715e">#get number of rows in df</span>
+len(df)
+<span style="color:#f92672">---</span>
+    <span style="color:#ae81ff">30000</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#only row 201 should appear b/c others were dropped above</span>
+df<span style="color:#f92672">.</span>loc[<span style="color:#ae81ff">201</span>:<span style="color:#ae81ff">210</span>]<span style="color:#f92672">.</span>to_markdown
+<span style="color:#f92672">---</span>
+    <span style="color:#f92672">&lt;</span>bound method DataFrame<span style="color:#f92672">.</span>to_markdown of <span style="color:#ae81ff">0</span>     ID LIMIT_BAL     SEX        EDUCATION MARRIAGE AGE PAY_0 PAY_2 PAY_3  \
+    <span style="color:#ae81ff">201</span>  <span style="color:#ae81ff">201</span>    <span style="color:#ae81ff">180000</span>  female  graduate school        <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">38</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>   
+
+    <span style="color:#ae81ff">0</span>   PAY_4  <span style="color:#f92672">...</span> BILL_AMT4 BILL_AMT5 BILL_AMT6 PAY_AMT1 PAY_AMT2 PAY_AMT3  \
+    <span style="color:#ae81ff">201</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#f92672">...</span>         <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>   
+
+    <span style="color:#ae81ff">0</span>   PAY_AMT4 PAY_AMT5 PAY_AMT6 default payment next month  
+    <span style="color:#ae81ff">201</span>        <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>                <span style="color:#f92672">not</span> default  
+
+    [<span style="color:#ae81ff">1</span> rows x <span style="color:#ae81ff">25</span> columns]<span style="color:#f92672">&gt;</span>
+</code></pre></div><p><em>Coding Notes</em></p>
+<ul>
+<li>Dropping rows doesn&rsquo;t stick unless you add <code>inplace = True</code> parameter to command. Read <a href="https://stackabuse.com/python-with-pandas-dataframe-tutorial-with-examples/">this</a> to understand why parameter is needed.</li>
+<li>After dropping index, that index number is dropped from the df (e.g. if you drop index 0, when you use df.head() the first entry will be index 1). In other words, the data from below does not move up and fill the dropped indices as it would in an Excel file..</li>
+</ul>
+<h3 id="change-variable-data-types"><em>Change Variable Data Types</em></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#look at data types for each variable</span>
+df<span style="color:#f92672">.</span>dtypes
+<span style="color:#f92672">---</span>
+    <span style="color:#ae81ff">0</span>
+    ID                            object
+    LIMIT_BAL                     object
+    SEX                           object
+    EDUCATION                     object
+    MARRIAGE                      object
+    AGE                           object
+    PAY_0                         object
+    PAY_2                         object
+    PAY_3                         object
+    PAY_4                         object
+    PAY_5                         object
+    PAY_6                         object
+    BILL_AMT1                     object
+    BILL_AMT2                     object
+    BILL_AMT3                     object
+    BILL_AMT4                     object
+    BILL_AMT5                     object
+    BILL_AMT6                     object
+    PAY_AMT1                      object
+    PAY_AMT2                      object
+    PAY_AMT3                      object
+    PAY_AMT4                      object
+    PAY_AMT5                      object
+    PAY_AMT6                      object
+    default payment next month    object
+    dtype: object
+</code></pre></div><h3 id="continuous-variables"><em>Continuous Variables</em></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df<span style="color:#f92672">.</span>LIMIT_BAL<span style="color:#f92672">.</span>value_counts()
+<span style="color:#f92672">---</span>
+    <span style="color:#ae81ff">50000</span>      <span style="color:#ae81ff">3365</span>
+    <span style="color:#ae81ff">20000</span>      <span style="color:#ae81ff">1976</span>
+    <span style="color:#ae81ff">30000</span>      <span style="color:#ae81ff">1610</span>
+    <span style="color:#ae81ff">80000</span>      <span style="color:#ae81ff">1567</span>
+    <span style="color:#ae81ff">200000</span>     <span style="color:#ae81ff">1528</span>
+               <span style="color:#f92672">...</span>
+    <span style="color:#ae81ff">740000</span>        <span style="color:#ae81ff">2</span>
+    <span style="color:#ae81ff">690000</span>        <span style="color:#ae81ff">1</span>
+    <span style="color:#ae81ff">327680</span>        <span style="color:#ae81ff">1</span>
+    <span style="color:#ae81ff">760000</span>        <span style="color:#ae81ff">1</span>
+    <span style="color:#ae81ff">1000000</span>       <span style="color:#ae81ff">1</span>
+    Name: LIMIT_BAL, Length: <span style="color:#ae81ff">81</span>, dtype: int64
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#change data type of LIMIT_BAL var from object to int</span>
+df[<span style="color:#e6db74">&#34;LIMIT_BAL&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;LIMIT_BAL&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+
+<span style="color:#75715e">#change data type of AGE var from object to int</span>
+df[<span style="color:#e6db74">&#34;AGE&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;AGE&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#get number of obs for each value in PAY_0</span>
+df<span style="color:#f92672">.</span>PAY_0<span style="color:#f92672">.</span>value_counts()
+<span style="color:#f92672">---</span>
+    <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">14737</span>
+    <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>     <span style="color:#ae81ff">5686</span>
+    <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">3688</span>
+    <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>     <span style="color:#ae81ff">2759</span>
+    <span style="color:#ae81ff">2</span>      <span style="color:#ae81ff">2667</span>
+    <span style="color:#ae81ff">3</span>       <span style="color:#ae81ff">322</span>
+    <span style="color:#ae81ff">4</span>        <span style="color:#ae81ff">76</span>
+    <span style="color:#ae81ff">5</span>        <span style="color:#ae81ff">26</span>
+    <span style="color:#ae81ff">8</span>        <span style="color:#ae81ff">19</span>
+    <span style="color:#ae81ff">6</span>        <span style="color:#ae81ff">11</span>
+    <span style="color:#ae81ff">7</span>         <span style="color:#ae81ff">9</span>
+    Name: PAY_0, dtype: int64
+</code></pre></div><p>It turns out the values in this variable represent if and how long an account has been delinquent. It is probably better treated as a categorical variable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#get number of obs for each value in BILL_AM1</span>
+df<span style="color:#f92672">.</span>BILL_AMT1<span style="color:#f92672">.</span>value_counts()
+<span style="color:#f92672">---</span>
+    <span style="color:#ae81ff">0</span>         <span style="color:#ae81ff">2008</span>
+    <span style="color:#ae81ff">390</span>        <span style="color:#ae81ff">244</span>
+    <span style="color:#ae81ff">780</span>         <span style="color:#ae81ff">76</span>
+    <span style="color:#ae81ff">326</span>         <span style="color:#ae81ff">72</span>
+    <span style="color:#ae81ff">316</span>         <span style="color:#ae81ff">63</span>
+              <span style="color:#f92672">...</span>
+    <span style="color:#ae81ff">216</span>          <span style="color:#ae81ff">1</span>
+    <span style="color:#ae81ff">192727</span>       <span style="color:#ae81ff">1</span>
+    <span style="color:#ae81ff">4434</span>         <span style="color:#ae81ff">1</span>
+    <span style="color:#ae81ff">38579</span>        <span style="color:#ae81ff">1</span>
+    <span style="color:#ae81ff">96644</span>        <span style="color:#ae81ff">1</span>
+    Name: BILL_AMT1, Length: <span style="color:#ae81ff">22723</span>, dtype: int64
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#change data type of BILL_AMT1 var from object to int</span>
+df[<span style="color:#e6db74">&#34;BILL_AMT1&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;BILL_AMT1&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+
+<span style="color:#75715e">#change data type of BILL_AMT2 var from object to int</span>
+df[<span style="color:#e6db74">&#34;BILL_AMT2&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;BILL_AMT2&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+
+<span style="color:#75715e">#change data type of BILL_AMT3 var from object to int</span>
+df[<span style="color:#e6db74">&#34;BILL_AMT3&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;BILL_AMT3&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+
+<span style="color:#75715e">#change data type of BILL_AMT4 var from object to int</span>
+df[<span style="color:#e6db74">&#34;BILL_AMT4&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;BILL_AMT4&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+
+<span style="color:#75715e">#change data type of BILL_AMT5 var from object to int</span>
+df[<span style="color:#e6db74">&#34;BILL_AMT5&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;BILL_AMT5&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+
+<span style="color:#75715e">#change data type of BILL_AMT6 var from object to int</span>
+df[<span style="color:#e6db74">&#34;BILL_AMT6&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;BILL_AMT6&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df<span style="color:#f92672">.</span>PAY_AMT4<span style="color:#f92672">.</span>value_counts()
+<span style="color:#f92672">---</span>
+    <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">6408</span>
+    <span style="color:#ae81ff">1000</span>     <span style="color:#ae81ff">1394</span>
+    <span style="color:#ae81ff">2000</span>     <span style="color:#ae81ff">1214</span>
+    <span style="color:#ae81ff">3000</span>      <span style="color:#ae81ff">887</span>
+    <span style="color:#ae81ff">5000</span>      <span style="color:#ae81ff">810</span>
+             <span style="color:#f92672">...</span>
+    <span style="color:#ae81ff">12164</span>       <span style="color:#ae81ff">1</span>
+    <span style="color:#ae81ff">17133</span>       <span style="color:#ae81ff">1</span>
+    <span style="color:#ae81ff">2466</span>        <span style="color:#ae81ff">1</span>
+    <span style="color:#ae81ff">3187</span>        <span style="color:#ae81ff">1</span>
+    <span style="color:#ae81ff">3859</span>        <span style="color:#ae81ff">1</span>
+    Name: PAY_AMT4, Length: <span style="color:#ae81ff">6937</span>, dtype: int64
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#change data type of PAY_AMT1 var from object to int</span>
+df[<span style="color:#e6db74">&#34;PAY_AMT1&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;PAY_AMT1&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+
+<span style="color:#75715e">#change data type of PAY_AMT2 var from object to int</span>
+df[<span style="color:#e6db74">&#34;PAY_AMT2&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;PAY_AMT2&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+
+<span style="color:#75715e">#change data type of PAY_AMT3 var from object to int</span>
+df[<span style="color:#e6db74">&#34;PAY_AMT3&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;PAY_AMT3&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+
+<span style="color:#75715e">#change data type of PAY_AMT4 var from object to int</span>
+df[<span style="color:#e6db74">&#34;PAY_AMT4&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;PAY_AMT4&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+
+<span style="color:#75715e">#change data type of PAY_AMT5 var from object to int</span>
+df[<span style="color:#e6db74">&#34;PAY_AMT5&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;PAY_AMT5&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+
+<span style="color:#75715e">#change data type of PAY_AMT6 var from object to int</span>
+df[<span style="color:#e6db74">&#34;PAY_AMT6&#34;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;PAY_AMT6&#39;</span>]<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+
+<span style="color:#75715e">#rename default payment next month column</span>
+df<span style="color:#f92672">.</span>rename(columns<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;default payment next month&#34;</span>: <span style="color:#e6db74">&#34;DEFAULT&#34;</span>}, inplace <span style="color:#f92672">=</span> True)
+
+<span style="color:#75715e">#verify change</span>
+df<span style="color:#f92672">.</span>dtypes
+<span style="color:#f92672">---</span>
+    <span style="color:#ae81ff">0</span>
+    ID           object
+    LIMIT_BAL     int32
+    SEX          object
+    EDUCATION    object
+    MARRIAGE     object
+    AGE           int32
+    PAY_0        object
+    PAY_2        object
+    PAY_3        object
+    PAY_4        object
+    PAY_5        object
+    PAY_6        object
+    BILL_AMT1     int32
+    BILL_AMT2     int32
+    BILL_AMT3     int32
+    BILL_AMT4     int32
+    BILL_AMT5     int32
+    BILL_AMT6     int32
+    PAY_AMT1      int32
+    PAY_AMT2      int32
+    PAY_AMT3      int32
+    PAY_AMT4      int32
+    PAY_AMT5      int32
+    PAY_AMT6      int32
+    DEFAULT      object
+    dtype: object
+</code></pre></div><h3 id="categorical-variables">Categorical Variables</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#get counts of male and female customers in df</span>
+df<span style="color:#f92672">.</span>SEX<span style="color:#f92672">.</span>value_counts()
+<span style="color:#f92672">---</span>
+    female    <span style="color:#ae81ff">18112</span>
+    male      <span style="color:#ae81ff">11888</span>
+    Name: SEX, dtype: int64
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#get counts for education categories</span>
+df<span style="color:#f92672">.</span>EDUCATION<span style="color:#f92672">.</span>value_counts()
+<span style="color:#f92672">---</span>
+    university         <span style="color:#ae81ff">14030</span>
+    graduate school    <span style="color:#ae81ff">10585</span>
+    high school         <span style="color:#ae81ff">4917</span>
+    other                <span style="color:#ae81ff">468</span>
+    Name: EDUCATION, dtype: int64
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#get counts for marriage categories</span>
+df<span style="color:#f92672">.</span>MARRIAGE<span style="color:#f92672">.</span>value_counts()
+<span style="color:#f92672">---</span>
+    <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">15964</span>
+    <span style="color:#ae81ff">1</span>    <span style="color:#ae81ff">13659</span>
+    <span style="color:#ae81ff">3</span>      <span style="color:#ae81ff">323</span>
+    <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">54</span>
+    Name: MARRIAGE, dtype: int64
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># get counts for the target var, i.e. DEFAULT</span>
+df<span style="color:#f92672">.</span>DEFAULT<span style="color:#f92672">.</span>value_counts()
+<span style="color:#f92672">---</span>
+    <span style="color:#f92672">not</span> default    <span style="color:#ae81ff">23364</span>
+    default         <span style="color:#ae81ff">6636</span>
+    Name: DEFAULT, dtype: int64
+</code></pre></div><h3 id="rename-features"><em>Rename Features</em></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#rename PAY features to convey month</span>
+df<span style="color:#f92672">.</span>rename(columns <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;PAY_0&#39;</span>: <span style="color:#e6db74">&#39;pay_s&#39;</span>, <span style="color:#e6db74">&#39;PAY_2&#39;</span>:<span style="color:#e6db74">&#39;pay_ag&#39;</span>, <span style="color:#e6db74">&#39;PAY_3&#39;</span>:<span style="color:#e6db74">&#39;pay_jy&#39;</span>,<span style="color:#e6db74">&#39;PAY_4&#39;</span>:<span style="color:#e6db74">&#39;pay_ju&#39;</span>, <span style="color:#e6db74">&#39;PAY_5&#39;</span>:<span style="color:#e6db74">&#39;pay_m&#39;</span>, <span style="color:#e6db74">&#39;PAY_6&#39;</span>:<span style="color:#e6db74">&#39;pay_ap&#39;</span>}, inplace <span style="color:#f92672">=</span> True)
+
+<span style="color:#75715e">#rename BILL_AMT features to convey month</span>
+df<span style="color:#f92672">.</span>rename(columns <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;BILL_AMT1&#39;</span>: <span style="color:#e6db74">&#39;bill_s&#39;</span>, <span style="color:#e6db74">&#39;BILL_AMT2&#39;</span>:<span style="color:#e6db74">&#39;bill_ag&#39;</span>, <span style="color:#e6db74">&#39;BILL_AMT3&#39;</span>:<span style="color:#e6db74">&#39;bill_jy&#39;</span>,<span style="color:#e6db74">&#39;BILL_AMT4&#39;</span>:<span style="color:#e6db74">&#39;bill_ju&#39;</span>, <span style="color:#e6db74">&#39;BILL_AMT5&#39;</span>:<span style="color:#e6db74">&#39;bill_m&#39;</span>, <span style="color:#e6db74">&#39;BILL_AMT6&#39;</span>:<span style="color:#e6db74">&#39;bill_ap&#39;</span>}, inplace <span style="color:#f92672">=</span> True)
+
+<span style="color:#75715e">#rename PAY_AMT features to convey month</span>
+df<span style="color:#f92672">.</span>rename(columns <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;PAY_AMT1&#39;</span>: <span style="color:#e6db74">&#39;pmt_s&#39;</span>, <span style="color:#e6db74">&#39;PAY_AMT2&#39;</span>:<span style="color:#e6db74">&#39;pmt_ag&#39;</span>, <span style="color:#e6db74">&#39;PAY_AMT3&#39;</span>:<span style="color:#e6db74">&#39;pmt_jy&#39;</span>,<span style="color:#e6db74">&#39;PAY_AMT4&#39;</span>:<span style="color:#e6db74">&#39;pmt_ju&#39;</span>, <span style="color:#e6db74">&#39;PAY_AMT5&#39;</span>:<span style="color:#e6db74">&#39;pmt_m&#39;</span>, <span style="color:#e6db74">&#39;PAY_AMT6&#39;</span>:<span style="color:#e6db74">&#39;pmt_ap&#39;</span>}, inplace <span style="color:#f92672">=</span> True)
+
+<span style="color:#75715e">#verify features were renamed</span>
+df<span style="color:#f92672">.</span>head()<span style="color:#f92672">.</span>to_markdown
+<span style="color:#f92672">---</span>
+
+    <span style="color:#f92672">&lt;</span>bound method DataFrame<span style="color:#f92672">.</span>to_markdown of <span style="color:#ae81ff">0</span> ID  LIMIT_BAL     SEX   EDUCATION MARRIAGE  AGE pay_s pay_ag pay_jy pay_ju  \
+    <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">20000</span>  female  university        <span style="color:#ae81ff">1</span>   <span style="color:#ae81ff">24</span>     <span style="color:#ae81ff">2</span>      <span style="color:#ae81ff">2</span>     <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>     <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>   
+    <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">2</span>     <span style="color:#ae81ff">120000</span>  female  university        <span style="color:#ae81ff">2</span>   <span style="color:#ae81ff">26</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">2</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">3</span>      <span style="color:#ae81ff">90000</span>  female  university        <span style="color:#ae81ff">2</span>   <span style="color:#ae81ff">34</span>     <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">4</span>      <span style="color:#ae81ff">50000</span>  female  university        <span style="color:#ae81ff">1</span>   <span style="color:#ae81ff">37</span>     <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">5</span>      <span style="color:#ae81ff">50000</span>    male  university        <span style="color:#ae81ff">1</span>   <span style="color:#ae81ff">57</span>    <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">0</span>     <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">0</span>   
+
+    <span style="color:#ae81ff">0</span>  <span style="color:#f92672">...</span> bill_ju bill_m  bill_ap  pmt_s  pmt_ag  pmt_jy  pmt_ju  pmt_m  pmt_ap  \
+    <span style="color:#ae81ff">1</span>  <span style="color:#f92672">...</span>       <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">689</span>       <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>   
+    <span style="color:#ae81ff">2</span>  <span style="color:#f92672">...</span>    <span style="color:#ae81ff">3272</span>   <span style="color:#ae81ff">3455</span>     <span style="color:#ae81ff">3261</span>      <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">1000</span>    <span style="color:#ae81ff">1000</span>    <span style="color:#ae81ff">1000</span>      <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">2000</span>   
+    <span style="color:#ae81ff">3</span>  <span style="color:#f92672">...</span>   <span style="color:#ae81ff">14331</span>  <span style="color:#ae81ff">14948</span>    <span style="color:#ae81ff">15549</span>   <span style="color:#ae81ff">1518</span>    <span style="color:#ae81ff">1500</span>    <span style="color:#ae81ff">1000</span>    <span style="color:#ae81ff">1000</span>   <span style="color:#ae81ff">1000</span>    <span style="color:#ae81ff">5000</span>   
+    <span style="color:#ae81ff">4</span>  <span style="color:#f92672">...</span>   <span style="color:#ae81ff">28314</span>  <span style="color:#ae81ff">28959</span>    <span style="color:#ae81ff">29547</span>   <span style="color:#ae81ff">2000</span>    <span style="color:#ae81ff">2019</span>    <span style="color:#ae81ff">1200</span>    <span style="color:#ae81ff">1100</span>   <span style="color:#ae81ff">1069</span>    <span style="color:#ae81ff">1000</span>   
+    <span style="color:#ae81ff">5</span>  <span style="color:#f92672">...</span>   <span style="color:#ae81ff">20940</span>  <span style="color:#ae81ff">19146</span>    <span style="color:#ae81ff">19131</span>   <span style="color:#ae81ff">2000</span>   <span style="color:#ae81ff">36681</span>   <span style="color:#ae81ff">10000</span>    <span style="color:#ae81ff">9000</span>    <span style="color:#ae81ff">689</span>     <span style="color:#ae81ff">679</span>   
+
+    <span style="color:#ae81ff">0</span>      DEFAULT  
+    <span style="color:#ae81ff">1</span>      default  
+    <span style="color:#ae81ff">2</span>      default  
+    <span style="color:#ae81ff">3</span>  <span style="color:#f92672">not</span> default  
+    <span style="color:#ae81ff">4</span>  <span style="color:#f92672">not</span> default  
+    <span style="color:#ae81ff">5</span>  <span style="color:#f92672">not</span> default  
+
+    [<span style="color:#ae81ff">5</span> rows x <span style="color:#ae81ff">25</span> columns]<span style="color:#f92672">&gt;</span>
+</code></pre></div><h3 id="reorder-features"><em>Reorder Features</em></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#define function to move/re-order columns (code lifted from towarddatascience)</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">movecol</span>(df, cols_to_move<span style="color:#f92672">=</span>[], ref_col<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>, place<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;After&#39;</span>):
+
+    cols <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>columns<span style="color:#f92672">.</span>tolist()
+    <span style="color:#66d9ef">if</span> place <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;After&#39;</span>:
+        seg1 <span style="color:#f92672">=</span> cols[:list(cols)<span style="color:#f92672">.</span>index(ref_col) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]
+        seg2 <span style="color:#f92672">=</span> cols_to_move
+    <span style="color:#66d9ef">if</span> place <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Before&#39;</span>:
+        seg1 <span style="color:#f92672">=</span> cols[:list(cols)<span style="color:#f92672">.</span>index(ref_col)]
+        seg2 <span style="color:#f92672">=</span> cols_to_move <span style="color:#f92672">+</span> [ref_col]
+
+    seg1 <span style="color:#f92672">=</span> [i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> seg1 <span style="color:#66d9ef">if</span> i <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> seg2]
+    seg3 <span style="color:#f92672">=</span> [i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> cols <span style="color:#66d9ef">if</span> i <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> seg1 <span style="color:#f92672">+</span> seg2]
+
+    <span style="color:#66d9ef">return</span>(df[seg1 <span style="color:#f92672">+</span> seg2 <span style="color:#f92672">+</span> seg3])
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#move LIMIT_BAL column next to other account/credit variables</span>
+df <span style="color:#f92672">=</span> movecol(df,
+             cols_to_move<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;LIMIT_BAL&#39;</span>],
+             ref_col<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;AGE&#39;</span>,
+             place<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;After&#39;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#re-order pay columns</span>
+df <span style="color:#f92672">=</span> movecol(df,
+             cols_to_move<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;pay_ap&#39;</span>, <span style="color:#e6db74">&#39;pay_m&#39;</span>, <span style="color:#e6db74">&#39;pay_ju&#39;</span>, <span style="color:#e6db74">&#39;pay_jy&#39;</span>, <span style="color:#e6db74">&#39;pay_ag&#39;</span>, <span style="color:#e6db74">&#39;pay_s&#39;</span>],
+             ref_col<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;LIMIT_BAL&#39;</span>,
+             place<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;After&#39;</span>)
+
+<span style="color:#75715e">#re-order pmt columns</span>
+df <span style="color:#f92672">=</span> movecol(df,
+             cols_to_move<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;pmt_ap&#39;</span>, <span style="color:#e6db74">&#39;pmt_m&#39;</span>, <span style="color:#e6db74">&#39;pmt_ju&#39;</span>, <span style="color:#e6db74">&#39;pmt_jy&#39;</span>, <span style="color:#e6db74">&#39;pmt_ag&#39;</span>, <span style="color:#e6db74">&#39;pmt_s&#39;</span>],
+             ref_col<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;LIMIT_BAL&#39;</span>,
+             place<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;After&#39;</span>)
+
+<span style="color:#75715e">#re-order bill columns</span>
+df <span style="color:#f92672">=</span> movecol(df,
+             cols_to_move<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;bill_ap&#39;</span>, <span style="color:#e6db74">&#39;bill_m&#39;</span>, <span style="color:#e6db74">&#39;bill_ju&#39;</span>, <span style="color:#e6db74">&#39;bill_jy&#39;</span>, <span style="color:#e6db74">&#39;bill_ag&#39;</span>, <span style="color:#e6db74">&#39;bill_s&#39;</span>],
+             ref_col<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;LIMIT_BAL&#39;</span>,
+             place<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;After&#39;</span>)
+</code></pre></div><h3 id="export-cleaned-data"><em>Export Cleaned Data</em></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#export cleaned transformed data as .csv file</span>
+df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#39;cleaned_creditone_data.csv&#39;</span>, index <span style="color:#f92672">=</span> False, header<span style="color:#f92672">=</span>True)
+</code></pre></div><figure>
     <img src="https://katherinepiatti.com/images/gen_spending_plot.png"/> <figcaption>
             <h4>Data Vizualization</h4>
         </figcaption>
 </figure>
 
+<p><a href="https://github.com/kpiatti/creditone-project">Link to GitHub Repository</a></p>
 <ul class="pa0">
   
 </ul>
