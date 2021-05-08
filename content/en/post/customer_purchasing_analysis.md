@@ -1,15 +1,11 @@
 ---
 date: 2020-10-10T11:00:59-04:00
 description: ""
-featured_image: "/images/customer_purchasing_modified.jpg"
+featured_image: "/images/customer_purchasing_feature.jpg"
 title: "Understanding Customer Purchasing Patterns"
 tag: "data wrangling"
-
+show_reading_time: true
 ---
-
-[comment]: <> (add image files like coord_flip_ex.png to the image folder inside the static folder)
-
-[Link to GitHub Repository](https://github.com/kpiatti/customer-purchasing-patterns)
 
 
 The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
@@ -905,3 +901,5 @@ print(avg_score)
 feature_imp = pd.series(model.feature_importances_, index=data.feature.names)
     .sort_values(ascending=False)
 ```
+
+[Link to Project GitHub Repository](https://github.com/kpiatti/customer-purchasing-patterns)
