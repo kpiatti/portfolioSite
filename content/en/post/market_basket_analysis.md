@@ -259,7 +259,4 @@ plot(ruleset_01,
 For example, if you select 'Dell Laptop', you can see that the idem only features in one rule. (use your mouse scroll wheel to read the labels on the graph nodes).
 
 
-
-
-
 [Link to Project GitHub Repository](https://github.com/kpiatti/market-basket-analysis)
