@@ -38,16 +38,6 @@
     </item>
     
     <item>
-      <title>Market Basket Analysis</title>
-      <link>https://katherinepiatti.com/post/market_basket_analysis/</link>
-      <pubDate>Sat, 09 Jan 2021 11:13:32 -0400</pubDate>
-      
-      <guid>https://katherinepiatti.com/post/market_basket_analysis/</guid>
-      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
- Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to Project GitHub Repository Link to RPubs</description>
-    </item>
-    
-    <item>
       <title>Credit One Project</title>
       <link>https://katherinepiatti.com/post/creditone_project/</link>
       <pubDate>Sun, 13 Dec 2020 11:00:59 -0400</pubDate>
@@ -75,6 +65,15 @@ Even though it&amp;rsquo;s not necessary, I prefer to export the raw data as a .
       <guid>https://katherinepiatti.com/post/product_sales_prediction/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
  Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to Project GitHub Repository Link to RPubs</description>
+    </item>
+    
+    <item>
+      <title>Market Basket Analysis</title>
+      <link>https://katherinepiatti.com/post/market_basket_analysis/</link>
+      <pubDate>Mon, 09 Nov 2020 11:13:32 -0400</pubDate>
+      
+      <guid>https://katherinepiatti.com/post/market_basket_analysis/</guid>
+      <description>What is market basket analysis? Market basket analysis (also known as affinity analysis) is specific implementation of association rule learning/mining&amp;ndash;an unsupervised machine learning that seeks to uncover potentially valuable relationships (associations) between the items/products consumers buy from point of sale transaction data . For example, a grocery store might use market basket analysis to discover that 40% of the time when their customers buy cereal, they also buy bananas. Businesses used market basket analysis for things like:</description>
     </item>
     
     <item>
