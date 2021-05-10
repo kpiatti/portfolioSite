@@ -6,8 +6,9 @@
     
     <title>Brand Preference Analysis | Home</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
- Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to GitHub Repository Link to RPubs">
+    <meta name="description" content="This was my first project using R. So the start of the project involved installing and setting up R and R Studio, and familarizing myself with how to install/load packages, setup version control (using renv), and performing basic analysis and modeling tasks in the R ecosystem.
+  Screenshot of R Studio Session   This is a 2 class classification problem.
+# LOAD PKGS &amp; DATA library(tidyverse) library(here) library(janitor) library(skimr) library(generics) #ran in console--install.">
     <meta name="generator" content="Hugo 0.82.1" />
     
     
@@ -32,22 +33,25 @@
     
     
     <meta property="og:title" content="Brand Preference Analysis" />
-<meta property="og:description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
- Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to GitHub Repository Link to RPubs" />
+<meta property="og:description" content="This was my first project using R. So the start of the project involved installing and setting up R and R Studio, and familarizing myself with how to install/load packages, setup version control (using renv), and performing basic analysis and modeling tasks in the R ecosystem.
+  Screenshot of R Studio Session   This is a 2 class classification problem.
+# LOAD PKGS &amp; DATA library(tidyverse) library(here) library(janitor) library(skimr) library(generics) #ran in console--install." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://katherinepiatti.com/post/brand_pref_analysis/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-11-10T11:00:59-04:00" />
-<meta property="article:modified_time" content="2020-11-10T11:00:59-04:00" /><meta property="og:site_name" content="Home" />
+<meta property="article:published_time" content="2020-11-20T11:00:59-04:00" />
+<meta property="article:modified_time" content="2020-11-20T11:00:59-04:00" /><meta property="og:site_name" content="Home" />
 
 <meta itemprop="name" content="Brand Preference Analysis">
-<meta itemprop="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
- Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to GitHub Repository Link to RPubs"><meta itemprop="datePublished" content="2020-11-10T11:00:59-04:00" />
-<meta itemprop="dateModified" content="2020-11-10T11:00:59-04:00" />
-<meta itemprop="wordCount" content="59">
+<meta itemprop="description" content="This was my first project using R. So the start of the project involved installing and setting up R and R Studio, and familarizing myself with how to install/load packages, setup version control (using renv), and performing basic analysis and modeling tasks in the R ecosystem.
+  Screenshot of R Studio Session   This is a 2 class classification problem.
+# LOAD PKGS &amp; DATA library(tidyverse) library(here) library(janitor) library(skimr) library(generics) #ran in console--install."><meta itemprop="datePublished" content="2020-11-20T11:00:59-04:00" />
+<meta itemprop="dateModified" content="2020-11-20T11:00:59-04:00" />
+<meta itemprop="wordCount" content="1308">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Brand Preference Analysis"/>
-<meta name="twitter:description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
- Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to GitHub Repository Link to RPubs"/>
+<meta name="twitter:description" content="This was my first project using R. So the start of the project involved installing and setting up R and R Studio, and familarizing myself with how to install/load packages, setup version control (using renv), and performing basic analysis and modeling tasks in the R ecosystem.
+  Screenshot of R Studio Session   This is a 2 class classification problem.
+# LOAD PKGS &amp; DATA library(tidyverse) library(here) library(janitor) library(skimr) library(generics) #ran in console--install."/>
 
 	
   </head>
@@ -58,8 +62,10 @@
    
   
 
-  <header>
-    <div class="bg-black">
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://katherinepiatti.com/images/brand_pref_feature.jpg');">
+    <div class="pb3-m pb6-l bg-black-60">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="https://katherinepiatti.com/" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -154,6 +160,12 @@
   </div>
 </nav>
 
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Brand Preference Analysis</h1>
+          
+        
+      </div>
     </div>
   </header>
 
@@ -201,25 +213,284 @@
       <h1 class="f1 athelas mt3 mb1">Brand Preference Analysis</h1>
       
       
-      <time class="f6 mv4 dib tracked" datetime="2020-11-10T11:00:59-04:00">November 10, 2020</time>
+      <time class="f6 mv4 dib tracked" datetime="2020-11-20T11:00:59-04:00">November 20, 2020</time>
 
       
       
-        <span class="f6 mv4 dib tracked"> - 1 minutes read</span>
-        <span class="f6 mv4 dib tracked"> - 59 words</span>
+        <span class="f6 mv4 dib tracked"> - 7 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 1308 words</span>
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.</p>
-<ul>
-<li>Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.</li>
-</ul>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>This was my first project using R. So the start of the project involved installing and setting up R and R Studio, and familarizing myself with how to install/load packages, setup version control (using renv), and performing basic analysis and modeling tasks in the R ecosystem.</p>
 <figure>
-    <img src="https://katherinepiatti.com/images/gen_spending_plot.png"/> <figcaption>
-            <h4>Data Vizualization</h4>
+    <img src="https://katherinepiatti.com/images/cust_brand_pref_rstudio_dataprep.png"/> <figcaption>
+            <h4>Screenshot of R Studio Session</h4>
         </figcaption>
 </figure>
 
-<p><a href="https://github.com/kpiatti/WIFI-Fingerprinting-Project">Link to GitHub Repository</a>     <a href="https://rpubs.com/kpiatti">Link to RPubs</a></p>
+<p>This is a 2 class classification problem.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># LOAD PKGS &amp; DATA</span>
+<span style="color:#a6e22e">library</span>(tidyverse)
+<span style="color:#a6e22e">library</span>(here)
+<span style="color:#a6e22e">library</span>(janitor)
+<span style="color:#a6e22e">library</span>(skimr)
+<span style="color:#a6e22e">library</span>(generics)
+<span style="color:#75715e">#ran in console--install.packages(&#34;caret&#34;, dependencies = c(&#34;Depends&#34;, &#34;Suggests&#34;))</span>
+<span style="color:#a6e22e">library</span>(caret)
+<span style="color:#75715e">#library(doSNOW) #enables doing training in parallel</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#read in dataset</span>
+surveydata <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#a6e22e">here</span>(<span style="color:#e6db74">&#34;data&#34;</span>, <span style="color:#e6db74">&#34;CompleteResponses.csv&#34;</span>))
+</code></pre></div><h1 id="data-wrangling">Data Wrangling</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#rename vars</span>
+cln_surveydata <span style="color:#f92672">&lt;-</span> surveydata <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">clean_names</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">rename</span>(region <span style="color:#f92672">=</span> zipcode) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># new name = old name</span>
+  <span style="color:#a6e22e">rename</span>(edu <span style="color:#f92672">=</span> elevel)
+
+<span style="color:#75715e">#verify var name changes</span>
+<span style="color:#a6e22e">glimpse</span>(cln_surveydata)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#change predictor vars to factor dtype</span>
+cln_surveydata<span style="color:#f92672">$</span>edu <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.factor</span>(cln_surveydata<span style="color:#f92672">$</span>edu)
+cln_surveydata<span style="color:#f92672">$</span>car <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.factor</span>(cln_surveydata<span style="color:#f92672">$</span>car)
+cln_surveydata<span style="color:#f92672">$</span>region <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.factor</span>(cln_surveydata<span style="color:#f92672">$</span>region)
+
+
+<span style="color:#75715e">#change target var to factor--so treated as classification</span>
+cln_surveydata<span style="color:#f92672">$</span>brand <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.factor</span>(cln_surveydata<span style="color:#f92672">$</span>brand)
+
+
+<span style="color:#75715e">#verify changes</span>
+<span style="color:#a6e22e">is.factor</span>(cln_surveydata<span style="color:#f92672">$</span>brand)
+</code></pre></div><h1 id="variable-distributions">Variable distributions</h1>
+<p>Use <code>hist()</code> for continuous variables and <code>barplot(table())</code> for categorical variables.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#plot distributions of predictor vars</span>
+<span style="color:#a6e22e">hist</span>(cln_surveydata<span style="color:#f92672">$</span>salary)
+<span style="color:#a6e22e">hist</span>(cln_surveydata<span style="color:#f92672">$</span>age)
+<span style="color:#a6e22e">hist</span>(cln_surveydata<span style="color:#f92672">$</span>credit)
+<span style="color:#a6e22e">barplot</span>(<span style="color:#a6e22e">table</span>(cln_surveydata<span style="color:#f92672">$</span>edu))
+<span style="color:#a6e22e">barplot</span>(<span style="color:#a6e22e">table</span>(cln_surveydata<span style="color:#f92672">$</span>car))
+<span style="color:#a6e22e">barplot</span>(<span style="color:#a6e22e">table</span>(cln_surveydata<span style="color:#f92672">$</span>region))
+</code></pre></div><p>All predictor variables are aprox. uniformly distributed.</p>
+<figure>
+    <img src="https://katherinepiatti.com/images/brand_pref_age_hist.png"/> 
+</figure>
+
+<figure>
+    <img src="https://katherinepiatti.com/images/brand_pref_salary_hist.png"/> 
+</figure>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#plot distribution of obs in target var</span>
+<span style="color:#a6e22e">barplot</span>(<span style="color:#a6e22e">table</span>(cln_surveydata<span style="color:#f92672">$</span>brand))
+</code></pre></div><figure>
+    <img src="https://katherinepiatti.com/images/brand_pref_brand_bar.png"/> 
+</figure>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#get value counts for brand classes</span>
+cln_surveydata <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">count</span>(brand)
+<span style="color:#75715e"># class 0 is 37.82582%</span>
+</code></pre></div><p>The classes are not balanced: brand 1 is preferred by more customers. As a result, during the modeling phase I will need to use stratified splitting/sampling for creating my training and testing datasets. The presence of a class imbalance will also be important when it comes to interpreting my model&rsquo;s performance measures</p>
+<h1 id="modeling">Modeling</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#set random number generator</span>
+<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>)
+
+
+<span style="color:#75715e">#specify partition of 75/25 (p = .75), list = FALSE to output vector, not list</span>
+in_train <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">createDataPartition</span>(cln_surveydata<span style="color:#f92672">$</span>brand,
+                                p <span style="color:#f92672">=</span> <span style="color:#ae81ff">.75</span>,
+                                list <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+
+<span style="color:#75715e">#use partition to create training dataset--[intraining,] tells R to use all columns when creating the training data</span>
+train_data <span style="color:#f92672">&lt;-</span> cln_surveydata[in_train,]
+
+<span style="color:#75715e">#use partition to create testing dataset</span>
+test_data <span style="color:#f92672">&lt;-</span> cln_surveydata[<span style="color:#f92672">-</span>in_train,]
+</code></pre></div><p><em>Coding Notes</em></p>
+<ul>
+<li><code>set.seed()</code> in R does the same job as it does in Python. It ensures that when the data is split, the same observations are selected to make up the training and testing sets every time the code is run, which is necessary for reproducibility</li>
+</ul>
+<h4 id="parallel-processing">Parallel processing</h4>
+<p>When I began modeling this dataset, my training and testing steps were taking several minutes each to complete—that made the work frustrating, and limited how much experimentation I could do in a limited amount of time. So I researched how to implement parallel processing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#create cluster</span>
+pcluster <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">makeCluster</span>(<span style="color:#ae81ff">4</span>, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SOCK&#34;</span>)
+
+<span style="color:#75715e">#register cluster</span>
+<span style="color:#75715e">#registerDoSNOW(pcluster)</span>
+</code></pre></div><h2 id="random-forest-model">Random Forest Model</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># use 5-fold cross validation method</span>
+control <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">trainControl</span>(method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;repeatedcv&#34;</span>,
+                        number <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>,  
+                        repeats <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+
+<span style="color:#75715e">#create parameter tuning grid (FOR MANUAL TUNING ONLY)</span>
+<span style="color:#75715e">#grid &lt;- expand.grid(size = c(2,7,12,18,24,34), k = c(1,2,3,4,5))</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#train &amp; auto-tune model</span>
+<span style="color:#a6e22e">system.time</span>(rf_fit1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">train</span>(brand<span style="color:#f92672">~</span>.,
+                             data <span style="color:#f92672">=</span> train_data,
+                             method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rf&#34;</span>,
+                             trControl <span style="color:#f92672">=</span> control,
+                             tunelength <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>))
+</code></pre></div><p><em>Coding Notes</em></p>
+<ul>
+<li>Use the <code>system.time()</code> wrapper to get runtime for code execution.</li>
+<li>Runtime with cluster: 321.69, without cluster: 804.95</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#train &amp; manually tune model</span>
+<span style="color:#a6e22e">system.time</span>(rf_fit2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">train</span>(brand<span style="color:#f92672">~</span>.,
+                             data <span style="color:#f92672">=</span> train_data,
+                             method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rf&#34;</span>,
+                             trControl <span style="color:#f92672">=</span> control,
+                             tunelength <span style="color:#f92672">=</span> grid))
+</code></pre></div><h4 id="model-predictions--evaluation">Model Predictions &amp; Evaluation</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#predict brand preferences for testing_data</span>
+(pred_rf_fit1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(rf_fit1, test_data))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#view confusion matrix</span>
+(perform_rf_fit1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">confusionMatrix</span>(pred_rf_fit1,
+                                    test_data<span style="color:#f92672">$</span>brand))
+</code></pre></div><hr>
+<h2 id="gradient-boosting-model-gbm">Gradient Boosting Model (GBM)</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#train  GBM (gradient boosting) model on the training_data, 3-fold crossval, w/ system.time wrapper</span>
+<span style="color:#a6e22e">system.time</span>(gbm_fit1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">train</span>(brand<span style="color:#f92672">~</span>.,
+                              data <span style="color:#f92672">=</span> train_data,
+                              method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gbm&#34;</span>,
+                              trControl <span style="color:#f92672">=</span> control,
+                              train.fraction <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>))
+</code></pre></div><h4 id="model-predictions--evaluation-1">Model Predictions &amp; Evaluation</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#make brand preferences predictions for testing_data</span>
+preds_gbm_fit1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(gbm_fit1,
+                          test_data)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#view confusion matrix of gbm model performance on test data</span>
+(perform_gbm_fit1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">confusionMatrix</span>(preds_gbm_fit1,
+                                     test_data<span style="color:#f92672">$</span>brand))
+</code></pre></div><p>The RF and GBM models perform similarly in predicting (i.e. correctly classifying) customers' brand preferences in the testing data. However, the GBM was significantly <em>faster</em>.</p>
+<h4 id="variable-importance">Variable Importance</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#calculate importance of predictor vars in RF model</span>
+<span style="color:#a6e22e">varImp</span>(rf_fit1)
+</code></pre></div><p>Outcome: top 3 scores — salary 100, age 65, credit 9. After top 3, scores for remaining variables are below 1.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># need to load gbm pkg to get varImp for GBM model  </span>
+<span style="color:#a6e22e">library</span>(gbm)
+
+<span style="color:#75715e">#calculate the importance of each feature/predictor var</span>
+<span style="color:#a6e22e">varImp</span>(gbm_fit1)
+</code></pre></div><p>Outcome: top 3 predictors — age, salary, credit. Interestingly, the most important variable in the gbm model is different from the rf model. Not sure what to make of that.</p>
+<h5 id="feature-selection">Feature Selection</h5>
+<p>Because three variables show significantly more importance than the other vars, I want to look at the relationship between those vars and brand preference more closely.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#plot brand pref and salary</span>
+cln_surveydata <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> brand, y <span style="color:#f92672">=</span> salary)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_violin</span>()
+
+<span style="color:#75715e">#plot brand pref and age</span>
+cln_surveydata <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> brand, y <span style="color:#f92672">=</span> age)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_violin</span>()
+
+<span style="color:#75715e">#plot brand pref and credit</span>
+cln_surveydata <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">ggplot</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> brand, y <span style="color:#f92672">=</span> credit)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_violin</span>()
+</code></pre></div><p>I wonder if all or most of the predictive power of gbm_fit1 is coming from the top 3 vars. So I want to check that</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># age only model</span>
+<span style="color:#a6e22e">system.time</span>(gbm_agefit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">train</span>(brand<span style="color:#f92672">~</span>. <span style="color:#f92672">-</span>salary <span style="color:#f92672">-</span>edu <span style="color:#f92672">-</span>car <span style="color:#f92672">-</span>region <span style="color:#f92672">-</span>credit,
+                                   data <span style="color:#f92672">=</span> train_data,
+                                   method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gbm&#34;</span>,
+                                   trControl <span style="color:#f92672">=</span> control))
+
+<span style="color:#75715e"># predict brand pref for test_data</span>
+(pred_gbm_agefit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(gbm_agefit, test_data))
+
+<span style="color:#75715e">#evaluate performance using confusion matrix</span>
+(perform_gbm_agefit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">confusionMatrix</span>(pred_gbm_agefit,
+                                          test_data<span style="color:#f92672">$</span>brand))
+</code></pre></div><p>The age only model had <em>zero</em> predictive power.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># credit only model</span>
+<span style="color:#a6e22e">system.time</span>(gbm_creditfit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">train</span>(brand<span style="color:#f92672">~</span>. <span style="color:#f92672">-</span>salary <span style="color:#f92672">-</span>edu <span style="color:#f92672">-</span>car <span style="color:#f92672">-</span>region <span style="color:#f92672">-</span>age,
+                                data <span style="color:#f92672">=</span> train_data,
+                                method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gbm&#34;</span>,
+                                trControl <span style="color:#f92672">=</span> control))
+
+<span style="color:#75715e"># predict brand pref for test_data</span>
+(pred_gbm_creditfit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(gbm_creditfit, test_data))
+
+<span style="color:#75715e">#evaluate performance using confusion matrix</span>
+(perform_gbm_creditfit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">confusionMatrix</span>(pred_gbm_creditfit,
+                                       test_data<span style="color:#f92672">$</span>brand))
+</code></pre></div><p>The credit only model had <em>zero</em> predictive power</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># salary only model</span>
+<span style="color:#a6e22e">system.time</span>(gbm_salaryfit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">train</span>(brand<span style="color:#f92672">~</span>. <span style="color:#f92672">-</span>age <span style="color:#f92672">-</span>edu <span style="color:#f92672">-</span>car <span style="color:#f92672">-</span>region <span style="color:#f92672">-</span>credit,
+                             data <span style="color:#f92672">=</span> train_data,
+                             method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gbm&#34;</span>,
+                             trControl <span style="color:#f92672">=</span> control))
+
+<span style="color:#75715e"># predict brand pref for the test_data</span>
+(pred_gbm_salaryfit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(gbm_salaryfit, test_data))
+
+<span style="color:#75715e">#evaluate performance of rf_salaryfit using confusion matrix</span>
+(perform_gbm_salaryfit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">confusionMatrix</span>(pred_gbm_salaryfit,
+                                       test_data<span style="color:#f92672">$</span>brand))
+</code></pre></div><p>The salary only model performed considerably worse than the original GB model (accuracy = 0.72)</p>
+<p>Conclusion: because of the outsized variable importance score for the salary variable, I thought all the predictive power of the original GBM model might be coming just from the salary variable. However, the salary only model had zero predictive power. So even though the salary variable is significantly more important than any of the other variables, without the other variables it accurately predict customers' brand preferences.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># AGE &amp; CREDIT ONLY</span>
+<span style="color:#a6e22e">system.time</span>(gbm_agecredfit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">train</span>(brand<span style="color:#f92672">~</span>. <span style="color:#f92672">-</span>edu <span style="color:#f92672">-</span>car <span style="color:#f92672">-</span>region <span style="color:#f92672">-</span>salary,
+                                   data <span style="color:#f92672">=</span> train_data,
+                                   method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gbm&#34;</span>,
+                                   trControl <span style="color:#f92672">=</span> control))
+
+<span style="color:#75715e">#use gbm_salaryfit to predict brand pref for the test_data</span>
+(pred_gbm_agecredfit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(gbm_agecredfit, test_data))
+
+<span style="color:#75715e">#evaluate performance of rf_salaryfit using confusion matrix</span>
+(perform_gbm_agecredfit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">confusionMatrix</span>(pred_gbm_agecredfit,
+                                          test_data<span style="color:#f92672">$</span>brand))
+</code></pre></div><p>The model trained using only the age and credit variables  did not perform any better than the model&rsquo;s zero information rate (a model&rsquo;s zero information rate is equal to fraction of observations in the largest class, e.g. if 60% of the observations are in class A, and 40% are in class B, then a model can achieve 60% accuracy without any information/training by classifying all cases as A).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#AGE, SALARY, AND CREDIT ONLY</span>
+<span style="color:#a6e22e">system.time</span>(gbm_agecredsalfit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">train</span>(brand<span style="color:#f92672">~</span>. <span style="color:#f92672">-</span>edu <span style="color:#f92672">-</span>car <span style="color:#f92672">-</span>region,
+                                    data <span style="color:#f92672">=</span> train_data,
+                                    method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gbm&#34;</span>,
+                                    trControl <span style="color:#f92672">=</span> control))
+
+<span style="color:#75715e">#use gbm_salaryfit to predict brand pref for the test_data</span>
+(pred_gbm_agecredsalfit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(gbm_agecredsalfit, test_data))
+
+<span style="color:#75715e">#evaluate performance of rf_salaryfit using confusion matrix</span>
+(perform_gbm_agecredsalfit <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">confusionMatrix</span>(pred_gbm_agecredsalfit,
+                                           test_data<span style="color:#f92672">$</span>brand))
+</code></pre></div><p>This model using only these three variables performed slightly better than the full model 0.9297 vs. 0.9232. So I will use the model with fewer variables moving forward.</p>
+<h3 id="predict-brand-preferences-for-the-incomplete-survey-data">Predict Brand Preferences for the Incomplete Survey DATA</h3>
+<p>[INSERT EPLANATION HERE]</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#read in incomplete survey data</span>
+incompletesurveydata <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#a6e22e">here</span>(<span style="color:#e6db74">&#34;data&#34;</span>, <span style="color:#e6db74">&#34;SurveyIncomplete.csv&#34;</span>))
+
+<span style="color:#a6e22e">glimpse</span>(incompletesurveydata)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#clean var names and rename vars</span>
+incompletesurveydata <span style="color:#f92672">&lt;-</span> incompletesurveydata <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">clean_names</span>() <span style="color:#f92672">%&gt;%</span>
+  <span style="color:#a6e22e">rename</span>(edu <span style="color:#f92672">=</span> elevel) <span style="color:#f92672">%&gt;%</span>    <span style="color:#75715e"># new name = old name</span>
+  <span style="color:#a6e22e">rename</span>(region <span style="color:#f92672">=</span> zipcode)
+
+<span style="color:#a6e22e">glimpse</span>(incompletesurveydata)    <span style="color:#75715e">#verify changes</span>
+
+<span style="color:#75715e">#check for missing values</span>
+<span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">is.na</span>(incompletesurveydata))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#change var dtypes to factor</span>
+incompletesurveydata<span style="color:#f92672">$</span>edu <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.factor</span>(incompletesurveydata<span style="color:#f92672">$</span>edu)
+incompletesurveydata<span style="color:#f92672">$</span>car <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.factor</span>(incompletesurveydata<span style="color:#f92672">$</span>car)
+incompletesurveydata<span style="color:#f92672">$</span>region <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.factor</span>(incompletesurveydata<span style="color:#f92672">$</span>region)
+incompletesurveydata<span style="color:#f92672">$</span>brand <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.factor</span>(incompletesurveydata<span style="color:#f92672">$</span>brand)
+
+<span style="color:#a6e22e">glimpse</span>(incompletesurveydata)   <span style="color:#75715e"># verify changes</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#use final model (gbm_agecredsalfit) to predict brand pref for entirely new dataset (incompletesurveydata)</span>
+pred_incompletedata <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">predict</span>(gbm_agecredsalfit,
+                               newdata <span style="color:#f92672">=</span> incompletesurveydata)
+
+<span style="color:#75715e">#evaluate performance</span>
+(perform_incompletedata <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">confusionMatrix</span>(pred_incompletedata, incompletesurveydata<span style="color:#f92672">$</span>brand))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#stop parallel processing</span>
+<span style="color:#75715e">#stopCluster(pcluster)</span>
+
+
+gbm_agecredsalfit<span style="color:#f92672">$</span>modelInfo
+gbm_agecredsalfit<span style="color:#f92672">$</span>dots
+</code></pre></div><p><a href="https://github.com/kpiatti/customer-brand-preferences">Link to Project GitHub Repository</a></p>
 <ul class="pa0">
   
 </ul>
