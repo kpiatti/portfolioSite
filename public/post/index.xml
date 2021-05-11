@@ -34,7 +34,7 @@
       
       <guid>https://katherinepiatti.com/post/my_website/</guid>
       <description>While doing research for another project, I stumbled across a tutorial on how to build your own static website using Hugo (open source) and adding content using markdown files. I decided to try it. What you&amp;rsquo;re looking at is the result.
-          Command Line Interaction with Hugo   Link to GitHub Repository</description>
+  Command Line Interaction with Hugo   Link to GitHub Repository</description>
     </item>
     
     <item>
@@ -59,13 +59,12 @@ Even though it&amp;rsquo;s not necessary, I prefer to export the raw data as a .
     </item>
     
     <item>
-      <title>Predicting Product Sales</title>
+      <title>The Impact of Customer Reviews on Product Sales</title>
       <link>https://katherinepiatti.com/post/product_sales_prediction/</link>
       <pubDate>Tue, 10 Nov 2020 11:00:59 -0400</pubDate>
       
       <guid>https://katherinepiatti.com/post/product_sales_prediction/</guid>
-      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
- Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to Project GitHub Repository Link to RPubs</description>
+      <description>Project Summary Maybe it&amp;rsquo;s a lack of self control, need of a reminder that other people are still out there, or the outcome of some nefarious dark patterns but I have definitely spent more time then I can justify reading product reviews. A few have made me laugh out loud and sometimes they seem useful. But, in my own case at least, I&amp;rsquo;m not confident product reviews make a real difference in my purchasing behavior.</description>
     </item>
     
     <item>
