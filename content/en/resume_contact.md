@@ -6,6 +6,7 @@ omit_header_text: true
 menu: main
 type: resume
 ---
+this is another test
 
 {{< figure src="/images/resume_20201231.jpg" title="" >}}
 
