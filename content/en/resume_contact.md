@@ -4,7 +4,7 @@ featured_image: ""
 description: " "
 omit_header_text: true
 menu: main
-type: page
+type: resume
 ---
 
 {{< figure src="/images/resume_20201231.jpg" title="" >}}
