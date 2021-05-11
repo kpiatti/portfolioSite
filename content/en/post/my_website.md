@@ -16,4 +16,4 @@ While doing research for another project, I stumbled across a tutorial on how to
 
 {{< figure src="/images/CLI_hugo.png" title="Command Line Interaction with Hugo" >}}
 
-[Link to GitHub Repository](https://github.com/kpiatti/portfolioSite)
+[Link to Project GitHub Repository](https://github.com/kpiatti/portfolioSite)
