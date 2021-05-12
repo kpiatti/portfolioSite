@@ -1,5 +1,5 @@
 ---
-date: 2020-11-20T11:00:59-04:00
+date: 
 description: ""
 featured_image: "/images/brand_pref_feature.webp"
 title: "Brand Preference Analysis"

@@ -1,5 +1,5 @@
 ---
-date: 2020-12-13T11:00:59-04:00
+date:
 description: ""
 featured_image: "/images/credit_feature.webp"
 title: "Credit One Project"

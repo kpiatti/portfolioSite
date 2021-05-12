@@ -4,6 +4,7 @@ description: ""
 featured_image: "/images/product_sales_feature.jpg"
 title: "The Impact of Customer Reviews on Product Sales"
 show_reading_time: true
+draft: TRUE
 ---
 
 

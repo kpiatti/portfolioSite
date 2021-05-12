@@ -1,5 +1,5 @@
 ---
-date: 2021-05-10T11:00:59-04:00
+date: 2021-05-10
 description: ""
 featured_image: "/images/my_website_feature.jpg"
 title: "Portfolio Website"

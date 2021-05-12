@@ -1,5 +1,5 @@
 ---
-date: 2020-10-10T11:00:59-04:00
+date: 
 description: ""
 featured_image: "/images/customer_purchasing_feature.jpg"
 title: "Understanding Customer Purchasing Patterns"

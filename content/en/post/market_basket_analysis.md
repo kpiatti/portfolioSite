@@ -1,5 +1,5 @@
 ---
-date: 2020-11-09T11:13:32-04:00
+date:
 description: ""
 featured_image: "/images/basket_feature.webp"
 title: "Market Basket Analysis"
