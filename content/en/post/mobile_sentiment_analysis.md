@@ -4,10 +4,26 @@ description: ""
 featured_image: "/images/sentiment_feature.webp"
 title: "Mobile Device Sentiment analysis"
 show_reading_time: true
+draft: true
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
-- Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.
+## What is Sentiment Analysis?
+
+## The DATA
+
+### Small Matrices
+
+### Large matrix
+
+## Data wrangling
+
+## Data Exploration
+
+## Modeling
+
+### Feature election
+
+## Findings
 
 ```r
 library(tidyverse)

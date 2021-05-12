@@ -4,6 +4,7 @@ description: ""
 featured_image: "/images/wifi_feature.webp"
 title: "Wifi Fingerprinting"
 show_reading_time: true
+draft: TRUE
 ---
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
 - Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.
