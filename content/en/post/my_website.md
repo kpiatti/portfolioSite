@@ -1,13 +1,13 @@
 ---
-date: 2021-05-10
+date: 2021-04-28
 description: ""
 featured_image: "/images/my_website_feature.jpg"
-title: "Portfolio Website"
+title: "Building My Portfolio Website"
 show_reading_time: true
 ---
 {{< figure src="/images/website_logos.png" >}}
 
-After the slightly humiliating experience of my 14 year-old neighbor showing me the website *she* built, I decided enough is enough, it's time I show her I'm better than she is and *I can build my own website too*.
+After my 14 year-old neighbor showed me the website *she* built, I decided enough is enough, it's time I show her I'm better than she is and *I can build my own website too*.
 
 I researched several of the most popular DIY website creation tools (e.g. WordPress, Squarespace) and ultimately settled on using *HUGO* (an open source static site generator) to build my site and Netlify to for web hosting services.
 
