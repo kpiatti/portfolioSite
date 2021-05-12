@@ -10,7 +10,7 @@
     <item>
       <title>Portfolio Website</title>
       <link>https://katherinepiatti.com/post/my_website/</link>
-      <pubDate>Mon, 10 May 2021 11:00:59 -0400</pubDate>
+      <pubDate>Mon, 10 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://katherinepiatti.com/post/my_website/</guid>
       <description>After the slightly humiliating experience of my 14 year-old neighbor showing me the website she built, I decided enough is enough, it&amp;rsquo;s time I show her I&amp;rsquo;m better than she is and I can build my own website too.
@@ -18,39 +18,9 @@ I researched several of the most popular DIY website creation tools (e.g. WordPr
     </item>
     
     <item>
-      <title>Wifi Fingerprinting</title>
-      <link>https://katherinepiatti.com/post/wifi_fingerprinting/</link>
-      <pubDate>Wed, 05 May 2021 11:14:48 -0400</pubDate>
-      
-      <guid>https://katherinepiatti.com/post/wifi_fingerprinting/</guid>
-      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
- Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.    Data Vizualization   Link to GitHub Repository Link to RPubs</description>
-    </item>
-    
-    <item>
-      <title>Mobile Device Sentiment analysis</title>
-      <link>https://katherinepiatti.com/post/mobile_sentiment_analysis/</link>
-      <pubDate>Fri, 09 Apr 2021 10:58:08 -0400</pubDate>
-      
-      <guid>https://katherinepiatti.com/post/mobile_sentiment_analysis/</guid>
-      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.
- Vivamus sed nisl sed nisi aliquam semper id eu massa. Curabitur.  library(tidyverse)   Data Vizualization   Link to Project GitHub Repository Link to RPubs</description>
-    </item>
-    
-    <item>
-      <title>Credit One Project</title>
-      <link>https://katherinepiatti.com/post/creditone_project/</link>
-      <pubDate>Sun, 13 Dec 2020 11:00:59 -0400</pubDate>
-      
-      <guid>https://katherinepiatti.com/post/creditone_project/</guid>
-      <description>#import required packages from sqlalchemy import create_engine import pymysql import pandas as pd import numpy as np Obtain Data The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database for the data, get the data (formatted as dataframe), and finally export the data as a .csv file.
-Even though it&amp;rsquo;s not necessary, I prefer to export the raw data as a .</description>
-    </item>
-    
-    <item>
       <title>Brand Preference Analysis</title>
       <link>https://katherinepiatti.com/post/brand_pref_analysis/</link>
-      <pubDate>Fri, 20 Nov 2020 11:00:59 -0400</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://katherinepiatti.com/post/brand_pref_analysis/</guid>
       <description>This was my first project using R. So the start of the project involved installing and setting up R and R Studio, and familarizing myself with how to install/load packages, setup version control (using renv), and performing basic analysis and modeling tasks in the R ecosystem.
@@ -59,18 +29,19 @@ Even though it&amp;rsquo;s not necessary, I prefer to export the raw data as a .
     </item>
     
     <item>
-      <title>The Impact of Customer Reviews on Product Sales</title>
-      <link>https://katherinepiatti.com/post/product_sales_prediction/</link>
-      <pubDate>Tue, 10 Nov 2020 11:00:59 -0400</pubDate>
+      <title>Credit One Project</title>
+      <link>https://katherinepiatti.com/post/creditone_project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://katherinepiatti.com/post/product_sales_prediction/</guid>
-      <description>Project Summary Maybe it&amp;rsquo;s a lack of self control, need of a reminder that other people are still out there, or the outcome of some nefarious dark patterns but I have definitely spent more time then I can justify reading product reviews. A few have made me laugh out loud and sometimes they seem useful. But, in my own case at least, I&amp;rsquo;m not confident product reviews make a real difference in my purchasing behavior.</description>
+      <guid>https://katherinepiatti.com/post/creditone_project/</guid>
+      <description>#import required packages from sqlalchemy import create_engine import pymysql import pandas as pd import numpy as np Obtain Data The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database for the data, get the data (formatted as dataframe), and finally export the data as a .csv file.
+Even though it&amp;rsquo;s not necessary, I prefer to export the raw data as a .</description>
     </item>
     
     <item>
       <title>Market Basket Analysis</title>
       <link>https://katherinepiatti.com/post/market_basket_analysis/</link>
-      <pubDate>Mon, 09 Nov 2020 11:13:32 -0400</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://katherinepiatti.com/post/market_basket_analysis/</guid>
       <description>What is market basket analysis? Market basket analysis (also known as affinity analysis) is specific implementation of association rule learning/mining&amp;ndash;an unsupervised machine learning that seeks to uncover potentially valuable relationships (associations) between the items/products consumers buy from point of sale transaction data . For example, a grocery store might use market basket analysis to discover that 40% of the time when their customers buy cereal, they also buy bananas. Businesses used market basket analysis for things like:</description>
@@ -79,7 +50,7 @@ Even though it&amp;rsquo;s not necessary, I prefer to export the raw data as a .
     <item>
       <title>Understanding Customer Purchasing Patterns</title>
       <link>https://katherinepiatti.com/post/customer_purchasing_analysis/</link>
-      <pubDate>Sat, 10 Oct 2020 11:00:59 -0400</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://katherinepiatti.com/post/customer_purchasing_analysis/</guid>
       <description>The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
