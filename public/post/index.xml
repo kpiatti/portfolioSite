@@ -18,9 +18,9 @@ I researched several of the most popular DIY website creation tools (e.g. WordPr
     </item>
     
     <item>
-      <title>Brand Preference Analysis</title>
+      <title>Brand Preference Analysis with R</title>
       <link>https://katherinepiatti.com/post/brand_pref_analysis/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 26 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://katherinepiatti.com/post/brand_pref_analysis/</guid>
       <description>This was my first project using R. So the start of the project involved installing and setting up R and R Studio, and familarizing myself with how to install/load packages, setup version control (using renv), and performing basic analysis and modeling tasks in the R ecosystem.
