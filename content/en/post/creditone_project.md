@@ -1,7 +1,7 @@
 ---
 date: 2020-12-13T11:00:59-04:00
 description: ""
-featured_image: "/images/credit_feature.jpg"
+featured_image: "/images/credit_feature.webp"
 title: "Credit One Project"
 show_reading_time: true
 ---

@@ -1,7 +1,7 @@
 ---
 date: 2021-05-05T11:14:48-04:00
 description: ""
-featured_image: "/images/fingerprint.jpg"
+featured_image: "/images/wifi_feature.webp"
 title: "Wifi Fingerprinting"
 show_reading_time: true
 ---

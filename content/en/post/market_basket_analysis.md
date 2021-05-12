@@ -1,7 +1,7 @@
 ---
 date: 2020-11-09T11:13:32-04:00
 description: ""
-featured_image: "/images/basket_feature.jpg"
+featured_image: "/images/basket_feature.webp"
 title: "Market Basket Analysis"
 show_reading_time: true
 ---

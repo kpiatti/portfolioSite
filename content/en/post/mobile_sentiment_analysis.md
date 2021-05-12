@@ -1,7 +1,7 @@
 ---
 date: 2021-04-09T10:58:08-04:00
 description: ""
-featured_image: "/images/mobile_sentiment_feature.jpg"
+featured_image: "/images/sentiment_feature.webp"
 title: "Mobile Device Sentiment analysis"
 show_reading_time: true
 ---
