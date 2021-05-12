@@ -6,9 +6,9 @@ omit_header_text: true
 menu: main
 type: resume
 ---
-this is another test
 
-{{< figure src="/images/resume_20201231.jpg" title="" >}}
+
+{{< figure src="/images/resume_20201231.webp" title="" >}}
 
 [[Download PDF]](/folder/resume_20201231.pdf)
 
