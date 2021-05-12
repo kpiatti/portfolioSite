@@ -1,5 +1,5 @@
 ---
-date:
+date: 2021-01-26
 description: ""
 featured_image: "/images/brand_pref_feature.webp"
 title: "Brand Preference Analysis with R"
