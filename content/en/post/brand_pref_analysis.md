@@ -1,8 +1,8 @@
 ---
-date: 
+date:
 description: ""
 featured_image: "/images/brand_pref_feature.webp"
-title: "Brand Preference Analysis"
+title: "Brand Preference Analysis with R"
 show_reading_time: true
 ---
 
@@ -53,10 +53,8 @@ cln_surveydata$edu <- as.factor(cln_surveydata$edu)
 cln_surveydata$car <- as.factor(cln_surveydata$car)
 cln_surveydata$region <- as.factor(cln_surveydata$region)
 
-
 #change target var to factor--so treated as classification
 cln_surveydata$brand <- as.factor(cln_surveydata$brand)
-
 
 #verify changes
 is.factor(cln_surveydata$brand)
@@ -65,25 +63,36 @@ is.factor(cln_surveydata$brand)
 
 
 
-# Variable distributions
+## Variable distributions
 
 Use ```hist()``` for continuous variables and ```barplot(table())``` for categorical variables.
 
 ```r
-#plot distributions of predictor vars
+#plot distributions of continuous predictor vars
 hist(cln_surveydata$salary)
 hist(cln_surveydata$age)
 hist(cln_surveydata$credit)
-barplot(table(cln_surveydata$edu))
-barplot(table(cln_surveydata$car))
-barplot(table(cln_surveydata$region))
 ```
 
-All predictor variables are aprox. uniformly distributed.
+All variables are aprox. uniformly distributed.
 
-{{< figure src="/images/brand_pref_age_hist.png" >}}
+{{< figure src="/images/brand_pref_age_salary_credit_hist.png" >}}
 
-{{< figure  src="/images/brand_pref_salary_hist.png" >}}
+
+```r
+#plot distributions of categorical predictor vars
+barplot(table(cln_surveydata$edu),
+        main = "Education Level",
+        ylab = "Count")
+barplot(table(cln_surveydata$car),
+        main = "Car Type",
+        ylab = "Count")
+barplot(table(cln_surveydata$region),
+        main = "Region",
+        ylab = "Count")
+```
+
+{{< figure src="/images/brand_pref_edu_car_region_bar.png" >}}
 
 ```r
 #plot distribution of obs in target var
@@ -107,7 +116,6 @@ The classes are not balanced: brand 1 is preferred by more customers. As a resul
 ```r
 #set random number generator
 set.seed(123)
-
 
 #specify partition of 75/25 (p = .75), list = FALSE to output vector, not list
 in_train <- createDataPartition(cln_surveydata$brand,
@@ -405,11 +413,10 @@ pred_incompletedata <- predict(gbm_agecredsalfit,
 
 ```r
 #stop parallel processing
-#stopCluster(pcluster)
+stopCluster(pcluster)
 
-
+#get model info
 gbm_agecredsalfit$modelInfo
-gbm_agecredsalfit$dots
 ```
 
 
