@@ -1,11 +1,11 @@
 ---
-date:
+date: 2020-11-21
 description: ""
 featured_image: "/images/credit_feature.webp"
-title: "Credit One Project"
+title: "Credit Risk Assessment with Python"
 show_reading_time: true
 ---
-
+The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.  
 
 ```python
 #import required packages
@@ -17,17 +17,14 @@ import numpy as np
 
 ## *Obtain Data*
 
-The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database for the data, get the data (formatted as dataframe), and finally export the data as a .csv file.
-
-Even though it's not necessary, I prefer to export the raw data as a .csv before doing any processing/wrangling. This way I have a untouched copy of data that I can use for comparisons and verification.
+The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database, extract the data and export it as a .csv file (even though it's possible to work with the data without exporting it as a .csv, if feasible I prefer having and working with a standalone data file.
+* *Original Source* — data was first used in [this](https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/dsi_05_classification_databases/2.1-lesson/assets/datasets/DefaultCreditCardClients_yeh_2009.pdf)  academic paper.
+* *Data Supplement* — this info is required to understand what the variables in the dataset represent ([creditone_data_info.pdf](/folder/creditone_data_info1.pdf)).
 
 ```python
 #connect python to MySQL server (database?)
 db_connection_str = 'mysql+pymysql://deepanalytics:Sqltask1234!@34.73.222.197/deepanalytics'
-```
 
-
-```python
 #create engine for SQLalchemy to interface with the database API (see notes below)
 db_connection = create_engine(db_connection_str)
 
@@ -36,89 +33,15 @@ sql_query = pd.read_sql('SELECT * FROM credit', con=db_connection)
 
 #create pandas df from SQL query
 df = pd.DataFrame(sql_query)
-```
 
-*Coding Note*
-* Initially missed the ```db_connection = create_engine(db_connection_str)``` command. Resulted in a ```nameerror: 'db_connection' not defined```. I removed the _str from the first line, re-ran the cell, and was able to successfully execute the query. So I'm unsure why (or if) the ```create_engine()``` command is needed. (See my SQL collection in Zotero).
-
-
-```python
-#verify data was properly extracted
-df.head().to_markdown
----
-
-    <bound method DataFrame.to_markdown of   MyUnknownColumn         X1      X2          X3        X4   X5     X6     X7  \
-    0              ID  LIMIT_BAL     SEX   EDUCATION  MARRIAGE  AGE  PAY_0  PAY_2   
-    1               1      20000  female  university         1   24      2      2   
-    2               2     120000  female  university         2   26     -1      2   
-    3               3      90000  female  university         2   34      0      0   
-    4               4      50000  female  university         1   37      0      0   
-
-          X8     X9  ...        X15        X16        X17       X18       X19  \
-    0  PAY_3  PAY_4  ...  BILL_AMT4  BILL_AMT5  BILL_AMT6  PAY_AMT1  PAY_AMT2   
-    1     -1     -1  ...          0          0          0         0       689   
-    2      0      0  ...       3272       3455       3261         0      1000   
-    3      0      0  ...      14331      14948      15549      1518      1500   
-    4      0      0  ...      28314      28959      29547      2000      2019   
-
-            X20       X21       X22       X23                           Y  
-    0  PAY_AMT3  PAY_AMT4  PAY_AMT5  PAY_AMT6  default payment next month  
-    1         0         0         0         0                     default  
-    2      1000      1000         0      2000                     default  
-    3      1000      1000      1000      5000                 not default  
-    4      1200      1100      1069      1000                 not default  
-
-    [5 rows x 25 columns]>
-```
-
-* *Data Source* — academic paper found [here](https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/dsi_05_classification_databases/2.1-lesson/assets/datasets/DefaultCreditCardClients_yeh_2009.pdf)
-* *Dats Supplement* — for variable definitions see creditone_data_info.pdf ([here](/folder/creditone_data_info1.pdf)).
-
-
-```python
-#get info about df variables
-df.info()
----
-    <class 'pandas.core.frame.DataFrame'>
-    RangeIndex: 30204 entries, 0 to 30203
-    Data columns (total 25 columns):
-     #   Column           Non-Null Count  Dtype
-    ---  ------           --------------  -----
-     0   MyUnknownColumn  30204 non-null  object
-     1   X1               30204 non-null  object
-     2   X2               30204 non-null  object
-     3   X3               30204 non-null  object
-     4   X4               30204 non-null  object
-     5   X5               30204 non-null  object
-     6   X6               30204 non-null  object
-     7   X7               30204 non-null  object
-     8   X8               30204 non-null  object
-     9   X9               30204 non-null  object
-     10  X10              30204 non-null  object
-     11  X11              30204 non-null  object
-     12  X12              30204 non-null  object
-     13  X13              30204 non-null  object
-     14  X14              30204 non-null  object
-     15  X15              30204 non-null  object
-     16  X16              30204 non-null  object
-     17  X17              30204 non-null  object
-     18  X18              30204 non-null  object
-     19  X19              30204 non-null  object
-     20  X20              30204 non-null  object
-     21  X21              30204 non-null  object
-     22  X22              30204 non-null  object
-     23  X23              30204 non-null  object
-     24  Y                30204 non-null  object
-    dtypes: object(25)
-    memory usage: 5.8+ MB
-```
-
-### *Export Raw Data As .csv*
-
-```python
 #export df as .csv file
 df.to_csv ('raw_creditone_data.csv', index = False)
 ```
+
+*Coding Note*
+* Unsure why (or if) the ```create_engine()``` command is needed. (See my SQL collection in Zotero).
+
+
 
 
 
@@ -133,23 +56,44 @@ df = pd.read_csv('raw_credit_one_data.csv')
 #verify imported data looks as expected
 df.head()
 
+<bound method DataFrame.to_markdown of   MyUnknownColumn         X1      X2          X3        X4   X5     X6     X7  \
+0              ID  LIMIT_BAL     SEX   EDUCATION  MARRIAGE  AGE  PAY_0  PAY_2   
+1               1      20000  female  university         1   24      2      2   
+2               2     120000  female  university         2   26     -1      2   
+3               3      90000  female  university         2   34      0      0   
+4               4      50000  female  university         1   37      0      0   
+
+      X8     X9  ...        X15        X16        X17       X18       X19  \
+0  PAY_3  PAY_4  ...  BILL_AMT4  BILL_AMT5  BILL_AMT6  PAY_AMT1  PAY_AMT2   
+1     -1     -1  ...          0          0          0         0       689   
+2      0      0  ...       3272       3455       3261         0      1000   
+3      0      0  ...      14331      14948      15549      1518      1500   
+4      0      0  ...      28314      28959      29547      2000      2019   
+
+        X20       X21       X22       X23                           Y  
+0  PAY_AMT3  PAY_AMT4  PAY_AMT5  PAY_AMT6  default payment next month  
+1         0         0         0         0                     default  
+2      1000      1000         0      2000                     default  
+3      1000      1000      1000      5000                 not default  
+4      1200      1100      1069      1000                 not default  
+
+[5 rows x 25 columns]>
+
+
 # number of rows and columns in df as benchmark before making any changes
 df.shape
----
+
     (30204, 25)
 ```
+The raw data has 30,204 rows and 25 columns.
 
-*Data Stats*
-  - 23 features/independent variables
-  - 1 dependent variable
-  - 1 ID column
-  - 30,204 rows
 
 
 ### *Change Column Headings*
+In the raw data, the variables are named X1-X23 & Y. More meaningful names appear in row 0. I need to get rid of the existing column headings and replace them with the values in row 0.
 
 ```python
-#change column headings to values in index (row) 0
+#replace column headings to values in index (row) 0
 df.columns = df.iloc[0]
 
 #verify change was successful
@@ -178,31 +122,20 @@ df.head().to_markdown
 
 
     [5 rows x 25 columns]>
-```
-*Coding Notes*
-* See [Stack Overflow](https://stackoverflow.com/questions/26147180/convert-row-to-column-header-for-pandas-dataframe) for more info.
-* ```df.iloc[pd.RangeIndex(len(df)).drop(0)]``` is for situations where df either doesn't have or you don't know if it has **unique index numbers** for each row. Otherwise use ```df.drop(df.index[0])```.
 
-
-```python
-#drop row 0 that contains column headings
-df.drop(df.index[0], inplace = True)
-
-#verify df is -1 row
-len(df)
-
-#verify column headings row was dropped
-df.head()
+#drop row 0
+df.drop(df.index[0], inplace = True)    
 ```
 
 
-### *Remove Duplicate Data*
+### *Drop Duplicates*
 
 ```python
-#find and print all duplicate rows in the df
+# locate duplicate rows
 duplicate_rows = df[df.duplicated()]
+
 print(duplicate_rows)
----
+
 
     0     ID LIMIT_BAL     SEX        EDUCATION MARRIAGE AGE PAY_0 PAY_2 PAY_3  \
     204    1     20000  female       university        1  24     2     2    -1   
@@ -244,26 +177,23 @@ print(duplicate_rows)
     404        0        0        0                not default  
 
     [201 rows x 25 columns]
-```
 
-
-```python
-#drop duplicate rows from the df
+#drop 201 duplicate rows
 df.drop_duplicates(inplace = True)  #inplace=True is to make change to df permanent
 
-#verify rows were dropped
+#check df length to verify rows were dropped
 len(df)
----
+
     30002
 ```
 
 
-### *Handle Missing Values*
+### *Remove Missing Values*
 
 ```python
 #check for missing values
 print(df.isnull().sum())
----
+
     0
     ID                            1
     LIMIT_BAL                     0
@@ -292,21 +222,21 @@ print(df.isnull().sum())
     default payment next month    0
     dtype: int64
 ```
-
+It appears there's only 1 missing value in the df.
 
 ```python
 #drop the row with missing ID
 df.dropna(inplace=True)
 
-#verify 1 row dropped
+#check df length to verify row was dropped
 len(df)
----
+
     30001
 ```
 
 
 
-### *Invalid Data*
+### *Remove Invalid Data*
 
 ```python
 #locate rows 201-206 (not inclusive)
@@ -315,28 +245,12 @@ df.loc[201:206]
 #drop row 203 containing original column headings
 df.drop(203, inplace=True)
 
-#get number of rows in df
+#check df length to verify row was dropped
 len(df)
----
+
     30000
 ```
 
-
-```python
-#only row 201 should appear b/c others were dropped above
-df.loc[201:210].to_markdown
----
-    <bound method DataFrame.to_markdown of 0     ID LIMIT_BAL     SEX        EDUCATION MARRIAGE AGE PAY_0 PAY_2 PAY_3  \
-    201  201    180000  female  graduate school        1  38    -2    -2    -2   
-
-    0   PAY_4  ... BILL_AMT4 BILL_AMT5 BILL_AMT6 PAY_AMT1 PAY_AMT2 PAY_AMT3  \
-    201    -2  ...         0         0         0        0        0        0   
-
-    0   PAY_AMT4 PAY_AMT5 PAY_AMT6 default payment next month  
-    201        0        0        0                not default  
-
-    [1 rows x 25 columns]>
-```
 *Coding Notes*
 * Dropping rows doesn't stick unless you add ```inplace = True``` parameter to command. Read [this](https://stackabuse.com/python-with-pandas-dataframe-tutorial-with-examples/) to understand why parameter is needed.
 * After dropping index, that index number is dropped from the df (e.g. if you drop index 0, when you use df.head() the first entry will be index 1). In other words, the data from below does not move up and fill the dropped indices as it would in an Excel file..
@@ -346,9 +260,9 @@ df.loc[201:210].to_markdown
 ### *Change Variable Data Types*
 
 ```python
-#look at data types for each variable
+#get data types for each variable
 df.dtypes
----
+
     0
     ID                            object
     LIMIT_BAL                     object
@@ -376,78 +290,13 @@ df.dtypes
     PAY_AMT6                      object
     default payment next month    object
     dtype: object
-```
 
-
-### *Continuous Variables*
-
-```python
-df.LIMIT_BAL.value_counts()
----
-    50000      3365
-    20000      1976
-    30000      1610
-    80000      1567
-    200000     1528
-               ...
-    740000        2
-    690000        1
-    327680        1
-    760000        1
-    1000000       1
-    Name: LIMIT_BAL, Length: 81, dtype: int64
-```
-
-
-```python
 #change data type of LIMIT_BAL var from object to int
 df["LIMIT_BAL"] = df['LIMIT_BAL'].astype('int')
 
 #change data type of AGE var from object to int
 df["AGE"] = df['AGE'].astype('int')
-```
 
-
-```python
-#get number of obs for each value in PAY_0
-df.PAY_0.value_counts()
----
-    0     14737
-    -1     5686
-    1      3688
-    -2     2759
-    2      2667
-    3       322
-    4        76
-    5        26
-    8        19
-    6        11
-    7         9
-    Name: PAY_0, dtype: int64
-```
-It turns out the values in this variable represent if and how long an account has been delinquent. It is probably better treated as a categorical variable.
-
-```python
-#get number of obs for each value in BILL_AM1
-df.BILL_AMT1.value_counts()
----
-    0         2008
-    390        244
-    780         76
-    326         72
-    316         63
-              ...
-    216          1
-    192727       1
-    4434         1
-    38579        1
-    96644        1
-    Name: BILL_AMT1, Length: 22723, dtype: int64
-```
-
-
-
-```python
 #change data type of BILL_AMT1 var from object to int
 df["BILL_AMT1"] = df['BILL_AMT1'].astype('int')
 
@@ -465,29 +314,7 @@ df["BILL_AMT5"] = df['BILL_AMT5'].astype('int')
 
 #change data type of BILL_AMT6 var from object to int
 df["BILL_AMT6"] = df['BILL_AMT6'].astype('int')
-```
 
-
-```python
-df.PAY_AMT4.value_counts()
----
-    0        6408
-    1000     1394
-    2000     1214
-    3000      887
-    5000      810
-             ...
-    12164       1
-    17133       1
-    2466        1
-    3187        1
-    3859        1
-    Name: PAY_AMT4, Length: 6937, dtype: int64
-```
-
-
-
-```python
 #change data type of PAY_AMT1 var from object to int
 df["PAY_AMT1"] = df['PAY_AMT1'].astype('int')
 
@@ -509,9 +336,9 @@ df["PAY_AMT6"] = df['PAY_AMT6'].astype('int')
 #rename default payment next month column
 df.rename(columns={"default payment next month": "DEFAULT"}, inplace = True)
 
-#verify change
+#get var dtypes to verify changes
 df.dtypes
----
+
     0
     ID           object
     LIMIT_BAL     int32
@@ -545,17 +372,13 @@ df.dtypes
 ### Categorical Variables
 
 ```python
-#get counts of male and female customers in df
+#get values for SEX var
 df.SEX.value_counts()
 ---
     female    18112
     male      11888
     Name: SEX, dtype: int64
-```
 
-
-
-```python
 #get counts for education categories
 df.EDUCATION.value_counts()
 ---
@@ -564,11 +387,7 @@ df.EDUCATION.value_counts()
     high school         4917
     other                468
     Name: EDUCATION, dtype: int64
-```
 
-
-
-```python
 #get counts for marriage categories
 df.MARRIAGE.value_counts()
 ---
@@ -577,9 +396,7 @@ df.MARRIAGE.value_counts()
     3      323
     0       54
     Name: MARRIAGE, dtype: int64
-```
 
-```python
 # get counts for the target var, i.e. DEFAULT
 df.DEFAULT.value_counts()
 ---
@@ -600,33 +417,6 @@ df.rename(columns = {'BILL_AMT1': 'bill_s', 'BILL_AMT2':'bill_ag', 'BILL_AMT3':'
 
 #rename PAY_AMT features to convey month
 df.rename(columns = {'PAY_AMT1': 'pmt_s', 'PAY_AMT2':'pmt_ag', 'PAY_AMT3':'pmt_jy','PAY_AMT4':'pmt_ju', 'PAY_AMT5':'pmt_m', 'PAY_AMT6':'pmt_ap'}, inplace = True)
-
-#verify features were renamed
-df.head().to_markdown
----
-
-    <bound method DataFrame.to_markdown of 0 ID  LIMIT_BAL     SEX   EDUCATION MARRIAGE  AGE pay_s pay_ag pay_jy pay_ju  \
-    1  1      20000  female  university        1   24     2      2     -1     -1   
-    2  2     120000  female  university        2   26    -1      2      0      0   
-    3  3      90000  female  university        2   34     0      0      0      0   
-    4  4      50000  female  university        1   37     0      0      0      0   
-    5  5      50000    male  university        1   57    -1      0     -1      0   
-
-    0  ... bill_ju bill_m  bill_ap  pmt_s  pmt_ag  pmt_jy  pmt_ju  pmt_m  pmt_ap  \
-    1  ...       0      0        0      0     689       0       0      0       0   
-    2  ...    3272   3455     3261      0    1000    1000    1000      0    2000   
-    3  ...   14331  14948    15549   1518    1500    1000    1000   1000    5000   
-    4  ...   28314  28959    29547   2000    2019    1200    1100   1069    1000   
-    5  ...   20940  19146    19131   2000   36681   10000    9000    689     679   
-
-    0      DEFAULT  
-    1      default  
-    2      default  
-    3  not default  
-    4  not default  
-    5  not default  
-
-    [5 rows x 25 columns]>
 ```
 
 
@@ -648,35 +438,26 @@ def movecol(df, cols_to_move=[], ref_col='', place='After'):
     seg3 = [i for i in cols if i not in seg1 + seg2]
 
     return(df[seg1 + seg2 + seg3])
-```
 
-
-```python
 #move LIMIT_BAL column next to other account/credit variables
 df = movecol(df,
              cols_to_move=['LIMIT_BAL'],
              ref_col='AGE',
              place='After')
-```
 
-
-
-
-
-```python
-#re-order pay columns
+#re-order pay columns to follow calendar
 df = movecol(df,
              cols_to_move=['pay_ap', 'pay_m', 'pay_ju', 'pay_jy', 'pay_ag', 'pay_s'],
              ref_col='LIMIT_BAL',
              place='After')
 
-#re-order pmt columns
+#re-order pmt columns  to follow calendar
 df = movecol(df,
              cols_to_move=['pmt_ap', 'pmt_m', 'pmt_ju', 'pmt_jy', 'pmt_ag', 'pmt_s'],
              ref_col='LIMIT_BAL',
              place='After')
 
-#re-order bill columns
+#re-order bill columns  to follow calendar
 df = movecol(df,
              cols_to_move=['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s'],
              ref_col='LIMIT_BAL',
@@ -690,6 +471,9 @@ df = movecol(df,
 #export cleaned transformed data as .csv file
 df.to_csv('cleaned_creditone_data.csv', index = False, header=True)
 ```
+Cleaned data Dimensions: 30,000 observations & 25 variables
+
+
 
 # Exploratory Data Analysis (EDA)
 
@@ -702,113 +486,33 @@ plt.style.use('fivethirtyeight')
 import numpy as np
 
 from pandas_profiling import ProfileReport
-```
 
-
-```python
 #import cleaned data
 df = pd.read_csv('cleaned_transformed_credit_one_data.csv')
-
-#verify imported data looks as expected
-df.head()
 ```
 
-* Cleaned data Dimensions: 30,000 obervations & 25 variables
-
-## Variable Info
-
-
-```python
-#get variable data types
-df.dtypes
----
-    ID            int64
-    SEX          object
-    EDUCATION    object
-    MARRIAGE      int64
-    AGE           int64
-    LIMIT_BAL     int64
-    bill_ap       int64
-    bill_m        int64
-    bill_ju       int64
-    bill_jy       int64
-    bill_ag       int64
-    bill_s        int64
-    pmt_ap        int64
-    pmt_m         int64
-    pmt_ju        int64
-    pmt_jy        int64
-    pmt_ag        int64
-    pmt_s         int64
-    pay_ap        int64
-    pay_m         int64
-    pay_ju        int64
-    pay_jy        int64
-    pay_ag        int64
-    pay_s         int64
-    DEFAULT      object
-    dtype: object
-```
-
-
-1. Demographic Variables
-    * Sex—categorical, 2 levels: male, female
-    * Education— ordinal, 6 levels?
-    * Marital Status - categorical, 4 levels
-    * Age- continuous
-
-2. Account Variables
-    * ID- customer ID- unique number assigned to each observation in dataset (exclude from analysis)
-    * Balance Limit - continuous
-    * Default Status - categorical 2 level   
-    * Repayment Status in April  - categorical, 9+ levels
-    * Repayment Status in May
-    * Repayment Status in June
-    * Repayment Status in July
-    * Repayment Status in August
-    * Repayment Status in September
-
-3. Billing Variables
-    * April bill amount - continuous
-    * May bill amount
-    * June bill amount
-    * July Bill amount
-    * August bill amount
-    * September bill amount
-
-4. Payment Variables
-    * April Payment amount- continuous
-    * May Payment Amount
-    * June Payment Amount
-    * July Payment Amount
-    * August Payment Amount
-    * September Payment Amount
-
-* Target Features
-    * Balance Limit- if we are trying to predict how much credit customers should be extended.
-    * Default- if we are trying to predict which customers are most likely to dafault on their loans.
 
 # Univarite Analysis
 
-
 ```python
 #create in-line minimal pandas profile report
-#ProfileReport(df, minimal=True)
+ProfileReport(df, minimal=True)
 
 #profile = ProfileReport(df, title='Clean CreditOne Pandas Profiling Report', explorative = True)
 ```
 
-*Coding Notes*
-* The full pandas profile report took a *very long time to generate* and was *too big* to load without crashing my browser.
-* Two options to generate profile reports more quickly:
+>*Coding Notes*
+>* The full pandas profile report took a *very long time to generate* and was *too big* to load without crashing my browser.
+>* Two options to generate profile reports more quickly:
     * Generate a minimal report (which does not include correlations between vars) by adding a 'minimal=True' parameter to ProfileReport command.
     * Generate a report for only a *sample* of df by substituting ```df.sample(n=10000)``` for df in the command.
-* To output the report as a separate html file use:  ```prof = ProfileReport(df)
+>* To output the report as a separate html file use:  ```prof = ProfileReport(df)
 prof.to_file(output_file='output.html')```
 
-## Demographic Variables
+*Observations that follow are primarily based on my analysis of the pandas profile report*
 
-*Observations (based on profile report)*
+### *Demographic Variables*
+
 * Sex
     * 60.4% female, 39.6% male
 * Education
@@ -822,48 +526,37 @@ prof.to_file(output_file='output.html')```
     * Mean 35, Median 34
     * Consider binnning: young, middle age, 65+
 
-## Account Variables
+### *Account Variables*
 
-*Observations (based on profile report)*
-
-* ***Credit/Balance Limit*** (target for model predicting amount of credit to give customers)
+* *Credit/Balance Limit* (target for model predicting LIMIT_BAL)
   * Continuous variable, range - 10k to 1 million
   * Only 81 distinct values (consider 8 bins)
   * Mean: 167,484
   * Distribution significantly skewed toward low end
   * Mode: 50k limit (11.2%)
   * Only 1 customer with 1 million limit  
-  * Potential problem: this variable represents the amount of credit given to the customer, including both the individual consumer credit and "his/her family (supplemental) credit". I'm not exactly sure what family credit is, but it may be an amount of credit extended to a family group that the customer can use because he/she is part of the family. This potentially muddies the waters because  we don't know how much of the credit limit was given to the customer as an individual vs. how much of the credit limit they were given as a member of a family. At the very least this means, at best the model will be able to accurately predict the amount of individual and family credit each customer should be given.
 
 
-* ***Default*** (target for model predicting which customers are likely to default)
+* *Default* (target for model predicting which customers are likely to default)
   * Not defult 77.9%, default 22.1%
-  * Do I need to use special techniques |when trying to model/predict extremely unlikely events?
 
 
-* Repayment Variables
+* *Repayment Variables*
   * -2 = no use, -1 = paid in full, 0 = use revolving credit, 1 = payment delay 1 month, 2 = payment delay 2 months, ..., 9 = payment delay 9+ months
   * All repayment variables have roughly same distribution and characteristics: over 50% zeros, significantly more -2 & -1 values than values greater than or equal to 1
 
-## Billing Variables
+### *Billing Variables*
 
-*Observations (from profile report)*  
-* All billing variables have negative minimum values. If valid data points, it perhaps CreditOne is overcharging customers and having to issue credits.
-* Distributions for all billing variables look roughly the same.
-    * Very significant left skew.
-    * Lots of zeros.
-    * All months contain a small number of negative values. Don't know how to interpret.
-        * ◘ Consider removing or transforming negative values to improve model performance.
-
+* All billing variables have negative minimum values. If valid data points, perhaps CreditOne is overcharging customers and having to issue credits.
+  * Consider removing or transforming negative values to improve model performance.
+* Distributions for all variables are roughly the same.
+    * Very significant left skew
+    * Lots of zeros
 
 ```python
 #filter out the rows where the value for at least one of the billing vars is less than zero at least one of the bill
 df.query('bill_ap < 0 or bill_m < 0 or bill_ju < 0 or bill_jy < 0 or bill_ag or bill_s < 0')
 ```
-
-
-
-
 
 >*Coding Notes*
 >* I first tried doing the filter using the ``.loc()``` function, but all my attempts threw errors.
@@ -878,13 +571,8 @@ df.query('bill_ap < 0 & bill_m < 0 & bill_ju < 0 & bill_jy < 0 & bill_ag & bill_
 #sort df by april bill amount from highest to lowest, then show first 10 rows
 df.sort_values(by=['bill_ap'], ascending=False).head(10)
 ```
-
-
-
-
-*Observations*
-* Suspicious data point:some customers have bill amounts that exceed their balance limits. Does that mean credit one is not enforcing those limits?
-    * Maybe I should engineer a feature that is true iff the the customer's bill amount is ever bigger than their balance limit.
+Suspicious data points: some customers have bill amounts that exceed their balance limits. Does that mean credit one is not enforcing those limits?
+    * Maybe I should engineer a logical var that is true iff the the customer's bill amount is bigger than their balance limit.
 
 
 ```python
@@ -898,35 +586,28 @@ df[ ['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s']].mad()
 df[ ['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s']].describe()
 ```
 
-
-
-
 >*Coding Notes*
 >* The median, mad, and describe stats are included in profile report. I was just practicing and testing if I could generate stats on a *list of vars* (rather than one at a time).
 
-## Payment Variables
+### *Payment Variables*
 
 * There are 6 continuous payment variables - each represents the amount the customer paid towards their bill for the months of April to September 2005.
-
-*Observations (based on profile report)*
 * The distributions of the payment and billing variables have similar shapes.
 * Notable Differences:
   * The payment variables contain a higher percentage of zero values.
-  * The number and spread of positive values when it comes to the payment variables (which makes sense if customers are using revolving credit and/or not paying their bill.
   * The payment variables don't contain any negative values.
 
-# Relationships Between Features (IVs)  
-In this section, I will examine whether any of the features (independent variables) are related to one another in a significant way. If any of the features  are highly correlated, that may be because they are actually tracking/representing the same information. Since high corfelation between depedent variables can harm ML models, it needs to be handled.  
 
-## Are billing variables correlated with each other?
 
+## Correlation Analysis
+If any of the features are highly correlated, that may be because they are actually tracking/representing the same information. Since high correlation between dependent variables can harm the performance of ML models, it needs to be handled.  
+
+### *Are billing variables correlated with each other?*
 
 ```python
 #calculate kendall's tau correlation between billing vars
 df[ ['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s']].corr(method='kendall')
 ```
-
-
 
 >*Coding Notes*
 >* By default corr function calculates pearson's correlation co-efficient.
@@ -945,105 +626,61 @@ sns.pairplot(smpl, hue='DEFAULT', kind='scatter', vars=['bill_ap','bill_m', 'bil
 plt.savefig('creditone_bill_pairplot.png')
 ```
 
-
 {{< figure src="/images/creditone_bill_pairplot.png" >}}
 
-*Observations*
-* It's reasonable to suspect the billing variables might be correlated, since it's not uncommon for individuals' spending to be similar from month to month.
-* Yes, the billing variables are highly correlated with each other. Max: 0.8112, Min: 0.5853.
+* The billing variables are highly correlated with each other. Max: 0.8112, Min: 0.5853, which is not surprising since spending doesn't change from month to month.
 * In general, the correlation is highest between each monthly billing variable and the variable representing the month after. The correlation declines with each proceeding month (e.g. the correlation is highest between the April (bill_ap) and May (bill_m) billing variables, and declines for each subsequent month.)  
-    * ◘ May impact model performance. Consider only using one of the billing variables in model.
+    * May impact model performance. Consider only using one of the billing variables in model.
 
-## Are the payment variables correlated with each other?
 
+### *Are the payment variables correlated with each other?*
 
 ```python
 #look at kendall's tau correlations b/t payment variables
 df[['pmt_ap', 'pmt_m', 'pmt_ju', 'pmt_jy', 'pmt_ag', 'pmt_s']].corr(method='kendall')
-```
 
-
-
-
-
-
-```python
 #create a pairplot of the payment features using smpl (of 1,000)
 sns.pairplot(smpl, hue='DEFAULT', kind='scatter', vars=['pmt_ap','pmt_m', 'pmt_ju', 'pmt_jy', 'pmt_ag', 'pmt_s'])
-
-#save plot as png
-plt.savefig('creditone_pmt_pairplot.png')
 ```
 {{< figure src="/images/creditone_pmt_pairplot.png" >}}
 
-*Observtions*
-* I wanted to look at whether the payment variables on related because I thought the amount customers pay each month  might be related to the amount they were billed during the previous month. If that's true and the billing variables are highly correlated, I would expect the payment variables to also be highly correlated.
-* When we look at the kendall's correlation coefficients between the payment vars they are modest (between 0.348 and 0.4126).
-* However, when we look at the scatter plots, there doesn't appear to be any obvious relationship.
+* One reason to think the payment variables might be highly correlated is that presumably the amount customers pay each month is related to the amount they were billed during the previous month. If true, since the billing variables are highly correlated,  the payment variables would be too.
+* The kendall's correlation coefficients are between 0.348 and 0.4126. But the scatter plots don't show any relationship.
 * This suggests, somewhat surprising, that the amount customers pay each month is not really related to the amount they are billed.
-  * I wonder if the lack of a clear relationship is because I need to look at the relationships between billing vars and payment vars offset by one month (e.g. the relationship between the bill amount for April and the payment amount for May, and so on).
 
-## Are the payment variables correlated with the billing variables?
 
+### *Are the payment variables correlated with the billing variables?*
 
 ```python
 #look at kendall's tau correlations b/t payment variables
 df[['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s','pmt_ap', 'pmt_m', 'pmt_ju', 'pmt_jy', 'pmt_ag', 'pmt_s']].corr(method='kendall')
 ```
 
-
-
-
-*Observations*
-* I expected to find a moderate to high correlation between the billing and payment variables, since presumably the amount customers pay each month is at least somewhat related to how much they are billed.
-* More specifically, we should expect that the payment amount is most highly correlated with the bill amount of the previous month (e.g. the july payment amount is has the strongest correlation with the bill amount for June.
+* I expected to find a moderate to high correlation between the billing and payment variables for reasons outlined abouve.
 * The strongest correlations are around 0.51.
 
-## Are the repayment variables related to the billing or payment variables?
 
-The values in the repayment history variables should, in some sense, be related the values in the payment variables because the the repayment history variable is representing whether the customer has been using the credit, if they are paying their bills, and if their payments are for the full amount or leave a monthly balance (revolving credit).
-* However, it's not clear how or what kind of relationship I can look for. One challenge is that the payment variables are continuous, and the repayment variables are categorical. It shouldf be the case that if a customer's monthly payment is not zero (i.e. they paid some amount) for some month, the value for their repayment history variable the next month should be -1 or zero.
-* I have no idea how I could test for that.
 
-# Relationships Between Feature & Target Variables
+# Bivariate Analysis
 
 ## Credit Limit
 
-In this section I will perform statistical tests to determine whether any of the DVs are related to the limit_bal target variable.
-
-### Demographic Variables & Credit Limit
-
-
-```python
-# sns.heatmap(data=df, annot=True, fmt="d", linewidths=.5)
-
-"""
-Above code won't work with non-numeric data
-"""
-```
-
-
-
-
-    "\nAbove code won't work with non-numeric data\n"
-
+In this section I perform statistical tests to determine whether any of the DVs are related to the limit_bal target variable.
 
 
 ### Sex & Credit Limit
-
-
 ```python
 sns.boxplot(data=df, x='SEX',y='LIMIT_BAL' )
 
 # save plot as png
-plt.savefig("creditone_sex_credit_box.png")
+plt.savefig("creditone_sex_credit_box1.png")
 ```
 {{< figure src="/images/creditone_sex_credit_box.png" >}}
 
 The similarity between the box plots for female and male indicates there is no difference in credit limits between men and women. That means SEX is unlikely to be a helpful variable to include in a model prediting LIMIT_BAL.
 
-### Education & Credit Limit
 
+### Education & Credit Limit
 
 ```python
 sns.catplot(data=df, kind='box', x='EDUCATION', y='LIMIT_BAL').set_xticklabels(rotation=45)
@@ -1051,6 +688,7 @@ sns.catplot(data=df, kind='box', x='EDUCATION', y='LIMIT_BAL').set_xticklabels(r
 # save plot as png
 plt.savefig("creditone_edu_credit_box.png")
 ```
+
 {{< figure src="/images/creditone_edu_credit_box.png" >}}
 
 The box plots for all education levels are very similar. Customers with a graduate education enjoy credit limits that are on average higher than the other groups. It also appears the credit limits for customers with a high school education are slightly skewed to the lower end. The differences aren't dramatic, but a customer's credit limit does appear to be somewhat related to their level of education  
@@ -1200,9 +838,6 @@ sns.displot(data=df, x="SEX", stat='density', shrink=.8)
 
 
 
-    <seaborn.axisgrid.FacetGrid at 0x23c43023370>
-
-
 
 
 ```python
@@ -1275,8 +910,8 @@ plt.savefig('creditone_age_default.png')
 * We can see in the above boxplot the the mean, IQR (middle 50% of data points), and range for the age variable are nearly identical for customers who defaulted on their loans (blue box) and for customers who did not defualt on their loans (orange box).
 * This suggests there is no significant relationship between a customer's age and whether or not she defaulted on her loans, which means AGE will not be an important feature in a model predicting whether a customer will default.  
 
-#### Marriage & Default
 
+#### Marriage & Default
 
 ```python
 #filter the df to return only rows where value for DEFAULT == default
@@ -1369,22 +1004,11 @@ axes[2].set_xticklabels(labels=labels, rotation=45)
 axes[2].set_xlabel('')
 ```
 
-
-
-
->*Coding Notes*
->* It look several hours to get the above row of plots.
->* Problems I had to solve:
-  * Because the number of defualts is much smaller than not defaults, to compare sex across the two categories I couldn't use count as the y axis, I needed to plot a normalized stat like probability or density.
-  * Using hue: When I tried to use hue to represent the DEFAULT categories and plot them on one set of axes, the resulting graph had 4 bars (2 for female, 2 male) whose probabilities summed to 1. Which meant the bars for male an female in the default category were much smaller than the bars for male and female in the not default category.
-  * I also couldn
-
-
 *Observations*
 * From a comparison on the above plots, there appears that single customers are relatively less likely to default on their loans.
 
-### Billing Variables & Credit Default
 
+### Billing Variables & Credit Default
 
 ```python
 fig, axes = plt.subplots(2, 3, figsize=(20,18), sharey=True)
@@ -1401,23 +1025,13 @@ sns.boxplot(ax=axes[1, 2], data=df, x='DEFAULT', y='bill_s')
 ```
 
 
-
-
->*Coding Notes*
-* Before finding the code to create the above 2x6 grid of subplots, I created the boxplots for each billing variable separately. For future refernce here is the code I used:  
-  * ```sns.catplot(data=df, kind='box', x='DEFAULT', y='bill_ap')```
-  * ```sns.catplot(data=df, kind='box', x='DEFAULT', y='bill_m', height=6)```
-  * ```sns.catplot(data=df, kind='box', x='DEFAULT', y='bill_ju', height=6, aspect=.5)```
-  * ```sns.catplot(data=df, kind='box', x='DEFAULT', y='bill_ag', height=8, aspect=.5)```
-  * ```sns.catplot(data=df, kind='box', x='DEFAULT', y='bill_s', height=8, aspect=.5)```
-
 *Observations*
 * I have more questions than observations.
   * It looks like there are some significant outliers. How can we find those data points in our df.
   * Other than some differences in outliers and a noticable difference in the length of the wiskers in bill_ag, all the box plots are basically the same. What, if anything, can we conclude from that?
 
-### Payment Variables & Default
 
+### Payment Variables & Default
 
 ```python
 fig, axes = plt.subplots(2, 3, figsize=(20,25), sharey=True)
@@ -1433,20 +1047,13 @@ sns.boxplot(ax=axes[1, 2], data=df, x='DEFAULT', y='pmt_s')
 
 ```
 
-
-
-
 *Observations*
 * I assume the boxplots for the payment variables look like this because there is a high % of zeros in these variables.
 * I also seem some signigicant outliers.
 
 
-* Questions:
-  * I don't have a good sense of how to interpret/understand what I'm seeing when I compare visualizations of DVs conditional on a target variable. Am I just looking for significant differences? What conclusions would you draw from seeing the above plots for the payment variables? Are there any rules of thumb?
-  * How do you go about figuring out whether it would improve the situation to bin the values, remove outliers, aggregate the variables, etc? There are too many possibilities to test them all. How do you narrow things down? Is there a way to determine which changes are most likely to have an impact so you can focus your efforts?
 
 # Transform Non-numeric Values
-
 
 ```python
 # select columns with non-numeric data and create a new df with only those columns (so changes aren't in original df)
@@ -1521,8 +1128,6 @@ cat_df.head()
 ```
 
 
-
-
 ## Perform Transformations on Original df
 To avoid issues arising from having to merge 2 df, I am going to create a copy of the original df and transform the original non-numerical variables, instead of adding new variables to the df.
 
@@ -1543,25 +1148,15 @@ num_df.head()
 # use label encoder to change values in DEFUALT into numbers
 num_df['DEFAULT']=le.fit_transform(num_df['DEFAULT'])
 
-#use get.dummies function to transform EDU var into 4 dummy vars (1 var for each category)
+# transform EDU var into 4 dummy vars (1 var for each category)
 num_df=pd.get_dummies(num_df, columns=['EDUCATION'], prefix=['edu'])
 
+#transform MARRIAGE var in 4 dummy vars
+num_df=pd.get_dummies(num_df, columns=['MARRIAGE'], prefix=['mar'])
+
+#verify changes
 num_df.head()
 ```
-
-
-```python
-#use get.dummies function to transform MAR var into 4 dummy vars (1 var for each category)
-num_df=pd.get_dummies(num_df, columns=['MARRIAGE'], prefix=['mar'])
-"""
-The values in the MARRIAGE var were numerical to start. I had to transform it into 4 dummy variables
-because I am going to use this data to train and test a regression ML model, and categorical vars are
-treated as ordinal (i.e. the algo would treat/interpret category labeled 2 as the average of categories labeled 1 & 3)
-"""
-```
-
-
-
 
 
 ```python
@@ -1570,8 +1165,6 @@ num_df.to_csv('num_only_credit_one_data.csv', index = False, header=True)
 ```
 
 ### Additional Stuff
-
-
 
 ```python
 #convert DEFUALT into numerical feature
@@ -1914,7 +1507,7 @@ for i in range(len(names)):
     Support Vector Regression -0.05039128320492573
 
 
-The model built using the random forest regressor performed somewhat less badly than the other two models. However, even the randomn forest model does little better than chance at predicting customer's credit limits (i.e.limit_bal).
+The model built using the random forest regressor performed slightly better than the other two models. However, did little better than chance at predicting customer's credit limits (i.e.limit_bal).
 
 # Credit Limit Model 2: Excluding the Demographic Variables
 
@@ -1931,163 +1524,6 @@ X2.head()
 
     Summary of Features for Model 2
 
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>bill_ap</th>
-      <th>bill_m</th>
-      <th>bill_ju</th>
-      <th>bill_jy</th>
-      <th>bill_ag</th>
-      <th>bill_s</th>
-      <th>pmt_ap</th>
-      <th>pmt_m</th>
-      <th>pmt_ju</th>
-      <th>pmt_jy</th>
-      <th>pmt_ag</th>
-      <th>pmt_s</th>
-      <th>pay_ap</th>
-      <th>pay_m</th>
-      <th>pay_ju</th>
-      <th>pay_jy</th>
-      <th>pay_ag</th>
-      <th>pay_s</th>
-      <th>DEFAULT</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>689</td>
-      <td>3102</td>
-      <td>3913</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>689</td>
-      <td>0</td>
-      <td>-2</td>
-      <td>-2</td>
-      <td>-1</td>
-      <td>-1</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>3261</td>
-      <td>3455</td>
-      <td>3272</td>
-      <td>2682</td>
-      <td>1725</td>
-      <td>2682</td>
-      <td>2000</td>
-      <td>0</td>
-      <td>1000</td>
-      <td>1000</td>
-      <td>1000</td>
-      <td>0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>-1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>15549</td>
-      <td>14948</td>
-      <td>14331</td>
-      <td>13559</td>
-      <td>14027</td>
-      <td>29239</td>
-      <td>5000</td>
-      <td>1000</td>
-      <td>1000</td>
-      <td>1000</td>
-      <td>1500</td>
-      <td>1518</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>29547</td>
-      <td>28959</td>
-      <td>28314</td>
-      <td>49291</td>
-      <td>48233</td>
-      <td>46990</td>
-      <td>1000</td>
-      <td>1069</td>
-      <td>1100</td>
-      <td>1200</td>
-      <td>2019</td>
-      <td>2000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>19131</td>
-      <td>19146</td>
-      <td>20940</td>
-      <td>35835</td>
-      <td>5670</td>
-      <td>8617</td>
-      <td>679</td>
-      <td>689</td>
-      <td>9000</td>
-      <td>10000</td>
-      <td>36681</td>
-      <td>2000</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
 
 
@@ -2137,19 +1573,6 @@ for i in range(len(names2)):
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-15-966390a2adc9> in <module>
-          1 #train the rfr model on X_train and y_train
-    ----> 2 model = rfr.fit(X_train, y_train)
-          3
-          4 #use trained model to predict credit limit amounts for the X_test data
-          5 y_predict = model_1.predict(X_test)
-
-
-    NameError: name 'X_train' is not defined
 
 
 ## Split Data into Training and Testing Sets
@@ -2178,10 +1601,6 @@ r2_score(y_test, y_predict)
 mean_squared_error(y_test, y_predict)
 ```
 
-
-```python
-
-```
 
 
 [Link to GitHub Repository](https://github.com/kpiatti/creditone-project)
