@@ -42,11 +42,22 @@ I researched several of the most popular DIY website creation tools (e.g. WordPr
     <item>
       <title>Credit Risk Assessment with Python</title>
       <link>https://katherinepiatti.com/post/creditone_project/</link>
-      <pubDate>Sat, 21 Nov 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://katherinepiatti.com/post/creditone_project/</guid>
       <description>The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.
 #import required packages from sqlalchemy import create_engine import pymysql import pandas as pd import numpy as np Obtain Data The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database, extract the data and export it as a .</description>
+    </item>
+    
+    <item>
+      <title>Analyzing Purchasing Patterns with Python</title>
+      <link>https://katherinepiatti.com/post/customer_purchasing_analysis/</link>
+      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://katherinepiatti.com/post/customer_purchasing_analysis/</guid>
+      <description>The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
+Project Setup At the beginning of every new project you need to do a few things before creating your project jupyter notebook:
+ Create a dedicated project directory (accessible to your Anaconda installation.</description>
     </item>
     
     <item>
@@ -56,17 +67,6 @@ I researched several of the most popular DIY website creation tools (e.g. WordPr
       
       <guid>https://katherinepiatti.com/post/market_basket_analysis/</guid>
       <description>What is market basket analysis? Market basket analysis (also known as affinity analysis) is specific implementation of association rule learning/mining&amp;ndash;an unsupervised machine learning that seeks to uncover potentially valuable relationships (associations) between the items/products consumers buy from point of sale transaction data . For example, a grocery store might use market basket analysis to discover that 40% of the time when their customers buy cereal, they also buy bananas. Businesses used market basket analysis for things like:</description>
-    </item>
-    
-    <item>
-      <title>Understanding Customer Purchasing Patterns</title>
-      <link>https://katherinepiatti.com/post/customer_purchasing_analysis/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://katherinepiatti.com/post/customer_purchasing_analysis/</guid>
-      <description>The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
-Project Setup At the beginning of every new project you need to do a few things before creating your project jupyter notebook:
- Create a dedicated project directory (accessible to your Anaconda installation.</description>
     </item>
     
   </channel>

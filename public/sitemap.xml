@@ -23,7 +23,12 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://katherinepiatti.com/post/creditone_project/</loc>
-    <lastmod>2020-11-21T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-13T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://katherinepiatti.com/post/customer_purchasing_analysis/</loc>
+    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -49,10 +54,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://katherinepiatti.com/tags/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://katherinepiatti.com/post/customer_purchasing_analysis/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
