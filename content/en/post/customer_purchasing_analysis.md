@@ -1,8 +1,8 @@
 ---
-date: 
+date: 2020-11-17
 description: ""
 featured_image: "/images/customer_purchasing_feature.jpg"
-title: "Understanding Customer Purchasing Patterns"
+title: "Analyzing Purchasing Patterns with Python"
 tag: "data wrangling"
 show_reading_time: true
 ---
