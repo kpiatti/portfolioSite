@@ -4,7 +4,7 @@ description: ""
 featured_image: "/images/sentiment_feature.webp"
 title: "Mobile Device Sentiment Analysis with AWS & R"
 show_reading_time: true
-draft:
+draft: true
 ---
 
 ## What is Sentiment Analysis?

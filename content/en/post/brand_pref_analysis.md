@@ -8,11 +8,13 @@ show_reading_time: true
 
 This was my first project using R. So the start of the project involved installing and setting up R and R Studio, and familarizing myself with how to install/load packages, setup version control (using renv), and performing basic analysis and modeling tasks in the R ecosystem.
 
+&nbsp;
+
 {{< figure src="/images/cust_brand_pref_rstudio_dataprep.png" title="Screenshot of R Studio Session" >}}
 
+&nbsp;
 
 This is a 2 class classification problem.
-
 
 ```R
 # LOAD PKGS & DATA
@@ -32,7 +34,7 @@ surveydata <- read.csv(here("data", "CompleteResponses.csv"))
 ```
 
 
-
+&nbsp;
 
 # Data Wrangling
 
@@ -61,7 +63,7 @@ is.factor(cln_surveydata$brand)
 ```
 
 
-
+&nbsp;
 
 ## Variable distributions
 
@@ -77,7 +79,7 @@ hist(cln_surveydata$credit)
 All variables are aprox. uniformly distributed.
 
 {{< figure src="/images/brand_pref_age_salary_credit_hist.png" >}}
-
+&nbsp;
 
 ```r
 #plot distributions of categorical predictor vars
@@ -93,6 +95,7 @@ barplot(table(cln_surveydata$region),
 ```
 
 {{< figure src="/images/brand_pref_edu_car_region_bar.png" >}}
+&nbsp;
 
 ```r
 #plot distribution of obs in target var
@@ -110,6 +113,7 @@ cln_surveydata %>% count(brand)
 The classes are not balanced: brand 1 is preferred by more customers. As a result, during the modeling phase I will need to use stratified splitting/sampling for creating my training and testing datasets. The presence of a class imbalance will also be important when it comes to interpreting my model's performance measures  
 
 
+&nbsp;
 
 # Modeling
 
@@ -133,6 +137,7 @@ test_data <- cln_surveydata[-in_train,]
 - ```set.seed()``` in R does the same job as it does in Python. It ensures that when the data is split, the same observations are selected to make up the training and testing sets every time the code is run, which is necessary for reproducibility
 
 
+&nbsp;
 
 #### Parallel processing
 When I began modeling this dataset, my training and testing steps were taking several minutes each to complete—that made the work frustrating, and limited how much experimentation I could do in a limited amount of time. So I researched how to implement parallel processing.
@@ -146,7 +151,7 @@ pcluster <- makeCluster(4, type = "SOCK")
 ```
 
 
-
+&nbsp;
 
 ##  Random Forest Model
 
@@ -174,7 +179,7 @@ system.time(rf_fit1 <- train(brand~.,
 - Use the ```system.time()``` wrapper to get runtime for code execution.
 - Runtime with cluster: 321.69, without cluster: 804.95
 
-
+&nbsp;
 ```r
 #train & manually tune model
 system.time(rf_fit2 <- train(brand~.,
@@ -184,7 +189,7 @@ system.time(rf_fit2 <- train(brand~.,
                              tunelength = grid))
 ```
 
-
+&nbsp;
 
 #### Model Predictions & Evaluation
 
@@ -199,8 +204,9 @@ system.time(rf_fit2 <- train(brand~.,
 (perform_rf_fit1 <- confusionMatrix(pred_rf_fit1,
                                     test_data$brand))
 ```
----
 
+&nbsp;
+&nbsp;
 ## Gradient Boosting Model (GBM)
 
 ```r
@@ -212,6 +218,7 @@ system.time(gbm_fit1 <- train(brand~.,
                               train.fraction = 0.5))
 ```
 
+&nbsp;
 #### Model Predictions & Evaluation
 
 ```r

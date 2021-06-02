@@ -4,6 +4,7 @@ description: ""
 featured_image: "/images/basket_feature.webp"
 title: "Market Basket Analysis"
 show_reading_time: true
+draft: true
 ---
 
 
@@ -23,8 +24,9 @@ Market basket analysis (also known as affinity analysis) is specific implementat
 The mining algorithm looks through retailer transaction data to find items/products that are frequently purchased together (*itemsets*) and then generates simple if/then association rules between them.
 
 
+&nbsp;
 
-### Association Rules
+### *Association Rules*
 
 Association rules are simple *if,then* rules containing itemsets on both the left hand side (lhs) and right hand side (rhs) like the examples below.
 $$
@@ -41,13 +43,15 @@ Here's a more precise definition:
 One of the biggest challenges in finding strong/interesting association rules is the size of the search space--the number of possible association rules. With only 100 products, there are $6.4 * 10^{31}$
 
 
+&nbsp;
 
-### Rule Metrics
+### *Rule Metrics*
 
 Every item/product a retailer sells, along with every possible combination of those products is the basis of a potential association rule. But the purpose of market basket analysis is to find valuable association rules that can be used to drive marketing and other business decisions. The three most important metrics are: *support*, *confidence*, and *lift*.  
 
+&nbsp;
 
-#### Support
+#### *Support*
 
 Support is a measure of how frequently an itemset appears in the transaction dataset. In other words, the proportion of transactions that contain the itemset.
 
@@ -63,8 +67,9 @@ The support for itemset {bananas} is $2/5 = 0.4$
 
 The support for itemset {bananas, milk} is $1/5 = 0.2$
 
+&nbsp;
 
-#### Confidence
+#### *Confidence*
 
 Confidence is a measure of how often an association rule is true. That is, how often it is the case that when the itemset on the lhs was purchased, the itemset on the rhs was also purchased (in the same transaction).
 $$
@@ -72,12 +77,16 @@ $$
 $$
 Confidence can also be understood as a conditional probability of the rhs itemset appearing in a transaction given that the lhs itemset appears in the transaction. $$Pr(\{rhs\}|\{lhs\})$$.
 
-
-#### Lift
+&nbsp;
+#### *Lift*
 
 Lift is $$\underline{Support\{ lhs \} + Support\{ rhs \}} \\ Support\{lhs\} * Support\{rhs\}
 $$
 Unlike confidence, the value of lift is the same regardless of whether the rhs or lhs comes first.
+
+&nbsp;  
+
+&nbsp;  
 
 # Example : Electronidex
 
@@ -97,7 +106,9 @@ library(arulesViz)
 
 The raw Electronidex data contains rows that each represent a single online transaction from a 30 day period in 2017. The columns each contain one item/product the customer purchased in that transaction. Thus if a customer only purchased on item, the row representing that transaction will contain only one column with the name of the product they purchased. Here is a snippet of what the data looks like when opened in Excel.
 
+&nbsp;
 {{< figure src="/images/snip_raw_electronidex_data1.png" >}}
+&nbsp;
 
 For the mining algorithm to work, the above raw data needs to be transformed into a *sparse matrix*  (also called basket format), where each column represents one item/product the company sells and the items purchased in each transaction are represented as ones.  
 
@@ -110,7 +121,9 @@ transactions_num_df <- 1 * transaction_df
 ```
 Here's a snip of what the data in a sparse matrix would look like if it were transformed into a dataframe. Each row represents a transaction and each column represents one item/product the company sells. The item(s) purchased in each tranaction are recorded as 1s in the appropriate columns.
 
+&nbsp;
 {{< figure src="/images/snip_trandformed_eletronidex_data1.png" >}}
+&nbsp;
 
 However, you can avoid transforming the raw transaction data by loading it into R using the **read.transactions()** function from the arules package instead of read.csv().
 
@@ -128,7 +141,7 @@ transactions
 ```
 
 
-
+&nbsp;
 ## Summarize Data
 
 Let's get a summary of what's in the data.
@@ -148,6 +161,7 @@ itemFrequencyPlot(transactions,
                   cex.names = 0.8) #reduces label size
 ```
 
+&nbsp;
 ### Inspect Tractions
 
 To look at the items purchased particular transactions, e.g. large transactions with 22+ items, we can use the inspect() and size() functions from the arules package.
@@ -171,7 +185,7 @@ local({
 inspect(transactions[size(transactions) >= 25])
 ```
 
-
+&nbsp;
 ## Generate Association Rules
 
 To mine the data for association rules using arules, you can use the `apriori()` function, and
@@ -190,6 +204,7 @@ ruleset_01 <- transactions %>%
   apriori(parameter = list(supp = 0.02, conf = 0.25))
 ```
 
+&nbsp;
 ### Summarize and Inspect Rules
 
 Use the `summary()` function to get more information.
@@ -218,7 +233,7 @@ ruleset_01 %>%
 The first rule has an empty lhs itemsets. As mentioned earlier, these rules are about transactions where just the item(s) on the rhs were purchased. To avoid rules with an empty antecedent (lhs) add  `minlen = 2` to the `parameter = list()` in the `apriori()` function.
 
 
-
+&nbsp;
 ### Sort Rules
 
 To sort the rules by a paricular metric, e.g. confidence, we just need to add a `sort()` function into our pipeline.
@@ -232,7 +247,7 @@ ruleset_01 %>%
   kable_paper('striped', 'condensed')
 ```
 
-
+&nbsp;
 ### Redundant Rules
 
 To find out if any of the rules generated are redundant run the `is.redundant()` function on your ruleset.
@@ -242,7 +257,7 @@ is.redundant(ruleset_01)
 ```
 
 
-
+&nbsp;
 ## Vizualize Rules
 
 The `arulesViz` package enables easy creation of both static and interactive visualizations of association
@@ -259,4 +274,4 @@ plot(ruleset_01,
 For example, if you select 'Dell Laptop', you can see that the idem only features in one rule. (use your mouse scroll wheel to read the labels on the graph nodes).
 
 
-[Link to Project GitHub Repository](https://github.com/kpiatti/market-basket-analysis)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Link to Project GitHub Repository](https://github.com/kpiatti/market-basket-analysis)
