@@ -15,6 +15,7 @@ import pandas as pd
 import numpy as np
 ```
 
+&nbsp;
 ## *Obtain Data*
 
 The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database, extract the data and export it as a .csv file (even though it's possible to work with the data without exporting it as a .csv, if feasible I prefer having and working with a standalone data file.
@@ -38,14 +39,14 @@ df = pd.DataFrame(sql_query)
 df.to_csv ('raw_creditone_data.csv', index = False)
 ```
 
-*Coding Note*
-* Unsure why (or if) the ```create_engine()``` command is needed. (See my SQL collection in Zotero).
+> *Coding Note*
+> * Unsure why (or if) the ```create_engine()``` command is needed. (See my SQL collection in Zotero).
 
 
 
 
-
-
+&nbsp;
+&nbsp;
 
 # Data Wrangling
 
@@ -88,6 +89,7 @@ df.shape
 The raw data has 30,204 rows and 25 columns.
 
 
+&nbsp;
 
 ### *Change Column Headings*
 In the raw data, the variables are named X1-X23 & Y. More meaningful names appear in row 0. I need to get rid of the existing column headings and replace them with the values in row 0.
@@ -127,6 +129,7 @@ df.head().to_markdown
 df.drop(df.index[0], inplace = True)    
 ```
 
+&nbsp;
 
 ### *Drop Duplicates*
 
@@ -187,6 +190,7 @@ len(df)
     30002
 ```
 
+&nbsp;
 
 ### *Remove Missing Values*
 
@@ -234,7 +238,7 @@ len(df)
     30001
 ```
 
-
+&nbsp;
 
 ### *Remove Invalid Data*
 
@@ -251,11 +255,11 @@ len(df)
     30000
 ```
 
-*Coding Notes*
-* Dropping rows doesn't stick unless you add ```inplace = True``` parameter to command. Read [this](https://stackabuse.com/python-with-pandas-dataframe-tutorial-with-examples/) to understand why parameter is needed.
-* After dropping index, that index number is dropped from the df (e.g. if you drop index 0, when you use df.head() the first entry will be index 1). In other words, the data from below does not move up and fill the dropped indices as it would in an Excel file..
+>*Coding Notes*
+>* Dropping rows doesn't stick unless you add ```inplace = True``` parameter to command. Read [this](https://stackabuse.com/python-with-pandas-dataframe-tutorial-with-examples/) to understand why parameter is needed.
+>* After dropping index, that index number is dropped from the df (e.g. if you drop index 0, when you use df.head() the first entry will be index 1). In other words, the data from below does not move up and fill the dropped indices as it would in an Excel file..
 
-
+&nbsp;
 
 ### *Change Variable Data Types*
 
@@ -369,6 +373,8 @@ df.dtypes
 ```
 
 
+&nbsp;
+
 ### Categorical Variables
 
 ```python
@@ -405,6 +411,7 @@ df.DEFAULT.value_counts()
     Name: DEFAULT, dtype: int64
 ```
 
+&nbsp;
 
 ### *Rename Features*
 
@@ -419,6 +426,7 @@ df.rename(columns = {'BILL_AMT1': 'bill_s', 'BILL_AMT2':'bill_ag', 'BILL_AMT3':'
 df.rename(columns = {'PAY_AMT1': 'pmt_s', 'PAY_AMT2':'pmt_ag', 'PAY_AMT3':'pmt_jy','PAY_AMT4':'pmt_ju', 'PAY_AMT5':'pmt_m', 'PAY_AMT6':'pmt_ap'}, inplace = True)
 ```
 
+&nbsp;
 
 ### *Reorder Features*
 
@@ -474,6 +482,7 @@ df.to_csv('cleaned_creditone_data.csv', index = False, header=True)
 Cleaned data Dimensions: 30,000 observations & 25 variables
 
 
+&nbsp;
 
 # Exploratory Data Analysis (EDA)
 
@@ -492,7 +501,7 @@ df = pd.read_csv('cleaned_transformed_credit_one_data.csv')
 ```
 
 
-# Univarite Analysis
+## *Univarite Analysis*
 
 ```python
 #create in-line minimal pandas profile report
@@ -511,6 +520,9 @@ prof.to_file(output_file='output.html')```
 
 *Observations that follow are primarily based on my analysis of the pandas profile report*
 
+
+&nbsp;
+
 ### *Demographic Variables*
 
 * Sex
@@ -525,6 +537,8 @@ prof.to_file(output_file='output.html')```
     * Range 21 - 79.
     * Mean 35, Median 34
     * Consider binnning: young, middle age, 65+
+
+&nbsp;
 
 ### *Account Variables*
 
@@ -544,6 +558,9 @@ prof.to_file(output_file='output.html')```
 * *Repayment Variables*
   * -2 = no use, -1 = paid in full, 0 = use revolving credit, 1 = payment delay 1 month, 2 = payment delay 2 months, ..., 9 = payment delay 9+ months
   * All repayment variables have roughly same distribution and characteristics: over 50% zeros, significantly more -2 & -1 values than values greater than or equal to 1
+
+
+&nbsp;
 
 ### *Billing Variables*
 
@@ -598,6 +615,7 @@ df[ ['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s']].describe()
   * The payment variables don't contain any negative values.
 
 
+&nbsp;
 
 ## Correlation Analysis
 If any of the features are highly correlated, that may be because they are actually tracking/representing the same information. Since high correlation between dependent variables can harm the performance of ML models, it needs to be handled.  
@@ -660,11 +678,10 @@ df[['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s','pmt_ap', 'pm
 * The strongest correlations are around 0.51.
 
 
-
+&nbsp;
 # Bivariate Analysis
 
 ## Credit Limit
-
 In this section I perform statistical tests to determine whether any of the DVs are related to the limit_bal target variable.
 
 
