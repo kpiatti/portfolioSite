@@ -4,6 +4,7 @@ description: ""
 featured_image: "/images/brand_pref_feature.webp"
 title: "Brand Preference Analysis with R"
 show_reading_time: true
+draft: true
 ---
 
 This was my first project using R. So the start of the project involved installing and setting up R and R Studio, and familarizing myself with how to install/load packages, setup version control (using renv), and performing basic analysis and modeling tasks in the R ecosystem.
@@ -16,7 +17,7 @@ This was my first project using R. So the start of the project involved installi
 
 This is a 2 class classification problem.
 
-```R
+```r
 # LOAD PKGS & DATA
 library(tidyverse)
 library(here)
