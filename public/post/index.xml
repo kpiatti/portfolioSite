@@ -8,17 +8,6 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Mar 2017 12:00:00 -0500</lastBuildDate><atom:link href="https://katherinepiatti.com/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Mobile Device Sentiment Analysis with AWS &amp; R</title>
-      <link>https://katherinepiatti.com/post/mobile_sentiment_analysis/</link>
-      <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://katherinepiatti.com/post/mobile_sentiment_analysis/</guid>
-      <description>What is Sentiment Analysis? Sentiment Analysis is a subset of the broader class of text mining analytics strategies that attempts to gather insights by analysing large volumes of text data (e.g. websites).
-Sentiment analysis uses text mining strategies to uncover insights, trends, and patterns about peoples&#39; feelings/sentiments.
-Project Motivation Helio is working with a government health agency to create a suite of smart phone medical apps for use by aid workers in developing countries.</description>
-    </item>
-    
-    <item>
       <title>Building My Portfolio Website</title>
       <link>https://katherinepiatti.com/post/my_website/</link>
       <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
@@ -29,24 +18,13 @@ I researched several of the most popular DIY website creation tools (e.g. WordPr
     </item>
     
     <item>
-      <title>Brand Preference Analysis with R</title>
-      <link>https://katherinepiatti.com/post/brand_pref_analysis/</link>
-      <pubDate>Tue, 26 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://katherinepiatti.com/post/brand_pref_analysis/</guid>
-      <description>This was my first project using R. So the start of the project involved installing and setting up R and R Studio, and familarizing myself with how to install/load packages, setup version control (using renv), and performing basic analysis and modeling tasks in the R ecosystem.
-  Screenshot of R Studio Session   This is a 2 class classification problem.
-# LOAD PKGS &amp;amp; DATA library(tidyverse) library(here) library(janitor) library(skimr) library(generics) #ran in console--install.</description>
-    </item>
-    
-    <item>
       <title>Credit Risk Assessment with Python</title>
       <link>https://katherinepiatti.com/post/creditone_project/</link>
       <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://katherinepiatti.com/post/creditone_project/</guid>
       <description>The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.
-#import required packages from sqlalchemy import create_engine import pymysql import pandas as pd import numpy as np Obtain Data The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database, extract the data and export it as a .</description>
+#import required packages from sqlalchemy import create_engine import pymysql import pandas as pd import numpy as np  Obtain Data The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database, extract the data and export it as a .</description>
     </item>
     
     <item>
@@ -58,15 +36,6 @@ I researched several of the most popular DIY website creation tools (e.g. WordPr
       <description>The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
 Project Setup At the beginning of every new project you need to do a few things before creating your project jupyter notebook:
  Create a dedicated project directory (accessible to your Anaconda installation.</description>
-    </item>
-    
-    <item>
-      <title>Market Basket Analysis</title>
-      <link>https://katherinepiatti.com/post/market_basket_analysis/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://katherinepiatti.com/post/market_basket_analysis/</guid>
-      <description>What is market basket analysis? Market basket analysis (also known as affinity analysis) is specific implementation of association rule learning/mining&amp;ndash;an unsupervised machine learning that seeks to uncover potentially valuable relationships (associations) between the items/products consumers buy from point of sale transaction data . For example, a grocery store might use market basket analysis to discover that 40% of the time when their customers buy cereal, they also buy bananas. Businesses used market basket analysis for things like:</description>
     </item>
     
   </channel>
