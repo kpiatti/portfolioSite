@@ -1,8 +1,6 @@
 ---
 title: "Projects"
 date: 2017-03-02T12:00:00-05:00
-featured_image: '/images/project_feature.webp'
+featured_image: '/images/logo_collection2.jpg'
 ---
 [Comment]: <> (Articles are paginated with only three posts here for example. You can set the number of entries to show on this page with the "pagination" setting in the config file.)
-
-{{< figure src="/images/data_logo_collection.webp" >}}
