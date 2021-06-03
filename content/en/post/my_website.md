@@ -4,6 +4,7 @@ description: ""
 featured_image: "/images/my_website_feature.jpg"
 title: "Building My Portfolio Website"
 show_reading_time: true
+draft: true
 ---
 {{< figure src="/images/website_logos.png" >}}
 
