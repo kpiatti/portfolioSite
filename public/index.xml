@@ -6,17 +6,7 @@
     <description>Recent content in Katherine Piatti on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://katherinepiatti.com/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Building My Portfolio Website</title>
-      <link>https://katherinepiatti.com/post/my_website/</link>
-      <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://katherinepiatti.com/post/my_website/</guid>
-      <description>After my 14 year-old neighbor showed me the website she built, I decided enough is enough, it&amp;rsquo;s time I show her I&amp;rsquo;m better than she is and I can build my own website too.
-I researched several of the most popular DIY website creation tools (e.g. WordPress, Squarespace) and ultimately settled on using HUGO (an open source static site generator) to build my site and Netlify to for web hosting services.</description>
-    </item>
-    
+    <lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://katherinepiatti.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Credit Risk Assessment with Python</title>
       <link>https://katherinepiatti.com/post/creditone_project/</link>
@@ -28,14 +18,13 @@ I researched several of the most popular DIY website creation tools (e.g. WordPr
     </item>
     
     <item>
-      <title>Analyzing Purchasing Patterns with Python</title>
+      <title>Customer Purchasing Patterns (Python)</title>
       <link>https://katherinepiatti.com/post/customer_purchasing_analysis/</link>
-      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://katherinepiatti.com/post/customer_purchasing_analysis/</guid>
       <description>The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
-Project Setup At the beginning of every new project you need to do a few things before creating your project jupyter notebook:
- Create a dedicated project directory (accessible to your Anaconda installation.</description>
+ Data Wrangling Getting the raw data ready for analysis is typically an intensive, time consuming process. However, the raw data for this project was already in good shape when I got it.</description>
     </item>
     
     <item>

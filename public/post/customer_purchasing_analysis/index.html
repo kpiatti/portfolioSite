@@ -4,11 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Analyzing Purchasing Patterns with Python | Home</title>
+    <title>Customer Purchasing Patterns (Python) | Home</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
-Project Setup At the beginning of every new project you need to do a few things before creating your project jupyter notebook:
- Create a dedicated project directory (accessible to your Anaconda installation.">
+ Data Wrangling Getting the raw data ready for analysis is typically an intensive, time consuming process. However, the raw data for this project was already in good shape when I got it.">
     <meta name="generator" content="Hugo 0.82.1" />
     
     
@@ -32,26 +31,23 @@ Project Setup At the beginning of every new project you need to do a few things 
 
     
     
-    <meta property="og:title" content="Analyzing Purchasing Patterns with Python" />
+    <meta property="og:title" content="Customer Purchasing Patterns (Python)" />
 <meta property="og:description" content="The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
-Project Setup At the beginning of every new project you need to do a few things before creating your project jupyter notebook:
- Create a dedicated project directory (accessible to your Anaconda installation." />
+ Data Wrangling Getting the raw data ready for analysis is typically an intensive, time consuming process. However, the raw data for this project was already in good shape when I got it." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://katherinepiatti.com/post/customer_purchasing_analysis/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-11-17T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2020-11-17T00:00:00&#43;00:00" /><meta property="og:site_name" content="Home" />
 
-<meta itemprop="name" content="Analyzing Purchasing Patterns with Python">
+<meta property="og:site_name" content="Home" />
+
+<meta itemprop="name" content="Customer Purchasing Patterns (Python)">
 <meta itemprop="description" content="The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
-Project Setup At the beginning of every new project you need to do a few things before creating your project jupyter notebook:
- Create a dedicated project directory (accessible to your Anaconda installation."><meta itemprop="datePublished" content="2020-11-17T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-11-17T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="4138">
+ Data Wrangling Getting the raw data ready for analysis is typically an intensive, time consuming process. However, the raw data for this project was already in good shape when I got it.">
+
+<meta itemprop="wordCount" content="1787">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Analyzing Purchasing Patterns with Python"/>
+<meta name="twitter:title" content="Customer Purchasing Patterns (Python)"/>
 <meta name="twitter:description" content="The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
-Project Setup At the beginning of every new project you need to do a few things before creating your project jupyter notebook:
- Create a dedicated project directory (accessible to your Anaconda installation."/>
+ Data Wrangling Getting the raw data ready for analysis is typically an intensive, time consuming process. However, the raw data for this project was already in good shape when I got it."/>
 
 	
   </head>
@@ -64,7 +60,7 @@ Project Setup At the beginning of every new project you need to do a few things 
 
   
   
-  <header class="cover bg-top" style="background-image: url('https://katherinepiatti.com/images/customer_purchasing_feature.jpg');">
+  <header class="cover bg-top" style="background-image: url('https://katherinepiatti.com/images/customer_purchasing_feature.webp');">
     <div class="pb3-m pb6-l bg-black-60">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
@@ -141,7 +137,7 @@ Project Setup At the beginning of every new project you need to do a few things 
 
       <div class="tc-l pv6 ph3 ph4-ns">
         
-          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Analyzing Purchasing Patterns with Python</h1>
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Customer Purchasing Patterns (Python)</h1>
           
         
       </div>
@@ -174,13 +170,13 @@ Project Setup At the beginning of every new project you need to do a few things 
 
     
     
-    <a href="https://twitter.com/share?url=https://katherinepiatti.com/post/customer_purchasing_analysis/&amp;text=Analyzing%20Purchasing%20Patterns%20with%20Python" class="twitter no-underline" aria-label="share on Twitter">
+    <a href="https://twitter.com/share?url=https://katherinepiatti.com/post/customer_purchasing_analysis/&amp;text=Customer%20Purchasing%20Patterns%20%28Python%29" class="twitter no-underline" aria-label="share on Twitter">
       <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
 
     </a>
 
     
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://katherinepiatti.com/post/customer_purchasing_analysis/&amp;title=Analyzing%20Purchasing%20Patterns%20with%20Python" class="linkedin no-underline" aria-label="share on LinkedIn">
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://katherinepiatti.com/post/customer_purchasing_analysis/&amp;title=Customer%20Purchasing%20Patterns%20%28Python%29" class="linkedin no-underline" aria-label="share on LinkedIn">
       <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
@@ -189,313 +185,77 @@ Project Setup At the beginning of every new project you need to do a few things 
   </div>
 
 
-      <h1 class="f1 athelas mt3 mb1">Analyzing Purchasing Patterns with Python</h1>
+      <h1 class="f1 athelas mt3 mb1">Customer Purchasing Patterns (Python)</h1>
       
       
-      <time class="f6 mv4 dib tracked" datetime="2020-11-17T00:00:00Z">November 17, 2020</time>
+      <time class="f6 mv4 dib tracked" datetime="0001-01-01T00:00:00Z">January 1, 0001</time>
 
       
       
-        <span class="f6 mv4 dib tracked"> - 20 minutes read</span>
-        <span class="f6 mv4 dib tracked"> - 4138 words</span>
+        <span class="f6 mv4 dib tracked"> - 9 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 1787 words</span>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.</p>
-<h2 id="project-setup">Project Setup</h2>
-<p>At the beginning of every new project you need to do a few things before creating your project jupyter notebook:</p>
-<ol>
-<li>Create a <em>dedicated project directory</em> (accessible to your Anaconda installation.
-<ul>
-<li>Note: if creating directory at root (e.g. c:), to avoid permission denied error I had to setup the Anaconda prompt to run as an administrator.</li>
-</ul>
-</li>
-<li>Create a <em>virtual environment</em> for the project (by default, you will start in the (base) environment) using the following steps:
-<ol>
-<li>open Anaconda prompt</li>
-<li>change directories to the project dir you created in (1).</li>
-<li>enter <code>conda create --name nameofenv</code></li>
-<li>activate the ve <code>activate nameofenv</code></li>
-<li>install pkgs in ve <code>conda install pandas, numpy, jupyter notebook, ipykernel</code></li>
-<li>(optional) create jup nb kernel for ve <code>ipython kernel install --user --name = nameofenv</code></li>
-<li>deactivate the ve <code>conda deactivate</code></li>
-<li>re-activate the ve <code>activate nameofenv</code></li>
-</ol>
-</li>
-<li>With your project VE activated, launch Jupyter Lab <code>jupyter lab</code>.</li>
-</ol>
-<h2 id="import-packages--data">Import Packages &amp; Data</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#import data science pkgs I need</span>
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
-<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
-<span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#import data file</span>
-df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;Demographic_Data.csv&#39;</span>)
-
-<span style="color:#75715e">#view first 5 lines of dataframe to verify imports</span>
-df<span style="color:#f92672">.</span>head()
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#view characteristics of each variable in the dataframe</span>
-df<span style="color:#f92672">.</span>info()
-</code></pre></div><pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 80000 entries, 0 to 79999
-Data columns (total 5 columns):
- #   Column    Non-Null Count  Dtype  
----  ------    --------------  -----  
- 0   in-store  80000 non-null  int64  
- 1   age       80000 non-null  int64  
- 2   items     80000 non-null  int64  
- 3   amount    80000 non-null  float64
- 4   region    80000 non-null  int64  
-dtypes: float64(1), int64(4)
-memory usage: 3.1 MB
-</code></pre>
-<h1 id="data-wrangling">Data Wrangling</h1>
-<p>The data was in good shape when I got it, so there wasn&rsquo;t much I needed to do to prepare it for analysis.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#look for duplicate observations/cases</span>
-data<span style="color:#f92672">.</span>duplicated()
-
-<span style="color:#75715e">#get rid of duplicate transactions</span>
-df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>drop_duplicates()
-</code></pre></div><p>This removed 70 rows.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#check for missing values</span>
-<span style="color:#66d9ef">print</span>(df<span style="color:#f92672">.</span>isnull()<span style="color:#f92672">.</span>sum())
-</code></pre></div><pre><code>in-store    0
-age         0
-items       0
-amount      0
-region      0
-dtype: int64
-</code></pre>
-<h1 id="data-exploration-eda">Data Exploration (EDA)</h1>
-<h2 id="how-is-the-data-distributed"><em>How is the data distributed?</em></h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#create histograms of each var in the dataframe</span>
-plt<span style="color:#f92672">.</span>subplots(figsize <span style="color:#f92672">=</span> (<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">15</span>))
-
-<span style="color:#75715e">#create in-store plot</span>
-plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>)
-plt<span style="color:#f92672">.</span>hist(df[<span style="color:#e6db74">&#39;in-store&#39;</span>])
-plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;In-Store&#39;</span>)
-plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Transaction Count&#39;</span>)
-
-<span style="color:#75715e">#create plot of age</span>
-plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>)
-plt<span style="color:#f92672">.</span>hist(df[<span style="color:#e6db74">&#39;age&#39;</span>])
-plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Age&#39;</span>)
-
-<span style="color:#75715e">#create plot of items</span>
-plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>)
-plt<span style="color:#f92672">.</span>hist(df[<span style="color:#e6db74">&#39;items&#39;</span>], bins<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
-plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Items&#39;</span>)
-
-<span style="color:#75715e">#create plot of amount</span>
-plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
-plt<span style="color:#f92672">.</span>hist(df[<span style="color:#e6db74">&#39;amount&#39;</span>])
-plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Amount&#39;</span>)
-plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Transaction Count&#39;</span>)
-
-<span style="color:#75715e">#create plot of region</span>
-plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>)
-plt<span style="color:#f92672">.</span>hist(df[<span style="color:#e6db74">&#39;region&#39;</span>])
-plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Region&#39;</span>)
-
-plt<span style="color:#f92672">.</span>show()
-</code></pre></div><figure>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<h2 id="data-wrangling">Data Wrangling</h2>
+<p>Getting the raw data ready for analysis is typically an intensive, time consuming process. However, the raw data for this project was already in good shape when I got it. After importing the raw .csv file, I visually inspected a sample of rows and columns, obtained summary information, and performed some initial checks, and all that was required was dropping 70 duplicate rows.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<h2 id="data-exploration-eda">Data Exploration (EDA)</h2>
+<p>One of the first things I do after preparing a dataset for analysis and modeling is plot each of the variables to get a handle on <em>how the data is distributed</em> and make some initial observations.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<figure>
     <img src="https://katherinepiatti.com/images/c1_subplot_array_hist1.jpeg"/> 
 </figure>
 
-<p><em>Inferences/Observations</em></p>
+<p><em>Initial Observations</em></p>
 <ul>
-<li>
-<p><em>in-store</em></p>
-<ul>
-<li>From documentation: 1 = in-store purchase, 0 = online purchase.</li>
-<li>Nominal/categorical variable.</li>
-<li>Descriptive stats (e.g. mean, std) are not meaningful with nominal variables.</li>
-<li>Cross-tabs and Chi-squared test useful tools for nominal variables.</li>
-</ul>
-</li>
-<li>
-<p><em>age</em></p>
-<ul>
-<li>mean of 45.8 means the average consumer in the data set is around 45</li>
-<li>std tells us about how spread out the observations are. std of 15.7 means that 68% of customers in the dataset are between 29.9 and 61.5, and 95% are between 14.2 and 77.2</li>
-<li>the minimum age is 18 (uh-oh there&rsquo;s a problem) and the max is 86, 25% are 33 or below, 50% are 45 or below (why is this # diff than the mean?)</li>
-</ul>
-</li>
-<li>
-<p><em>items</em></p>
-<ul>
-<li>most customers purchased between 2.5 and 6.5 items, and most spent between 114.6 and 1,557</li>
-</ul>
-</li>
-<li>
-<p><em>region</em></p>
-<ul>
-<li>the regions are 1=north, 2=south, 3=east, 4=west.this is a nominal variable, so mean etc aren&rsquo;t meaningful</li>
-</ul>
-</li>
-<li>
-<p><strong>General</strong></p>
-<ul>
+<li><em>in-store</em>: 1 = in-store purchase, 0 = online purchase.</li>
+<li><em>age</em>: average consumer is aprox. 45, min. is 18, max iws 86, 68% are between 29.9 &amp; 61.5</li>
+<li>Most customers purchase between 2.5 and 6.5 items, and spend between $114.60 and $1,557</li>
+<li>The regions are 1=north, 2=south, 3=east, 4=west</li>
 <li>50% of transactions are online and 50% are in-store.</li>
 <li>Customers' ages skew slightly younger, with the bulk between roughly 25-60.</li>
 <li>In most transactions, customers buy 2-7 items.</li>
 <li>Amount spent per transaction skews to the low end, usually less than $250.00.</li>
-<li>North region has the fewest transactions, the West has the most. The South and East have roughly the same number of transactions.</li>
+<li>North has fewest transactions, the West has the most, but the difference isn&rsquo;t huge</li>
 </ul>
-<h2 id="how-are-the-variables-related"><em>How are the variables related?</em></h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#define smaller sample of df (to speed up processing and improve viz)</span>
-data_sample<span style="color:#f92672">=</span>df<span style="color:#f92672">.</span>sample(<span style="color:#ae81ff">1000</span>)
-
-<span style="color:#75715e">#create cross plot of all variables in df using sample</span>
-sns<span style="color:#f92672">.</span>pairplot(data_sample, hue<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;in-store&#39;</span>, kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;scatter&#39;</span>)
-</code></pre></div></li>
-</ul>
-<figure>
-    <img src="https://katherinepiatti.com/images/c1_pairplot.jpeg"/> 
-</figure>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#distribution plot of amount variable in each region for in-store &amp; online</span>
-sns<span style="color:#f92672">.</span>set_theme(style<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;darkgrid&#34;</span>)
-sns<span style="color:#f92672">.</span>displot(
-    df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;amount&#34;</span>, col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;region&#34;</span>, row<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;in-store&#34;</span>,
-    binwidth<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, height<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, facet_kws<span style="color:#f92672">=</span>dict(margin_titles<span style="color:#f92672">=</span>True),
-)
-</code></pre></div><h3 id="correlation">Correlation</h3>
-<ul>
-<li>Pearson Correlation Coefficient—use when testing continuous variables that have a linear relationship.</li>
-<li>Spearman Correlation Coefficient—use when testing variables with a non-linear relationship</li>
-</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<h3 id="correlation--covariance-analysis">Correlation &amp; Covariance Analysis</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#generate correlation matrix</span>
 corr_mat <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>corr()
 <span style="color:#66d9ef">print</span>(corr_mat)
-</code></pre></div><pre><code>          in-store       age     items    amount    region
-in-store  1.000000 -0.178180 -0.003897 -0.085573 -0.133171
-age      -0.178180  1.000000  0.000657 -0.282033 -0.235370
-items    -0.003897  0.000657  1.000000  0.000384 -0.001904
-amount   -0.085573 -0.282033  0.000384  1.000000  0.403486
-region   -0.133171 -0.235370 -0.001904  0.403486  1.000000
-</code></pre>
-<p><em>Notes</em></p>
+<span style="color:#f92672">---</span>
+
+              <span style="color:#f92672">in</span><span style="color:#f92672">-</span>store       age     items    amount    region
+    <span style="color:#f92672">in</span><span style="color:#f92672">-</span>store  <span style="color:#ae81ff">1.000000</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.178180</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.003897</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.085573</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.133171</span>
+    age      <span style="color:#f92672">-</span><span style="color:#ae81ff">0.178180</span>  <span style="color:#ae81ff">1.000000</span>  <span style="color:#ae81ff">0.000657</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.282033</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.235370</span>
+    items    <span style="color:#f92672">-</span><span style="color:#ae81ff">0.003897</span>  <span style="color:#ae81ff">0.000657</span>  <span style="color:#ae81ff">1.000000</span>  <span style="color:#ae81ff">0.000384</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.001904</span>
+    amount   <span style="color:#f92672">-</span><span style="color:#ae81ff">0.085573</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.282033</span>  <span style="color:#ae81ff">0.000384</span>  <span style="color:#ae81ff">1.000000</span>  <span style="color:#ae81ff">0.403486</span>
+    region   <span style="color:#f92672">-</span><span style="color:#ae81ff">0.133171</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.235370</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.001904</span>  <span style="color:#ae81ff">0.403486</span>  <span style="color:#ae81ff">1.000000</span>
+</code></pre></div><p><em>Observations</em></p>
 <ul>
-<li>I don&rsquo;t think the correlation co-efficients for in-store and region are meaningful.</li>
-<li>There is a slight negative correlation between amount spent per transaction and age, suggesting that as age increases, the amount spent per transaction decreases. But I know from the scatter plot I generated earlier that the negative correlation between age and amount spent doesn&rsquo;t kick in until around age 62-65, when you see a sharp dropoff. Prior to that there doesn&rsquo;t appear to be any correlation between the two variables.</li>
+<li>There is a slight negative correlation between amount spent per transaction and age, suggesting that older customers tend to spend less per transaction.</li>
+<li>But I know from earlier analysis that the relationship between age and amount spent doesn&rsquo;t kick in until age 62-65.</li>
 </ul>
-<h3 id="covariance">Covariance</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#generate covariance matrix</span>
-cov_mat <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>cov()
-<span style="color:#66d9ef">print</span>(cov_mat)
-</code></pre></div><pre><code>           in-store          age     items         amount      region
-in-store   0.250003    -1.400071 -0.004017     -30.860425   -0.075019
-age       -1.400071   246.966189  0.021270   -3196.782841   -4.167305
-items     -0.004017     0.021270  4.248751       0.570791   -0.004421
-amount   -30.860425 -3196.782841  0.570791  520221.252295  327.874873
-region    -0.075019    -4.167305 -0.004421     327.874873    1.269321
-</code></pre>
-<h2 id="visualization-options">Visualization Options</h2>
-<p>This is primarily a learning exercise in how to create core types of data vizualizations in Python.</p>
-<h3 id="line-plots"><em>Line Plots</em></h3>
-<figure>
-    <img src="https://katherinepiatti.com/images/output_29_1.png"/> 
-</figure>
-
-<p><em>Coding Notes</em></p>
-<ul>
-<li><em>fix</em>: title and axes labels appeared on a empty figure because <code>plt.show()</code> command was below the <code>ax.plot()</code> command.</li>
-<li>You don&rsquo;t need to use <code>plt.show()</code> in Jupyter notebooks to generate matplotlib visualisations. But including it suppresses several lines of code that would otherwise appear above your graph/plot.</li>
-</ul>
-<h3 id="scatter-plots"><em>Scatter Plots</em></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#create a var that is a random sample of 1000 observations from the dataset</span>
-data_sample100 <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>sample(<span style="color:#ae81ff">1000</span>)
-
-<span style="color:#75715e">#set x-axis to &#39;age&#39; and y-axis to &#39;amount&#39;</span>
-x <span style="color:#f92672">=</span> data_sample[<span style="color:#e6db74">&#39;age&#39;</span>]
-y <span style="color:#f92672">=</span> data_sample[<span style="color:#e6db74">&#39;amount&#39;</span>]
-
-<span style="color:#75715e">#create a scatter plot</span>
-plt<span style="color:#f92672">.</span>scatter(x,y, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;o&#39;</span>)
-
-<span style="color:#75715e">#add a title</span>
-plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Amount Spent Per Purchase by Age, Sample of 1000&#39;</span>)
-<span style="color:#75715e">#add labels to x and y axes</span>
-plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Age&#39;</span>)
-plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Spending/Purchase&#39;</span>)
-
-plt<span style="color:#f92672">.</span>show()
-</code></pre></div><figure>
-    <img src="https://katherinepiatti.com/images/output_43_0.png"/> 
-</figure>
-
-<p><em>Coding Notes</em></p>
-<ul>
-<li>SyntaxError fix: after adding title and label lines and running, got a syntax error indicating problem with <code>plt.xlabel('Age')</code>. But problem was a missing close paren.</li>
-<li><code>data.sample(n)</code> takes a <em>random</em> sample of n observations from the dataset, so unless specified, the sample will include different obs. every time the code is run.</li>
-<li>To fix which obs. are sampled (for reproducibility) use <code>random_state</code>. See <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html">Pandas documentation</a> for more information.</li>
-</ul>
-<p>Can&rsquo;t tell much from this scatter plot alone, except there is less variability in spending for customers 70+. (Turns out this pattern is a product of intentional data manipulation.)</p>
-<h3 id="boxplots"><em>Boxplots</em></h3>
-<p>Box plots are especially good for:</p>
-<ul>
-<li>finding outliers</li>
-<li>getting rough idea of how your data is distributed</li>
-<li>how tightly your data is grouped</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#create object to represent the amount feature</span>
-A <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;amount&#39;</span>]
-
-<span style="color:#75715e">#generate boxplot of amount feature</span>
-plt<span style="color:#f92672">.</span>boxplot(A,<span style="color:#ae81ff">0</span>,<span style="color:#e6db74">&#39;gD&#39;</span>)
-
-<span style="color:#75715e">#add plot title and label y-axis</span>
-plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Amount Spent Per Purchase&#39;</span>)
-plt<span style="color:#f92672">.</span>ylabel (<span style="color:#e6db74">&#39;$ Spent&#39;</span>)
-
-plt<span style="color:#f92672">.</span>show()
-</code></pre></div><figure>
-    <img src="https://katherinepiatti.com/images/output_47_0.png"/> 
-</figure>
-
-<p><em>Coding Notes</em></p>
-<ul>
-<li>The 0 parameter is determining whether the plot has notches. 0=No, 1=Yes.</li>
-<li>The &lsquo;gD&rsquo; parameter is determinint the color and shape of the smybol representing outliers.
-<ul>
-<li>To supress symbols altogether use <code>plt.boxplot(A, 0, ' ')</code></li>
-<li>To generate a basic box plot just use <code>plt.boxplot(A)</code></li>
-<li>To generate a horizontal box plot use <code>plt.boxplot(A, 0, 'rs', 0)</code></li>
-<li>To generate boxplot <em>without</em> definining a new object use <code>plt.boxplot(data['amount'])</code></li>
-</ul>
-</li>
-</ul>
-<h1 id="regional-analysis">Regional Analysis</h1>
-<p>In this section I&rsquo;ll use the information about the data I&rsquo;ve gathered so far and do some additional analysis to answer Blackwell&rsquo;s questions about regional differences in customer spending.</p>
-<h2 id="do-customers-in-different-regions-spend-more-per-transaction"><em>Do customers in different regions spend more per transaction?</em></h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># get variable means for each region</span>
- df<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;region&#39;</span>)<span style="color:#f92672">.</span>mean()
- df<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;region&#39;</span>)<span style="color:#f92672">.</span>median()
- df<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;region&#39;</span>)<span style="color:#f92672">.</span>std()
-</code></pre></div><p><em>Insights</em></p>
-<ul>
-<li>Customers in the South spend the <em>least</em> per transaction (about $252). Customers in the East spend the most (about $1284).</li>
-<li>All transactions in the North occurred in-store.</li>
-<li>All transactions in the South occurred online.</li>
-<li>The avg. customer in the East is 15 years younger than the average customer in the South.</li>
-<li>The avg. number of items purchased in each transaction is 4.5 in all regions.</li>
-<li>Median spending per transaction is significantly lower than the mean in the North and West, suggesting there are high outlier transactions in those regions.</li>
-<li>The relatively small standard deviation in amount spent per transaction in the East suggests most purchases are in a small range around the mean of $250.</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#add new var that maps region #s to names, temp set all values to North</span>
-df[<span style="color:#e6db74">&#39;region_name&#39;</span>]<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;North&#39;</span>
-
-<span style="color:#75715e">#change 2s to South</span>
-df<span style="color:#f92672">.</span>loc[df[<span style="color:#e6db74">&#39;region&#39;</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>,<span style="color:#e6db74">&#39;region_name&#39;</span>]<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;South&#39;</span>
-<span style="color:#75715e">#change 3s to East</span>
-df<span style="color:#f92672">.</span>loc[df[<span style="color:#e6db74">&#39;region&#39;</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#39;region_name&#39;</span>]<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;East&#39;</span>
-<span style="color:#75715e">#change 4s to West</span>
-df<span style="color:#f92672">.</span>loc[df[<span style="color:#e6db74">&#39;region&#39;</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>,<span style="color:#e6db74">&#39;region_name&#39;</span>]<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;West&#39;</span>
-
-df<span style="color:#f92672">.</span>head()
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#create violin plot of amount variable in each region</span>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<h2 id="regional-analysis">Regional Analysis</h2>
+<p>In this section I explore questions about regional differences in customer spending.</p>
+<h3 id="regional-differences-in-spending"><em>Regional differences in spending?</em></h3>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#create violin plot of amount variable in each region</span>
 abr<span style="color:#f92672">=</span>sns<span style="color:#f92672">.</span>catplot(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;region_name&#39;</span>, y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;amount&#39;</span>, data <span style="color:#f92672">=</span> df, kind <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;violin&#39;</span>,
             aspect <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.5</span>)
 abr<span style="color:#f92672">.</span>set_xticklabels( rotation <span style="color:#f92672">=</span> <span style="color:#ae81ff">45</span>) <span style="color:#75715e">#argument({&#39;tic 1&#39;, &#39;tic 2&#39;,...}, rotation=45)</span>
@@ -506,21 +266,19 @@ abr<span style="color:#f92672">.</span>set_axis_labels(<span style="color:#e6db7
     <img src="https://katherinepiatti.com/images/output_60_0.png"/> 
 </figure>
 
-<p><em>Summary</em></p>
-<p>Short answer: <em>YES</em>. A quick look at the average amount spent in each region reveals that the Southern region spends the least (~$252.00$). Although it looks like the Eastern region spends the most per transaction (~$1284), further investigation reveals that number is heavily skewed by several outlier transactions. When the outliers are left aside, we can see that typical spendintg in the Eastern and Northern regions are very similar. We can also see that customers in the Western region typically spend the most. One final thing to note is that the amount spent per transaction in the Southern region spans a noteably smaller range than the other three areas, and is concentrated at the low end.</p>
-<h2 id="which-regions-spend-the-mostleast"><em>Which regions spend the most/least?</em></h2>
-<p>We saw earlier that customers in the <strong>South</strong> typically spend to <em>least</em> per transaction (~ $250.00) and customers in the <strong>West</strong> typically spend the <em>most</em> (~ $1230.00).</p>
-<p>But perhaps the question is <em>which region(s) bring in the most/least revenue?</em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#caluculate regional sums</span>
-region_sum<span style="color:#f92672">=</span>df<span style="color:#f92672">.</span>groupby([<span style="color:#e6db74">&#39;region&#39;</span>])<span style="color:#f92672">.</span>sum()
-<span style="color:#66d9ef">print</span>(region_sum)
-</code></pre></div><pre><code>           items      amount
-region                                         
-1          72151     1.191762e+07
-2          90229     5.040442e+06
-3          80892     1.652345e+07
-4          117044    3.336699e+07
-</code></pre>
+<p><em>Observations</em></p>
+<ul>
+<li>Are there regional differences in spending? Short answer: <em>YES</em>.</li>
+<li>Customers in the Southern region spend the least on average (~$252.00).</li>
+<li>Customers in the Western region spend the most on average.</li>
+<li>Although it looks like customers in the Eastern region spend about as much as those in the West, further investigation reveals the data is skewed by several outlier transactions.</li>
+<li>When the outliers are left aside, we see that typical spending in the Eastern and Northern regions are very similar.</li>
+<li>It is also notable that spending in the South is unusually concentrated at the low end.</li>
+</ul>
+<p> </p>
+<h3 id="which-regions-bring-in-the-mostleast-revenue"><em>Which regions bring in the most/least revenue?</em></h3>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># create pie chart showing % of total revenue for each region</span>
 labels <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;North&#39;</span>, <span style="color:#e6db74">&#39;South&#39;</span>, <span style="color:#e6db74">&#39;East&#39;</span>, <span style="color:#e6db74">&#39;West&#39;</span>
 sizes <span style="color:#f92672">=</span> [<span style="color:#ae81ff">17.8</span>, <span style="color:#ae81ff">7.5</span>, <span style="color:#ae81ff">24.7</span>, <span style="color:#ae81ff">49.9</span>]
@@ -539,9 +297,11 @@ fig1<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">&#3
 </figure>
 
 <p>The pie chart nicely illustrates that the West brings in the most revenue and the South brings in the least.</p>
-<h2 id="are-there-regional-differences-in-online-vs-in-store-spending"><em>Are there regional differences in online vs. in-store spending?</em></h2>
+<p> </p>
+<h3 id="regional-differences-in-online-vs-in-store-spending"><em>Regional differences in online vs. in-store spending?</em></h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;in-store&#39;</span>)<span style="color:#f92672">.</span>describe()[<span style="color:#e6db74">&#39;amount&#39;</span>]
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#revenue online vs. in-store by region</span>
+
+<span style="color:#75715e">#revenue online vs. in-store by region</span>
 oir <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>catplot(data<span style="color:#f92672">=</span>df, kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;box&#39;</span>,
                   x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;region_name&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;amount&#39;</span>, hue<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;in-store&#39;</span>, height<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>)
 oir<span style="color:#f92672">.</span>despine(left<span style="color:#f92672">=</span>True)
@@ -556,34 +316,24 @@ oir<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>su
     <img src="https://katherinepiatti.com/images/output_72_0.png"/> 
 </figure>
 
-<p><em><strong>Observations</strong></em></p>
+<p><em>Observations</em></p>
 <ul>
-<li>As you can see in the above plot, the Southern region has <strong>only online</strong> sales, and the Northern region has <strong>no online</strong> sales. Assuming the data is sound, the complete lack of online sales in the South presents a big opportunity for the company.</li>
-<li>Wwe can also see in the above graph that online sales account for all the high dollar transactions. Almost all the sales above $2,100.00$ are online transactions. This suggests potential value in developing a strategy aimed at growing high-dollar purchases in-store.</li>
+<li>The Southern region has <em>no in-store</em> sales, and the Northern region has <strong>no online</strong> sales. <em>This is suspicious and should be investigated further before any conclusions are drawn.</em></li>
+<li>Almost all the high dollar purchases occur online. <em>This suggests potential value in a strategy aimed at growing high-dollar in-store purchases.</em></li>
 </ul>
-<h1 id="age-analysis">Age Analysis</h1>
-<h2 id="create-categorical-age-variables"><em>Create Categorical Age Variables</em></h2>
-<p><em>Discretization</em> is the process of taking a continuous variable, like age or amount, and turning it into a categorical variable by putting all values into discreet bins (e.g. over 65 and under 65). <a href="https://s3.amazonaws.com/gbstool/courses/1094/docs/An%20Introduction%20to%20Discretization%20Techniques%20for%20Data%20Scientists.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201023T205053Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=36900&amp;X-Amz-Credential=AKIAJBIZLMJQ2O6DKIAA%2F20201023%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=4e9e02e0403840c946cd9a5a9fe5270c8146878715dcdb9853fa908ee0821602">This</a> article contains the pkgs and commands needed to do various kinds of discretization.</p>
-<p><em><strong>The Value of Discretization</strong></em></p>
-<ul>
-<li>Results can be <em>more meaningful</em> and <em>easier to understand</em> when the data has been binned into categories that have been thoughtfully constructed to fit the question(s) we are trying to answer. (e.g.  binning age into generations&ndash;baby boomers, millenials, gen z, etc.&ndash;to uncover generational differences in consumer behavior.     - Certain statistical methods/models are only appropriate when working with categorical variables.</li>
-<li>Binning data can reduce the impact of noise in the data.</li>
-</ul>
-<p><em><strong>Approaches to discretization</strong></em></p>
-<ul>
-<li><em>equal width</em> — separate all values into &lsquo;N&rsquo; number of bins, each having the same width (i.e. span of values)</li>
-<li><em>equal frequency</em> — separate the values in &lsquo;N&rsquo; number of bins, each containing the same number of observations.</li>
-<li><em>K-means</em> — use k-means clustering to to group data.</li>
-</ul>
-<h3 id="over-65-vs-under-65">Over 65 vs. Under 65</h3>
+<p> </p>
+<h2 id="age-analysis">Age Analysis</h2>
+<p>Add brief description of discretization and why using it</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#define new discritized age variable, two bins: under 65 and 65+</span>
 young <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>cut(df<span style="color:#f92672">.</span>age, bins<span style="color:#f92672">=</span>[<span style="color:#ae81ff">18</span>,<span style="color:#ae81ff">63</span>,<span style="color:#ae81ff">84</span>], labels<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;Under 65&#39;</span>, <span style="color:#e6db74">&#39;65+&#39;</span>])
 
 <span style="color:#75715e">#add new young variable to df</span>
 df[<span style="color:#e6db74">&#39;young&#39;</span>]<span style="color:#f92672">=</span>young
 
-df<span style="color:#f92672">.</span>head()
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ca <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>countplot(data<span style="color:#f92672">=</span>df,
+<span style="color:#75715e">#create plot of over/under 65 by region</span>
+ca <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>countplot(data<span style="color:#f92672">=</span>df,
                   x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;region_name&#39;</span>, y<span style="color:#f92672">=</span>None, hue<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;young&#39;</span>)
 ca<span style="color:#f92672">.</span>set(xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Region&#39;</span>, ylabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Count&#39;</span>)
 ca<span style="color:#f92672">.</span>legend()<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;&#39;</span>)
@@ -595,6 +345,7 @@ ca<span style="color:#f92672">.</span>legend()<span style="color:#f92672">.</spa
 <li>This bar chart tells us that (1) all customers in the Western region are under 65, and the Southern region has the most number of customers over 65. This suggests marketing target at age groups may be more successful in those two regions.</li>
 <li>That being said, the relatively small size of Blackwell&rsquo;s customer base that is 65+ makes it an area for big potential gains.</li>
 </ul>
+<p> </p>
 <h3 id="generational-analysis">Generational Analysis</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#define new generation variable</span>
 gen <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>cut(df<span style="color:#f92672">.</span>age,
@@ -607,8 +358,8 @@ gen <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>c
 
 <span style="color:#75715e">#add new gen variable to df</span>
 df[<span style="color:#e6db74">&#39;gen&#39;</span>]<span style="color:#f92672">=</span>gen
-df<span style="color:#f92672">.</span>head()
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#create generational spending plot</span>
+
+<span style="color:#75715e">#create generational spending plot</span>
 gen_plot <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>catplot(data<span style="color:#f92672">=</span>df,
                   x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;region_name&#39;</span>, y<span style="color:#f92672">=</span>None, hue<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gen&#39;</span>, kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;count&#39;</span>,
                       height<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, aspect<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
@@ -619,29 +370,17 @@ gen_plot<span style="color:#f92672">.</span>set_xticklabels(rotation<span style=
 gen_plot<span style="color:#f92672">.</span>legend<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;&#39;</span>)
 
 gen_plot<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#39;pic_gen_plot.png&#39;</span>)
-</code></pre></div><p><em>Coding Notes</em></p>
-<ul>
-<li>None of the following worked when creating the generation bar chart.
-<ul>
-<li>gen_plot_leg=gen_plot.legend()</li>
-<li>gen_plot.fig.legend(title='', labels=[])</li>
-<li>legend = gen_plot.legend()</li>
-<li>legend.texts[0].set_text('')</li>
-<li>fig=gen_plot.get_figure()</li>
-</ul>
-</li>
-</ul>
-<figure>
+</code></pre></div><figure>
     <img src="https://katherinepiatti.com/images/output_80_0.png"/> 
 </figure>
 
-<p><em><strong>Observations</strong></em></p>
+<p><em>Observations</em></p>
 <ul>
 <li>All customers of the Silent Generation are in the South.</li>
 <li>Generation Z (ages 18-24) is the smallest cohort of customers in 3 of 4 regions.</li>
 <li>There are no Gen Z customers in the South.</li>
 </ul>
-<h2 id="do-the-generations-differ-in-their-purchasing"><em>Do the generations differ in their purchasing?</em></h2>
+<h3 id="generational-differences-in-spending"><em>Generational differences in spending?</em></h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#violin plot of spending by customers under 65 and 65+ in each region</span>
 car <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>catplot(data<span style="color:#f92672">=</span>df, kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;violin&#39;</span>,
                   x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;region_name&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;amount&#39;</span>, hue<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;young&#39;</span>,
@@ -657,52 +396,17 @@ car<span style="color:#f92672">.</span>legend<span style="color:#f92672">.</span
     <img src="https://katherinepiatti.com/images/output_87_0.png"/> 
 </figure>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">gen_spending_boxen <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>catplot(data<span style="color:#f92672">=</span>df,
-x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;region_name&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;amount&#39;</span>, hue<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gen&#39;</span>, kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;boxen&#39;</span>, height<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>, aspect<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
-
-gen_spending_boxen<span style="color:#f92672">.</span>set(xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Region&#39;</span>, ylabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Amount Spent&#39;</span>,
-                            title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Spending by Age Group&#39;</span>)
-</code></pre></div><figure>
-    <img src="https://katherinepiatti.com/images/output_91_1.png"/> 
-</figure>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#calculate mean of age, items, &amp; amount for each gen within each region</span>
-gen_mean<span style="color:#f92672">=</span>df<span style="color:#f92672">.</span>groupby([<span style="color:#e6db74">&#39;region_name&#39;</span>, <span style="color:#e6db74">&#39;gen&#39;</span>])[<span style="color:#e6db74">&#39;age&#39;</span>, <span style="color:#e6db74">&#39;items&#39;</span>, <span style="color:#e6db74">&#39;amount&#39;</span>]<span style="color:#f92672">.</span>mean()
-<span style="color:#66d9ef">print</span>(gen_mean)
-
-</code></pre></div><pre><code>                                      age     items       amount
-region_name gen                                                 
-East        Gen Z (8-23)        20.954082  4.503827  1584.896097
-            Millenial (24-39)   31.656688  4.467841   958.103526
-            Gen X (40-55)       47.476020  4.508320   927.122623
-            Boomer (56-74)      63.478210  4.496804   751.545588
-            Silent Gen (75-95)        NaN       NaN          NaN
-North       Gen Z (8-23)        21.157093  4.478312  1018.099817
-            Millenial (24-39)   31.661903  4.515131   804.479170
-            Gen X (40-55)       47.337918  4.499066   771.135680
-            Boomer (56-74)      64.708195  4.529785   520.992073
-            Silent Gen (75-95)        NaN       NaN          NaN
-South       Gen Z (8-23)              NaN       NaN          NaN
-            Millenial (24-39)   33.685424  4.500248   250.351972
-            Gen X (40-55)       47.550467  4.505747   252.129675
-            Boomer (56-74)      64.981328  4.522211   252.277828
-            Silent Gen (75-95)  79.886164  4.520128   253.608984
-West        Gen Z (8-23)        21.098558  4.564197  1266.141474
-            Millenial (24-39)   31.466787  4.485318  1264.815006
-            Gen X (40-55)       47.407644  4.504028  1251.748461
-            Boomer (56-74)      59.264597  4.491659  1545.107915
-            Silent Gen (75-95)        NaN       NaN          NaN
-</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <h1 id="modeling">Modeling</h1>
 <ul>
 <li>In this project the goal is just to train and test a decision tree classifier model to &ldquo;predict&rdquo; (or correctly classify) the region each transaction is from using the other four variables.</li>
 <li>Aiming for a model that correctly predicts at least 75% of transactions (&gt; 75% accuracy).</li>
 </ul>
-<h3 id="import-libraries">Import Libraries</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#DS Basics</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#import Libraries</span>
 <span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 <span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
 
 <span style="color:#75715e">#SKLearn Stuff</span>
 <span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
@@ -711,12 +415,10 @@ West        Gen Z (8-23)        21.098558  4.564197  1266.141474
 <span style="color:#f92672">from</span> sklearn.tree <span style="color:#f92672">import</span> DecisionTreeClassifier
 <span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> cross_val_score
 <span style="color:#f92672">from</span> sklearn <span style="color:#f92672">import</span> metrics
-
-<span style="color:#75715e">#helpers</span>
-<span style="color:#f92672">%</span>matplotlib inline
-</code></pre></div><h2 id="data-preparation">Data Preparation</h2>
-<p>Because modeling is not central to the analysis in this project, I&rsquo;m not doing any additional data prep before modeling. In a more typical scenario in addition to the  wrangling/processing done before exploration, there would likely be additional preparation to do before modeling.  <strong>Data Normalization/Standardization</strong></p>
-<h1 id="decision-tree-classifier">Decision Tree Classifier</h1>
+</code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<h3 id="decision-tree-classifier">Decision Tree Classifier</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#specify the independent variables (features/attributes) for the model</span>
 X <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">4</span>]
 <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Summary of feature sample&#39;</span>)
@@ -724,15 +426,12 @@ X<span style="color:#f92672">.</span>head()
 
 <span style="color:#75715e">#specify the dependent variable (target) for the model</span>
 y <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;region&#39;</span>]
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#split df into a training set and testing set</span>
+
+<span style="color:#75715e">#split df into a training set and testing set</span>
 X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(X, y, test_size <span style="color:#f92672">=</span> <span style="color:#f92672">.</span><span style="color:#ae81ff">30</span>,
                                                    random_state <span style="color:#f92672">=</span> <span style="color:#ae81ff">123</span>)
-</code></pre></div><p><em>Coding Notes</em></p>
-<ul>
-<li><code>test_size = .30</code> specifies 70% of the data for training and 30% for testing.</li>
-<li><code>random_state = 123</code> ensures the same observations are selected for the training and testing sets every time the code is run (for reproducibility). 123 is not important (any other number would work just as well).</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#instatiate the decision tree algorithm</span>
+
+<span style="color:#75715e">#instatiate the decision tree algorithm</span>
 algo <span style="color:#f92672">=</span> DecisionTreeClassifier(max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
 
 <span style="color:#75715e">#train the model on the training data set</span>
@@ -745,34 +444,14 @@ preds <span style="color:#f92672">=</span> model<span style="color:#f92672">.</s
 
 <span style="color:#75715e">#create confusion matrix showing model predictions for each class</span>
 <span style="color:#66d9ef">print</span>(metrics<span style="color:#f92672">.</span>confusion_matrix(y_test, preds))
-</code></pre></div><p><em>Coding Notes</em></p>
-<ul>
-<li><code>preds = model.predict(X_test)</code>is where we are giving our trained model some new sets of X values (<code>X_test</code>) and asking it predict what region each is from.</li>
-<li>In <code>print(classification_report(y_test, preds))</code> we are comparing the prediction the model made for each observation in X_test, comparing the predicted region to the actual region for each observation (i.e. the values in <code>y_test</code>), and generating a classification report</li>
-<li><strong>Understanding the Classification Report:</strong>
-<ul>
-<li><em>precison</em> = the true positives/true positives + false positives</li>
-<li><em>recall</em> = true positives/true positives + false negatives' f1-score = a balance between precision and recall</li>
-<li><em>support</em> = the number of observations in X_test that were in each region.</li>
-<li><em>accuracy</em> = number of correct predictions/ total number of predictions
-<ul>
-<li>accuracy is only meaningful if test set is roughly balanced between the classes.
-Suppose 98% of the observations were in region 1, then the model could get 98% accuracy just by predicting that all observations are from region 1.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>The confusion matrix is telling us for the observations actually from each region (rows), how many the model predicted in each region (e.g. for the cases actually in region 1, the model predicted 3,266 were in 1, 0 were in 2, 494 were in 3, and 1078 were in 4)</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#print a text-only representation of the decison tree model</span>
-text_representation <span style="color:#f92672">=</span> tree<span style="color:#f92672">.</span>export_text(model)
-<span style="color:#66d9ef">print</span>(text_representation)
-</code></pre></div><h3 id="tree-plot">Tree Plot</h3>
+</code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h4 id="plot-decision-tree"><em>Plot Decision Tree</em></h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#import pkgs</span>
 <span style="color:#f92672">from</span> sklearn.tree <span style="color:#f92672">import</span> plot_tree
 <span style="color:#75715e">#graphviz creates better visualizations of decision trees</span>
 <span style="color:#f92672">import</span> graphviz
-<span style="color:#75715e"># pkgs also needed to plot tree using graphviz</span>
+<span style="color:#75715e"># additional pkgs needed to plot tree using graphviz</span>
 <span style="color:#f92672">from</span> sklearn <span style="color:#f92672">import</span> tree
 <span style="color:#f92672">import</span> pydotplus
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#plot the decision tree</span>
@@ -780,7 +459,8 @@ fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>
 tree <span style="color:#f92672">=</span> plot_tree(model, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, feature_names<span style="color:#f92672">=</span>X<span style="color:#f92672">.</span>columns,
                  class_names <span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;0&#39;</span>,<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>,<span style="color:#e6db74">&#39;3&#39;</span>],
                  filled <span style="color:#f92672">=</span> True, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#change y values into strings because graphviz requires dv to be strings</span>
+
+<span style="color:#75715e">#change y values into strings because graphviz requires dv to be strings</span>
 y_str<span style="color:#f92672">=</span>y<span style="color:#f92672">.</span>astype(str)
 
 <span style="color:#75715e">#apply the graphviz tree plotting function to my model and data</span>
@@ -802,7 +482,7 @@ graph<span style="color:#f92672">.</span>render(<span style="color:#e6db74">&#34
     <img src="https://katherinepiatti.com/images/c1_decision_tree_plot.png"/> 
 </figure>
 
-<p><em>Coding Notes</em></p>
+<p><em>Notes</em></p>
 <ul>
 <li>The tree from <code>plot_tree()</code> was too crowded, so I used the graphviz pkg instead.</li>
 <li>Each node of the tree tells us the <em>feature-value</em> the model selected for splitting the data during each iteration (e.g. first split at amount &lt;= to 499.95).</li>
@@ -817,96 +497,25 @@ graph<span style="color:#f92672">.</span>render(<span style="color:#e6db74">&#34
 <li>decision trees can also be plotted using the dtreeviz pkg—these are the best looking. For more info see <a href="https://github.com/parrt/dtreeviz">this github post</a>.</li>
 </ul>
 <h3 id="parameter-experimentation">Parameter Experimentation</h3>
-<h4 id="gini--entropy">gini → entropy</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#changing default gini criterion to entropy</span>
-algo_ent <span style="color:#f92672">=</span> DecisionTreeClassifier(criterion<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;entropy&#39;</span>, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
-
-<span style="color:#75715e">#train the decision tree algorithm on the training data</span>
-model_ent <span style="color:#f92672">=</span> algo_ent<span style="color:#f92672">.</span>fit(X_train, y_train)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#run model on X_test and predict values in y_test</span>
-preds_ent <span style="color:#f92672">=</span> model_ent<span style="color:#f92672">.</span>predict(X_test)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#check model&#39;s predicted values against actual values (ground truth) in y_test</span>
-<span style="color:#75715e">#and report the results</span>
-<span style="color:#66d9ef">print</span>(classification_report(y_test, preds_ent))
-</code></pre></div><hr>
-<h3 id="tree-depth">Tree Depth</h3>
-<p>This parameter controls/limits how wide and deep the decision tree can get. All decision trees begin with a single origin node which branches into 2 or more child nodes. Those of those child nodes then branches to further child nodes, which can then branch to a further layer of child nodes, and so on on.</p>
-<p>However, decision tree models are pone to overfitting. One way to reduce the risk of model overfitting is to limit how  deep the tree can get&ndash;the number of layers.</p>
-<p>For this project, if the model is allowed to terminate on its own, the resulting tree has a depth of more than 50. In my initial model, I limited the tree depth (max_depth) to 3.</p>
-<h4 id="max_depth--4">max_depth = 4</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#change max depth from 3 to 4</span>
-algo_ent4 <span style="color:#f92672">=</span> DecisionTreeClassifier(criterion<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;entropy&#39;</span>, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
-
-<span style="color:#75715e">#train the decision tree algorithm on the training data</span>
-model_ent4 <span style="color:#f92672">=</span> algo_ent4<span style="color:#f92672">.</span>fit(X_train, y_train)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#run model on X_test and predict values in y_test</span>
-preds_ent4 <span style="color:#f92672">=</span> model_ent4<span style="color:#f92672">.</span>predict(X_test)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#check model&#39;s predicted values against actual values (ground truth) in y_test</span>
-<span style="color:#75715e">#and report the results</span>
-<span style="color:#66d9ef">print</span>(classification_report(y_test, preds_ent4))
-</code></pre></div><p><em>Notes</em></p>
 <ul>
-<li>these scores are identical to scores for max depth 3 model. not sure if that&rsquo;s b/c i did something wrong or the model doesn&rsquo;t gain any predictive power after depth 3
-<ul>
-<li>ben said it&rsquo;s b/c the model doesn&rsquo;t improve beyond max depth 3</li>
+<li>gini vs. entropy</li>
+<li>tree depth: max depth 1, 4</li>
 </ul>
-</li>
-</ul>
-<hr>
-<h4 id="max-depth--1">max depth = 1</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#change max depth from 4 to 1</span>
-algo_ent1 <span style="color:#f92672">=</span> DecisionTreeClassifier(criterion<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;entropy&#39;</span>, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
-
-<span style="color:#75715e">#train the decision tree algorithm on the training data</span>
-model_ent1 <span style="color:#f92672">=</span> algo_ent1<span style="color:#f92672">.</span>fit(X_train, y_train)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#run model on X_test and predict values in y_test</span>
-preds_ent1 <span style="color:#f92672">=</span> model_ent1<span style="color:#f92672">.</span>predict(X_test)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#check model&#39;s predicted values against actual values (ground truth)</span>
-<span style="color:#75715e">#in y_test and report the results</span>
-<span style="color:#66d9ef">print</span>(classification_report(y_test, preds_ent1))
-</code></pre></div><p><em>Notes</em></p>
-<ul>
-<li>i think this warning appeared because there were no observations in regions 3 &amp; 4 after the split represented in the root node of the tree. but with max depth of the tree set to 1, there are no more splits in the data (<em><strong>verify</strong></em>)</li>
-</ul>
-<hr>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <h2 id="model-performance">Model Performance</h2>
 <h3 id="cross-validation">Cross Validation</h3>
 <p>how does cross validation decrease the chance that a ML model will be overfit?</p>
 <ul>
 <li>basically because you are testing and training the model on several smaller datasets (the folds), and then averaging the results of each of those to come up with the final model, it&rsquo;s more likely the overfitting will be smoothed out in the average. say the first model is overfit by .6, <em><strong>I DON&rsquo;T THINK THIS IS CORRECT. I&rsquo;VE DONE A LOT OF RESEARCH AND CANNOT FIND A SATISFACTORY ANSWER</strong></em></li>
 </ul>
-<h4 id="3-fold-cv">3-fold CV</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#instatiate cross validation model with decision tree algorithm</span>
-cv_model <span style="color:#f92672">=</span> DecisionTreeClassifier(random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">123</span>)
-
-<span style="color:#75715e">#apply model with 3 fold to dataset</span>
-scores <span style="color:#f92672">=</span> cross_val_score(cv_model, X, y, cv <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
-<span style="color:#66d9ef">print</span>(scores)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#calculate mean of accuracy scores from each fold</span>
-avg_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(scores)
-<span style="color:#66d9ef">print</span>(avg_score)
-</code></pre></div><h4 id="4-fold-cv">4-fold CV</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#apply 4-fold-model to data</span>
-scores <span style="color:#f92672">=</span> cross_val_score(cv_model, X, y, cv <span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
-<span style="color:#66d9ef">print</span>(scores)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#calculate mean of accuracy scores from each fold</span>
-avg_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(scores)
-<span style="color:#66d9ef">print</span>(avg_score)
-</code></pre></div><h4 id="8-fold-cv">8-fold CV</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#apply 8-fold model to data</span>
-scores <span style="color:#f92672">=</span> cross_val_score(cv_model, X, y, cv <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>)
-<span style="color:#66d9ef">print</span>(scores)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#calculate mean of accuracy scores from each fold</span>
-avg_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(scores)
-<span style="color:#66d9ef">print</span>(avg_score)
-</code></pre></div><h4 id="20-fold-cv">20-fold CV</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#apply 20 fold model to data</span>
-scores <span style="color:#f92672">=</span> cross_val_score(cv_model, X, y, cv <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>)
-<span style="color:#66d9ef">print</span>(scores)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#calculate mean of accuracy scores from each fold</span>
-avg_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(scores)
-<span style="color:#66d9ef">print</span>(avg_score)
-</code></pre></div><p><em>Notes</em></p>
+<ul>
+<li>tried: 3, 4, 8, and 20 fold</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><em>Notes</em></p>
 <ul>
 <li>i&rsquo;m not sure how to choose the optimal number of folds.</li>
 <li>i expected the accuracy of the model to improve at least slightly (up to a point) the more folds you used in the cv model because i was mistakenly thinking that in a cv model, the model was adjusted after being trained on each fold, so that after training the final model was basically the average of the models trained on each fold.</li>
@@ -914,11 +523,9 @@ avg_score <span style="color:#f92672">=</span> np<span style="color:#f92672">.</
 <li>when you specify the type of algorithm (e.g. decision tree, random forest), set the various parameters, and specify your feature and target variables—the model is set. the model is not changed/refined in the training on each fold. the same model is used on every fold</li>
 <li>but then how does cross validation cut the risk of overfitting? basically, the accuracy scores on each fold should be roughly the same. if one accuracy score is very different than the others, you know that something is going on with that part of the data and you need to investigate to figure it out. (<em><strong>verify: i&rsquo;m not sure about this</strong></em>)</li>
 </ul>
-<h3 id="feature-importance">Feature Importance</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># use pandas and random forest model to see which features within the df are most important</span>
-feature_imp <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>series(model<span style="color:#f92672">.</span>feature_importances_, index<span style="color:#f92672">=</span>data<span style="color:#f92672">.</span>feature<span style="color:#f92672">.</span>names)
-    <span style="color:#f92672">.</span>sort_values(ascending<span style="color:#f92672">=</span>False)
-</code></pre></div><p><a href="https://github.com/kpiatti/customer-purchasing-patterns">Link to Project GitHub Repository</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>                                      <a href="https://github.com/kpiatti/customer-purchasing-patterns">Link to GitHub Repository</a></p>
 <ul class="pa0">
   
 </ul>
