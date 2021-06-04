@@ -1,5 +1,5 @@
 ---
-date: 2020-12-13
+date: false
 description: ""
 featured_image: "/images/credit_feature.webp"
 title: "Credit Risk Assessment with Python"
