@@ -2,13 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://katherinepiatti.com/post/creditone_project/</loc>
-    <lastmod>2020-12-13T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://katherinepiatti.com/</loc>
-    <lastmod>2020-12-13T00:00:00+00:00</lastmod>
+    <lastmod>2017-03-02T12:00:00-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -25,7 +20,15 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://katherinepiatti.com/post/creditone_project/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://katherinepiatti.com/post/customer_purchasing_analysis/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://katherinepiatti.com/post/submeter_energy_analysis/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>

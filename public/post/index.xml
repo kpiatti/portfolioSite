@@ -10,7 +10,7 @@
     <item>
       <title>Credit Risk Assessment with Python</title>
       <link>https://katherinepiatti.com/post/creditone_project/</link>
-      <pubDate>Sun, 13 Dec 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://katherinepiatti.com/post/creditone_project/</guid>
       <description>The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.
@@ -25,6 +25,16 @@
       <guid>https://katherinepiatti.com/post/customer_purchasing_analysis/</guid>
       <description>The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
  Data Wrangling Getting the raw data ready for analysis is typically an intensive, time consuming process. However, the raw data for this project was already in good shape when I got it.</description>
+    </item>
+    
+    <item>
+      <title>Energy Consumption Analysis (R)</title>
+      <link>https://katherinepiatti.com/post/submeter_energy_analysis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://katherinepiatti.com/post/submeter_energy_analysis/</guid>
+      <description>The goal of this project is to analyze energy consumption data over a three year span to provide evidence (if possible) supporting a client&amp;rsquo;s claim that their residence was unoccupied during the summer (June-August) of 2008.
+ Dataset Info The energy consumption data is from January 2007 through December 2009 and was gathered from 3 submeters in a single family home located in Sceaux, France (nearly 2 million data points). Each submeter monitors energy consumption in a different area of the house:</description>
     </item>
     
   </channel>
