@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Home</title>
+    <link>https://katherinepiatti.com/blog/</link>
+    <description>Recent content in Blog on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://katherinepiatti.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building My Portfolio Website</title>
+      <link>https://katherinepiatti.com/blog/my_website/</link>
+      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://katherinepiatti.com/blog/my_website/</guid>
+      <description>After my 14 year-old neighbor showed me the website she built, I decided enough is enough, it&amp;rsquo;s time I show her I&amp;rsquo;m better than she is and I can build my own website too.
+I researched several of the most popular DIY website creation tools (e.g. WordPress, Squarespace) and ultimately settled on using HUGO (an open source static site generator) to build my site and Netlify to for web hosting services.</description>
+    </item>
+    
+  </channel>
+</rss>
