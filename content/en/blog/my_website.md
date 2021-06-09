@@ -1,10 +1,11 @@
 ---
-date: 2021-04-28
+date: 2021-05-24
 description: ""
-featured_image: "/images/my_website_feature.jpg"
+featured_image: ""
 title: "Building My Portfolio Website"
+omit_header_text: true
 show_reading_time: true
-draft: true
+draft:
 ---
 {{< figure src="/images/website_logos.png" >}}
 
