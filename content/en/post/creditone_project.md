@@ -4,9 +4,11 @@ description: ""
 featured_image: "/images/credit_feature.webp"
 title: "Credit Risk Assessment with Python"
 show_reading_time: true
+show_date: false
 ---
 The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.  
 
+<!--
 ```python
 #import required packages
 from sqlalchemy import create_engine
@@ -14,13 +16,17 @@ import pymysql
 import pandas as pd
 import numpy as np
 ```
+-->
 
-&nbsp;
-## *Obtain Data*
 
-The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database, extract the data and export it as a .csv file (even though it's possible to work with the data without exporting it as a .csv, if feasible I prefer having and working with a standalone data file.
+### *Obtain Data*
+
+I obtained the raw data for this project from a MySQL database by establishing a connection to the server, executing a simple SELECT * query, and saving the result/output as a .csv file. I use [this](/folder/creditone_data_info1.pdf) data supplement to understand what the column/variable names represent.
+
+<!--
+(even though it's possible to perform some data processing tasks within the database using SQL, if feasible, my preference is to work with data usingR or Python all the processing inside my IDE--in this case Jupyter Lab)
 * *Original Source* — data was first used in [this](https://bradzzz.gitbooks.io/ga-seattle-dsi/content/dsi/dsi_05_classification_databases/2.1-lesson/assets/datasets/DefaultCreditCardClients_yeh_2009.pdf)  academic paper.
-* *Data Supplement* — this info is required to understand what the variables in the dataset represent ([creditone_data_info.pdf](/folder/creditone_data_info1.pdf)).
+* *
 
 ```python
 #connect python to MySQL server (database?)
@@ -41,15 +47,24 @@ df.to_csv ('raw_creditone_data.csv', index = False)
 
 > *Coding Note*
 > * Unsure why (or if) the ```create_engine()``` command is needed. (See my SQL collection in Zotero).
+-->
 
 
 
 
 &nbsp;
-&nbsp;
+## Data Wrangling
+To get the data ready for analysis, I did the following:
 
-# Data Wrangling
+- cleaned variable names to make them more meaningful and transparent
+- removed 72 rows of duplicate data (including 2 extra header rows)
+- dropped row containing the one and only missing value
+- changed variable data types from *object* to *int* (integer) where appropriate
+- reordered columns so all related variables are grouped together
 
+The cleaned data contains 30,000 observations & 25 variables.
+
+<!--
 ```python
 #import exported csv file with raw data
 df = pd.read_csv('raw_credit_one_data.csv')
@@ -373,8 +388,6 @@ df.dtypes
 ```
 
 
-&nbsp;
-
 ### Categorical Variables
 
 ```python
@@ -425,9 +438,9 @@ df.rename(columns = {'BILL_AMT1': 'bill_s', 'BILL_AMT2':'bill_ag', 'BILL_AMT3':'
 #rename PAY_AMT features to convey month
 df.rename(columns = {'PAY_AMT1': 'pmt_s', 'PAY_AMT2':'pmt_ag', 'PAY_AMT3':'pmt_jy','PAY_AMT4':'pmt_ju', 'PAY_AMT5':'pmt_m', 'PAY_AMT6':'pmt_ap'}, inplace = True)
 ```
+-->
 
-&nbsp;
-
+<!--
 ### *Reorder Features*
 
 ```python
@@ -479,12 +492,11 @@ df = movecol(df,
 #export cleaned transformed data as .csv file
 df.to_csv('cleaned_creditone_data.csv', index = False, header=True)
 ```
-Cleaned data Dimensions: 30,000 observations & 25 variables
+-->
 
 
 &nbsp;
-
-# Exploratory Data Analysis (EDA)
+## Exploratory Data Analysis (EDA)
 
 ```python
 #import packages
@@ -493,15 +505,17 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 plt.style.use('fivethirtyeight')
 import numpy as np
-
 from pandas_profiling import ProfileReport
 
 #import cleaned data
 df = pd.read_csv('cleaned_transformed_credit_one_data.csv')
 ```
 
+*The observations that follow are primarily based on my analysis of the HTML pandas profile report I generated from the data.*
 
-## *Univarite Analysis*
+<!--
+&nbsp;
+### *Univarite Analysis*
 
 ```python
 #create in-line minimal pandas profile report
@@ -517,59 +531,60 @@ ProfileReport(df, minimal=True)
     * Generate a report for only a *sample* of df by substituting ```df.sample(n=10000)``` for df in the command.
 >* To output the report as a separate html file use:  ```prof = ProfileReport(df)
 prof.to_file(output_file='output.html')```
+-->
 
-*Observations that follow are primarily based on my analysis of the pandas profile report*
-
-
-&nbsp;
-
-### *Demographic Variables*
-
-* Sex
-    * 60.4% female, 39.6% male
-* Education
-    * HS 16.4%, University 46.8%, Graduate School 35.3%, Other 1.6%
-    * Compared to US population, sample has a lot of customers with university and graduate school degrees, and a small number with high school degrees.
-    * May consider combining university and graduate school categories later.
-* Marital Status
-    * Married (1) 45.5%, Single (2) 53.6%, Divorced (3) 1.1%, Other 0.2%
-* Age
-    * Range 21 - 79.
-    * Mean 35, Median 34
-    * Consider binnning: young, middle age, 65+
-
-&nbsp;
-
-### *Account Variables*
-
-* *Credit/Balance Limit* (target for model predicting LIMIT_BAL)
-  * Continuous variable, range - 10k to 1 million
-  * Only 81 distinct values (consider 8 bins)
-  * Mean: 167,484
-  * Distribution significantly skewed toward low end
-  * Mode: 50k limit (11.2%)
-  * Only 1 customer with 1 million limit  
-
-
-* *Default* (target for model predicting which customers are likely to default)
-  * Not defult 77.9%, default 22.1%
-
-
-* *Repayment Variables*
-  * -2 = no use, -1 = paid in full, 0 = use revolving credit, 1 = payment delay 1 month, 2 = payment delay 2 months, ..., 9 = payment delay 9+ months
-  * All repayment variables have roughly same distribution and characteristics: over 50% zeros, significantly more -2 & -1 values than values greater than or equal to 1
 
 
 &nbsp;
+#### Demographic Variables
 
-### *Billing Variables*
+*Sex*
+* 60.4% female, 39.6% male
+
+*Education*
+* HS 16.4%, University 46.8%, Graduate School 35.3%, Other 1.6%
+* Compared to US population, sample has a lot of customers with university and graduate school degrees, and a small number with high school degrees.
+* May consider combining university and graduate school categories later.
+Marital Status
+* Married (1) 45.5%, Single (2) 53.6%, Divorced (3) 1.1%, Other 0.2%
+
+*Age*
+* Range 21 - 79.
+* Mean 35, Median 34
+* Consider binnning: young, middle age, 65+
+
+&nbsp;
+#### Account Variables
+
+*Credit Limit* (target for model predicting LIMIT_BAL)
+* Continuous variable, range - 10k to 1 million
+* Only 81 distinct values (consider 8 bins)
+* Mean: 167,484
+* Distribution significantly skewed toward low end
+* Mode: 50k limit (11.2%)
+* Only 1 customer with 1 million limit  
+
+*Default* (target for model predicting customer defaults)
+* Not defult 77.9%, default 22.1%
+
+*Repayment Variables*
+* -2 = no use, -1 = paid in full, 0 = use revolving credit, 1 = payment delay 1 month, 2 = payment delay 2 months, ..., 9 = payment delay 9+ months
+* All repayment variables have roughly same distribution and characteristics: over 50% zeros, significantly more -2 & -1 values than values greater than or equal to 1
+
+
+&nbsp;
+#### Billing Variables
 
 * All billing variables have negative minimum values. If valid data points, perhaps CreditOne is overcharging customers and having to issue credits.
   * Consider removing or transforming negative values to improve model performance.
 * Distributions for all variables are roughly the same.
     * Very significant left skew
     * Lots of zeros
+* Suspicious data points: some customers have bill amounts that exceed their balance limits. Does that mean credit one is not enforcing those limits?
+  * Maybe I should engineer a logical var that is true iff the the customer's bill amount is bigger than their balance limit.
 
+
+<!--
 ```python
 #filter out the rows where the value for at least one of the billing vars is less than zero at least one of the bill
 df.query('bill_ap < 0 or bill_m < 0 or bill_ju < 0 or bill_jy < 0 or bill_ag or bill_s < 0')
@@ -588,8 +603,6 @@ df.query('bill_ap < 0 & bill_m < 0 & bill_ju < 0 & bill_jy < 0 & bill_ag & bill_
 #sort df by april bill amount from highest to lowest, then show first 10 rows
 df.sort_values(by=['bill_ap'], ascending=False).head(10)
 ```
-Suspicious data points: some customers have bill amounts that exceed their balance limits. Does that mean credit one is not enforcing those limits?
-    * Maybe I should engineer a logical var that is true iff the the customer's bill amount is bigger than their balance limit.
 
 
 ```python
@@ -605,8 +618,9 @@ df[ ['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s']].describe()
 
 >*Coding Notes*
 >* The median, mad, and describe stats are included in profile report. I was just practicing and testing if I could generate stats on a *list of vars* (rather than one at a time).
-
-### *Payment Variables*
+-->
+&nbsp;
+#### Payment Variables
 
 * There are 6 continuous payment variables - each represents the amount the customer paid towards their bill for the months of April to September 2005.
 * The distributions of the payment and billing variables have similar shapes.
@@ -617,11 +631,13 @@ df[ ['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s']].describe()
 
 &nbsp;
 
-## Correlation Analysis
+### Correlation Analysis
 If any of the features are highly correlated, that may be because they are actually tracking/representing the same information. Since high correlation between dependent variables can harm the performance of ML models, it needs to be handled.  
 
-### *Are billing variables correlated with each other?*
+&nbsp;
+### *Are the 6 billing variables correlated?*
 
+<!--
 ```python
 #calculate kendall's tau correlation between billing vars
 df[ ['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s']].corr(method='kendall')
@@ -631,9 +647,12 @@ df[ ['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s']].corr(metho
 >* By default corr function calculates pearson's correlation co-efficient.
 >* But it's only appropriate to use Pearson's if the data is normally distributed and we know from the profile report that the distributions for the billing variables are highly skewed.
 >* I think there's a way to output only the values below the diagonal.
-
+-->
 
 ```python
+#calculate kendall's tau correlation between billing vars
+df[ ['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s']].corr(method='kendall')<!
+
 # name a sample of 1,000 data points selected from the df
 smpl=df.sample(n=1000)
 
@@ -650,9 +669,9 @@ plt.savefig('creditone_bill_pairplot.png')
 * In general, the correlation is highest between each monthly billing variable and the variable representing the month after. The correlation declines with each proceeding month (e.g. the correlation is highest between the April (bill_ap) and May (bill_m) billing variables, and declines for each subsequent month.)  
     * May impact model performance. Consider only using one of the billing variables in model.
 
-
-### *Are the payment variables correlated with each other?*
-
+&nbsp;
+### *Are the 6 payment variables correlated?*
+<!--
 ```python
 #look at kendall's tau correlations b/t payment variables
 df[['pmt_ap', 'pmt_m', 'pmt_ju', 'pmt_jy', 'pmt_ag', 'pmt_s']].corr(method='kendall')
@@ -660,13 +679,14 @@ df[['pmt_ap', 'pmt_m', 'pmt_ju', 'pmt_jy', 'pmt_ag', 'pmt_s']].corr(method='kend
 #create a pairplot of the payment features using smpl (of 1,000)
 sns.pairplot(smpl, hue='DEFAULT', kind='scatter', vars=['pmt_ap','pmt_m', 'pmt_ju', 'pmt_jy', 'pmt_ag', 'pmt_s'])
 ```
+-->
 {{< figure src="/images/creditone_pmt_pairplot.png" >}}
 
 * One reason to think the payment variables might be highly correlated is that presumably the amount customers pay each month is related to the amount they were billed during the previous month. If true, since the billing variables are highly correlated,  the payment variables would be too.
 * The kendall's correlation coefficients are between 0.348 and 0.4126. But the scatter plots don't show any relationship.
 * This suggests, somewhat surprising, that the amount customers pay each month is not really related to the amount they are billed.
 
-
+&nbsp;
 ### *Are the payment variables correlated with the billing variables?*
 
 ```python
@@ -679,66 +699,74 @@ df[['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s','pmt_ap', 'pm
 
 
 &nbsp;
-# Bivariate Analysis
-
-## Credit Limit
-In this section I perform statistical tests to determine whether any of the DVs are related to the limit_bal target variable.
+## Credit Limit Analysis
+In this section I perform statistical tests to determine whether any of the dependent variables are related to the limit_bal target variable.
 
 
+&nbsp;
 ### Sex & Credit Limit
+<!--
 ```python
 sns.boxplot(data=df, x='SEX',y='LIMIT_BAL' )
 
 # save plot as png
 plt.savefig("creditone_sex_credit_box1.png")
 ```
+-->
 {{< figure src="/images/creditone_sex_credit_box.png" >}}
 
 The similarity between the box plots for female and male indicates there is no difference in credit limits between men and women. That means SEX is unlikely to be a helpful variable to include in a model prediting LIMIT_BAL.
 
 
+&nbsp;
 ### Education & Credit Limit
-
+<!--
 ```python
 sns.catplot(data=df, kind='box', x='EDUCATION', y='LIMIT_BAL').set_xticklabels(rotation=45)
 
 # save plot as png
 plt.savefig("creditone_edu_credit_box.png")
 ```
-
+-->
 {{< figure src="/images/creditone_edu_credit_box.png" >}}
 
 The box plots for all education levels are very similar. Customers with a graduate education enjoy credit limits that are on average higher than the other groups. It also appears the credit limits for customers with a high school education are slightly skewed to the lower end. The differences aren't dramatic, but a customer's credit limit does appear to be somewhat related to their level of education  
 
+
+&nbsp;
 ### Marriage & Credit Limit
-
-
+<!--
 ```python
 sns.boxplot(data=df, x='MARRIAGE', y='LIMIT_BAL')
 
 # save plot as png
 plt.savefig("creditone_marriage_credit_box.png")
 ```
+-->
 {{< figure src="/images/creditone_marriage_credit_box.png" >}}
 
 Although there are some small differences in the plots, it does not appear that a customer's credit limit is related to their marital status.
 
+
+&nbsp;
 ### Age & Credit Limit
-
-
+<!--
 ```python
 sns.scatterplot(data=df, x='AGE', y='LIMIT_BAL')
 
 # save plot as png
 plt.savefig("creditone_age_credit_box.png")
 ```
+-->
 {{< figure src="/images/creditone_age_credit_box.png" >}}
 
 There doesn't appear to be any sort of meaningful relationship between age and credit limit.
 
-## Credit Default
 
-
+&nbsp;
+## Credit Default analysis
+In this section I perform statistical tests to determine whether any of the dependent variables are related to whether or not customers in the sample default on their loans (DEFUALT).
+<!--
 ```python
 #obtain correlation co-efficients for all features and target
 df.corr().to_markdown
@@ -841,20 +869,15 @@ df.corr().to_markdown
 
     [22 rows x 22 columns]>
 ```
+-->
 
 
-### Demographic Features & Defualt Target
-
+&nbsp;
 #### Sex & Default
-
-
+<!--
 ```python
 sns.displot(data=df, x="SEX", stat='density', shrink=.8)
 ```
-
-
-
-
 
 
 ```python
@@ -863,39 +886,37 @@ sns.displot(data=df, x="SEX", col='DEFAULT', stat='density', shrink=.8)
 #save plot as png
 plt.savefig('creditone_sex_default_notdefault.png')
 ```
-{{< figure src="/images/creditone_sex_default_notdefault" >}}
+-->
+{{< figure src="/images/creditone_sex_default_notdefault.png" >}}
 
 *Observations*
 * From the first plot, we can see that CreditOne's customers are slightly more likely to be female than male.
 * From the second set of plots, when we compare the data for customers who have defualted on their loans to the data for the customers who have not defaulted on their loans, it looks like customers who have defaulted on their loans are slightly more likely to be male than customers overall--however, it's unlikely this difference is statistically significant.
 * The fact that the relative probabilities of being female vs. male is almost the same among the customers who have defaulted and the customers who have not defualted suggests that sex will not be an important feature in a model predicting whether a customer will defualt on their loans.
 
+
+
 #### Education & Default
-
-
+<!--
 ```python
 #create probability chart for the EDU var
 sns.displot(data=df, x ="EDUCATION", discrete=True, shrink = .8, stat='probability').set_xticklabels(rotation=45)
 ```
 
 
-
-
-
 ```python
 #create subplots showing the distribution for the EDU var conditional on the DEFUALT var
 sns.displot(data=df, x ="EDUCATION", col = 'DEFAULT', shrink = .8, stat='probability').set_xticklabels(rotation=45)
 ```
-
-
-
+-->
+{{< figure src="/images/creditone_edu_default.png" >}}
 
 
 *Observations*
 * Since higher levels of education are highly correlated with higher levels of income, and higher levels of income are presumably correlated with lower rates of defaulting on loans. I was anticipating that customers with university and graduate school levels of education to be relatively less likely to default on their loans.
 * However, comparing the distributions of education levels for customers who have defaulted to the ebb
 
-
+<!--
 ```python
 # this code generates a messed up plot
 g = sns.FacetGrid(data=df, col="DEFAULT", sharey=False)
@@ -903,17 +924,15 @@ g.map_dataframe(sns.histplot, x="EDUCATION", stat='probability')
 g.set_xticklabels(rotation=45)
 ```
 
-
-
-
 >*Coding Notes*
 >* I created the g subpolots at fisrt and thought they revealed an interesting relationship between level of edu and whether a customer had defaulted on their loans. It looked like relative to other groups, those with a high school edu level are less likely to default on their loans, and those with the other edu level are more likely.
 >* However, I continued to mess around and try out different types of plots and use different code, and none of the subsequent plots I generated showed the pattern. They all showed the pattern we would expect to see if there is no significant relationship between level of education and whether a customer defaulted on their loan.
 >* I investigated the issue extensively on my own and tried to figure it out with David Schwab, but it is still a mystery.
   >* David pointed out that in the weird charts it looks like bars for the "high school" and "other" levels the bars have been swapped. That sounds plausible to me, but we could not figure out how that could have happened, or how to get rid of it.  
+-->
 
+&nbsp;
 #### Age & Default
-
 
 ```python
 sns.catplot(data=df, kind='box', x='DEFAULT', y='AGE')
@@ -928,8 +947,11 @@ plt.savefig('creditone_age_default.png')
 * This suggests there is no significant relationship between a customer's age and whether or not she defaulted on her loans, which means AGE will not be an important feature in a model predicting whether a customer will default.  
 
 
-#### Marriage & Default
 
+&nbsp;
+#### Marriage & Default
+Add description of method.
+<!--
 ```python
 #filter the df to return only rows where value for DEFAULT == default
 dflt = df.loc[df['DEFAULT']=='default']
@@ -991,7 +1013,7 @@ nodflt.head().to_markdown
     [5 rows x 25 columns]>
 ```
 
-
+-->
 
 ```python
 fig, axes = plt.subplots(1, 3, figsize=(13,5), sharey=True)
@@ -1025,6 +1047,7 @@ axes[2].set_xlabel('')
 * From a comparison on the above plots, there appears that single customers are relatively less likely to default on their loans.
 
 
+&nbsp;
 ### Billing Variables & Credit Default
 
 ```python
@@ -1047,7 +1070,7 @@ sns.boxplot(ax=axes[1, 2], data=df, x='DEFAULT', y='bill_s')
   * It looks like there are some significant outliers. How can we find those data points in our df.
   * Other than some differences in outliers and a noticable difference in the length of the wiskers in bill_ag, all the box plots are basically the same. What, if anything, can we conclude from that?
 
-
+&nbsp;
 ### Payment Variables & Default
 
 ```python
@@ -1070,6 +1093,216 @@ sns.boxplot(ax=axes[1, 2], data=df, x='DEFAULT', y='pmt_s')
 
 
 
+
+
+<!--
+### Additional Stuff
+
+```python
+#convert DEFUALT into numerical feature
+df['DEFAULT'] =df['DEFAULT'].astype('category').cat.codes
+"""
+I read that it is less memory intensive to convert non-numerical variables into numerical vars if the vars are
+have the category data type instead of the obj dtype.
+"""
+
+#obtain correlation co-efficients for all features and bill_ap
+df[df.columns[1:]].corr()['bill_ap'][:]
+
+#filter df to exclude cases where bill_ap value is 0, then print last 20 cases in df
+df.loc[df.bill_ap !=0].tail(20)
+
+#filter the df to return only the rows where the april bill var is not 0
+nzbill=df.loc[df['bill_ap'] !=0]
+
+# filter the data to return only rows where june bill var is greater than 0
+nzbill2=df['bill_ju'].loc[lambda x: x > 0]
+
+nzbill2.head(20)
+---
+    1       3272
+    2      14331
+    3      28314
+    4      20940
+    5      19394
+    6     542653
+    7        221
+    8      12211
+    10      2513
+    11      8517
+    12      6500
+    13     66782
+    14     59696
+    15     28771
+    16     18338
+    17     70074
+    20     20616
+    22     44006
+    23       560
+    24      5398
+    Name: bill_ju, dtype: int64
+```
+
+
+```python
+#filter data to return only rows where the april AND june bill vars are not zero
+nzbill3=df.query('bill_ap !=0 & bill_ju !=0')
+nzbill3.shape
+---
+    (25140, 25)
+```
+
+
+>*Coding Notes*
+>* You can filter data using the ```df.query()``` function with string statements composed of var names and boolean operators.
+>* The first time I ran ```nzbill3.shape()``` it didn't work because I ended it with (). ```.shape``` is not a function that you want to perform on the data. It's more like asking for some kind of description of the data. That's why it shouldn't have parentheses at the end.
+
+
+```python
+#get the corr between the filtered data and DEFAULT
+nzbill3[nzbill3.columns[1:]].corr()['DEFAULT'][:]
+---
+
+    MARRIAGE     0.024541
+    AGE         -0.006730
+    LIMIT_BAL    0.178940
+    bill_ap      0.002718
+    bill_m       0.003591
+    bill_ju      0.008230
+    bill_jy      0.011548
+    bill_ag      0.010313
+    bill_s       0.015756
+    pmt_ap       0.053151
+    pmt_m        0.058686
+    pmt_ju       0.058949
+    pmt_jy       0.059988
+    pmt_ag       0.060119
+    pmt_s        0.074500
+    pay_ap      -0.252730
+    pay_m       -0.269089
+    pay_ju      -0.276352
+    pay_jy      -0.291087
+    pay_ag      -0.316754
+    pay_s       -0.363338
+    DEFAULT      1.000000
+    Name: DEFAULT, dtype: float64
+```
+
+
+>*Notes*
+>* Because I am concerned that the high percentage of 0 values in the billing variables is negatively impacting the analysis, I wanted to see if the correlations with DEFAULT would improve if I excluded the data where one or more of the billing vars has a value of 0.
+>* However, it occured to me after getting the above .corr and thinking about the math behind correlation that excluding the cases with 0 values wouldn't impact the co-efficients.
+
+
+```python
+#filter the data to return only rows where the April bill var is less than 100,000
+df.loc[df['bill_ap']<= -100000]
+
+#get number of columens and rows
+nzbill3.shape
+---
+    (25140, 25)
+```
+-->
+
+&nbsp;
+## Predicting Customer Credit Limits
+In this notebook I am only going to create and test models that attempt to predict customer credit limits. Which means the target variable in all models will be 'limit' (i.e. limit_bal).
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+#the inline magic line is needed to make some data visualizations come out right when you are using jupyter notebooks
+%matplotlib inline
+import seaborn as sns
+from math import sqrt
+
+#ML algorithms (estimators)
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import LinearRegression
+from sklearn.svm import SVR
+from sklearn import linear_model
+
+#model metrics
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
+from sklearn.model_selection import cross_val_score
+
+#cross validation
+from sklearn.model_selection import train_test_split
+```
+
+
+&nbsp;
+### Data Preparation
+Add description and reasons for data transformations--one hot encoding
+<!--
+## Import & Verify Data
+
+```python
+#import numerical only data
+df= pd.read_csv('num_only_credit_one_data.csv')
+
+df.head()
+```
+
+
+```python
+df.shape
+---
+    (30000, 31)
+```
+
+
+```python
+df.info()
+```
+
+    <class 'pandas.core.frame.DataFrame'>
+    RangeIndex: 30000 entries, 0 to 29999
+    Data columns (total 31 columns):
+     #   Column               Non-Null Count  Dtype
+    ---  ------               --------------  -----
+     0   ID                   30000 non-null  int64
+     1   SEX                  30000 non-null  int64
+     2   AGE                  30000 non-null  int64
+     3   LIMIT_BAL            30000 non-null  int64
+     4   bill_ap              30000 non-null  int64
+     5   bill_m               30000 non-null  int64
+     6   bill_ju              30000 non-null  int64
+     7   bill_jy              30000 non-null  int64
+     8   bill_ag              30000 non-null  int64
+     9   bill_s               30000 non-null  int64
+     10  pmt_ap               30000 non-null  int64
+     11  pmt_m                30000 non-null  int64
+     12  pmt_ju               30000 non-null  int64
+     13  pmt_jy               30000 non-null  int64
+     14  pmt_ag               30000 non-null  int64
+     15  pmt_s                30000 non-null  int64
+     16  pay_ap               30000 non-null  int64
+     17  pay_m                30000 non-null  int64
+     18  pay_ju               30000 non-null  int64
+     19  pay_jy               30000 non-null  int64
+     20  pay_ag               30000 non-null  int64
+     21  pay_s                30000 non-null  int64
+     22  DEFAULT              30000 non-null  int64
+     23  edu_graduate school  30000 non-null  int64
+     24  edu_high school      30000 non-null  int64
+     25  edu_other            30000 non-null  int64
+     26  edu_university       30000 non-null  int64
+     27  mar_0                30000 non-null  int64
+     28  mar_1                30000 non-null  int64
+     29  mar_2                30000 non-null  int64
+     30  mar_3                30000 non-null  int64
+    dtypes: int64(31)
+    memory usage: 7.1 MB
+
+
+Everything with my dataset looks as I expect. So I will move on to specifying the variables I was to use as features (IVs) and the one I want to use as target for my model predicting credit limit.
+-->
+
+<!--
 # Transform Non-numeric Values
 
 ```python
@@ -1077,8 +1310,6 @@ sns.boxplot(ax=axes[1, 2], data=df, x='DEFAULT', y='pmt_s')
 obj_df = df.select_dtypes(include=['object']).copy()
 obj_df.head()
 ```
-
-
 
 
 ```python
@@ -1143,8 +1374,9 @@ cat_df=pd.get_dummies(cat_df, columns=['EDUCATION'], prefix=['edu'])
 
 cat_df.head()
 ```
+-->
 
-
+<!--
 ## Perform Transformations on Original df
 To avoid issues arising from having to merge 2 df, I am going to create a copy of the original df and transform the original non-numerical variables, instead of adding new variables to the df.
 
@@ -1180,218 +1412,9 @@ num_df.head()
 #Export Numerical df
 num_df.to_csv('num_only_credit_one_data.csv', index = False, header=True)
 ```
-
-### Additional Stuff
-
-```python
-#convert DEFUALT into numerical feature
-df['DEFAULT'] =df['DEFAULT'].astype('category').cat.codes
-"""
-I read that it is less memory intensive to convert non-numerical variables into numerical vars if the vars are
-have the category data type instead of the obj dtype.
-"""
-
-#obtain correlation co-efficients for all features and bill_ap
-df[df.columns[1:]].corr()['bill_ap'][:]
-
-#filter df to exclude cases where bill_ap value is 0, then print last 20 cases in df
-df.loc[df.bill_ap !=0].tail(20)
-
-#filter the df to return only the rows where the april bill var is not 0
-nzbill=df.loc[df['bill_ap'] !=0]
-
-# filter the data to return only rows where june bill var is greater than 0
-nzbill2=df['bill_ju'].loc[lambda x: x > 0]
-
-nzbill2.head(20)
----
-    1       3272
-    2      14331
-    3      28314
-    4      20940
-    5      19394
-    6     542653
-    7        221
-    8      12211
-    10      2513
-    11      8517
-    12      6500
-    13     66782
-    14     59696
-    15     28771
-    16     18338
-    17     70074
-    20     20616
-    22     44006
-    23       560
-    24      5398
-    Name: bill_ju, dtype: int64
-```
+-->
 
 
-
-```python
-#filter data to return only rows where the april AND june bill vars are not zero
-nzbill3=df.query('bill_ap !=0 & bill_ju !=0')
-nzbill3.shape
----
-    (25140, 25)
-```
-
-
->*Coding Notes*
->* You can filter data using the ```df.query()``` function with string statements composed of var names and boolean operators.
->* The first time I ran ```nzbill3.shape()``` it didn't work because I ended it with (). ```.shape``` is not a function that you want to perform on the data. It's more like asking for some kind of description of the data. That's why it shouldn't have parentheses at the end.
-
-
-```python
-#get the corr between the filtered data and DEFAULT
-nzbill3[nzbill3.columns[1:]].corr()['DEFAULT'][:]
----
-
-    MARRIAGE     0.024541
-    AGE         -0.006730
-    LIMIT_BAL    0.178940
-    bill_ap      0.002718
-    bill_m       0.003591
-    bill_ju      0.008230
-    bill_jy      0.011548
-    bill_ag      0.010313
-    bill_s       0.015756
-    pmt_ap       0.053151
-    pmt_m        0.058686
-    pmt_ju       0.058949
-    pmt_jy       0.059988
-    pmt_ag       0.060119
-    pmt_s        0.074500
-    pay_ap      -0.252730
-    pay_m       -0.269089
-    pay_ju      -0.276352
-    pay_jy      -0.291087
-    pay_ag      -0.316754
-    pay_s       -0.363338
-    DEFAULT      1.000000
-    Name: DEFAULT, dtype: float64
-```
-
-
->*Notes*
->* Because I am concerned that the high percentage of 0 values in the billing variables is negatively impacting the analysis, I wanted to see if the correlations with DEFAULT would improve if I excluded the data where one or more of the billing vars has a value of 0.
->* However, it occured to me after getting the above .corr and thinking about the math behind correlation that excluding the cases with 0 values wouldn't impact the co-efficients.
-
-
-```python
-#filter the data to return only rows where the April bill var is less than 100,000
-df.loc[df['bill_ap']<= -100000]
-
-#get number of columens and rows
-nzbill3.shape
----
-    (25140, 25)
-```
-
-
-# Modeling
-
-```python
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-#the inline magic line is needed to make some data visualizations come out right when you are using jupyter notebooks
-%matplotlib inline
-import seaborn as sns
-
-from math import sqrt
-```
-
-
-```python
-#ML algorithms (estimators)
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.linear_model import LinearRegression
-from sklearn.svm import SVR
-from sklearn import linear_model
-
-#model metrics
-from sklearn.metrics import mean_squared_error
-from sklearn.metrics import r2_score
-from sklearn.model_selection import cross_val_score
-
-#cross validation
-from sklearn.model_selection import train_test_split
-```
-
-
-
-
-
-## Import & Verify Data
-
-
-```python
-#import numerical only data
-df= pd.read_csv('num_only_credit_one_data.csv')
-
-df.head()
-```
-
-
-```python
-df.shape
----
-    (30000, 31)
-```
-
-
-
-```python
-df.info()
-```
-
-    <class 'pandas.core.frame.DataFrame'>
-    RangeIndex: 30000 entries, 0 to 29999
-    Data columns (total 31 columns):
-     #   Column               Non-Null Count  Dtype
-    ---  ------               --------------  -----
-     0   ID                   30000 non-null  int64
-     1   SEX                  30000 non-null  int64
-     2   AGE                  30000 non-null  int64
-     3   LIMIT_BAL            30000 non-null  int64
-     4   bill_ap              30000 non-null  int64
-     5   bill_m               30000 non-null  int64
-     6   bill_ju              30000 non-null  int64
-     7   bill_jy              30000 non-null  int64
-     8   bill_ag              30000 non-null  int64
-     9   bill_s               30000 non-null  int64
-     10  pmt_ap               30000 non-null  int64
-     11  pmt_m                30000 non-null  int64
-     12  pmt_ju               30000 non-null  int64
-     13  pmt_jy               30000 non-null  int64
-     14  pmt_ag               30000 non-null  int64
-     15  pmt_s                30000 non-null  int64
-     16  pay_ap               30000 non-null  int64
-     17  pay_m                30000 non-null  int64
-     18  pay_ju               30000 non-null  int64
-     19  pay_jy               30000 non-null  int64
-     20  pay_ag               30000 non-null  int64
-     21  pay_s                30000 non-null  int64
-     22  DEFAULT              30000 non-null  int64
-     23  edu_graduate school  30000 non-null  int64
-     24  edu_high school      30000 non-null  int64
-     25  edu_other            30000 non-null  int64
-     26  edu_university       30000 non-null  int64
-     27  mar_0                30000 non-null  int64
-     28  mar_1                30000 non-null  int64
-     29  mar_2                30000 non-null  int64
-     30  mar_3                30000 non-null  int64
-    dtypes: int64(31)
-    memory usage: 7.1 MB
-
-
-Everything with my dataset looks as I expect. So I will move on to specifying the variables I was to use as features (IVs) and the one I want to use as target for my model predicting credit limit.
-
-# Predicting Customer Credit Limits
-In this notebook I am only going to create and test models that attempt to predict customer credit limits. Which means the target variable in all models will be 'limit' (i.e. limit_bal).
 
 #### Re-ordering df Columns
 To make things easier, before doing anything I'm going to move LIMIT_BAL to the last column in my df and rename it.
@@ -1449,8 +1472,8 @@ y.shape
     (30000,)
 
 
-
-# Model 1: Predicting Credit Limit Using All Variables
+&nbsp;
+## Model 1: Using All Dependent Variables
 None of the variables stood out as ones that should be included or excluded from the model, so in this first model I'm going to include them all.
 
 ### Specify the Feature Variables
@@ -1526,22 +1549,18 @@ for i in range(len(names)):
 
 The model built using the random forest regressor performed slightly better than the other two models. However, did little better than chance at predicting customer's credit limits (i.e.limit_bal).
 
-# Credit Limit Model 2: Excluding the Demographic Variables
-
-## Select the Feature Variables
+## Model 2: Excluding Demographic Variables
 
 
 ```python
+## Select the Feature Variables
+
 #filter the data to return only columns for bill amount, payment amount, payment history, and default var
 X2 = df.iloc[:, 3:22]
 
 print('Summary of Model 2 Features')
 X2.head()
 ```
-
-    Summary of Features for Model 2
-
-
 
 
 
