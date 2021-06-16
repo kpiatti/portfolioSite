@@ -25,7 +25,7 @@ The three main criteria I used when choosing what tools to use:
       
       <guid>https://katherinepiatti.com/post/creditone_project/</guid>
       <description>The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.
-#import required packages from sqlalchemy import create_engine import pymysql import pandas as pd import numpy as np  Obtain Data The CreditOne data is on the MySQL sever, so I need to connect to the server, query the database, extract the data and export it as a .</description>
+Obtain Data I obtained the raw data for this project from a MySQL database by establishing a connection to the server, executing a simple SELECT * query, and saving the result/output as a .</description>
     </item>
     
     <item>
