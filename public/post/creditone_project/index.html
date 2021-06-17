@@ -43,7 +43,7 @@ Obtain Data I obtained the raw data for this project from a MySQL database by es
 <meta itemprop="description" content="The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.
 Obtain Data I obtained the raw data for this project from a MySQL database by establishing a connection to the server, executing a simple SELECT * query, and saving the result/output as a .">
 
-<meta itemprop="wordCount" content="2586">
+<meta itemprop="wordCount" content="2474">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Credit Risk Assessment with Python"/>
 <meta name="twitter:description" content="The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.
@@ -198,8 +198,8 @@ Obtain Data I obtained the raw data for this project from a MySQL database by es
 
       
       
-        <span class="f6 mv4 dib tracked"> - 13 minutes read</span>
-        <span class="f6 mv4 dib tracked"> - 2586 words</span>
+        <span class="f6 mv4 dib tracked"> - 12 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 2474 words</span>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.</p>
@@ -241,64 +241,54 @@ df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>re
 <!-- raw HTML omitted -->
 <p> </p>
 <h4 id="demographic-variables">Demographic Variables</h4>
-<p><em>Sex</em></p>
+<p><em>Age</em> &amp; <em>Sex</em>
+<figure>
+    <img src="https://katherinepiatti.com/images/creditone_age_sex_dist_plots.png"/> 
+</figure>
+</p>
 <ul>
+<li>Age range 21 - 79, Mean 35, Median 34</li>
 <li>60.4% female, 39.6% male</li>
 </ul>
-<p><em>Education</em></p>
+<!-- raw HTML omitted -->
+<p> 
+<em>Education</em> &amp; <em>Marriage</em>
+<figure>
+    <img src="https://katherinepiatti.com/images/creditone_edu_mar_count_plots.png"/> 
+</figure>
+</p>
 <ul>
 <li>HS 16.4%, University 46.8%, Graduate School 35.3%, Other 1.6%</li>
-<li>Compared to US population, sample has a lot of customers with university and graduate school degrees, and a small number with high school degrees.</li>
-<li>May consider combining university and graduate school categories later.
-Marital Status</li>
+<li>A disproportionate number of customers have university &amp; graduate degrees (compared to US population)</li>
 <li>Married (1) 45.5%, Single (2) 53.6%, Divorced (3) 1.1%, Other 0.2%</li>
 </ul>
-<p><em>Age</em></p>
-<ul>
-<li>Range 21 - 79.</li>
-<li>Mean 35, Median 34</li>
-<li>Consider binnning: young, middle age, 65+</li>
-</ul>
+<!-- raw HTML omitted -->
 <p> </p>
 <h4 id="account-variables">Account Variables</h4>
-<p><em>Credit Limit</em> (target for model predicting LIMIT_BAL)</p>
+<p><em>Credit Limit</em>: the $ amount of credit each customer currently has</p>
 <ul>
-<li>Continuous variable, range - 10k to 1 million</li>
-<li>Only 81 distinct values (consider 8 bins)</li>
-<li>Mean: 167,484</li>
-<li>Distribution significantly skewed toward low end</li>
-<li>Mode: 50k limit (11.2%)</li>
-<li>Only 1 customer with 1 million limit</li>
+<li>Mean: 167,484; Mode: 50k (11.2%)</li>
+<li>Distribution significantly skewed toward low limits</li>
+<li>Wide range: 10k - 1M</li>
+<li>Low variability: only 81 distinct values</li>
 </ul>
-<p><em>Default</em> (target for model predicting customer defaults)</p>
+<p><em>Default</em>: dummy variable, indicate whether the customer has or has not defaulted on their loans (we don&rsquo;t know the time frame determining this value, e.g. lifetime of account, at least once during last 7 yrs).</p>
 <ul>
-<li>Not defult 77.9%, default 22.1%</li>
+<li>Not default 77.9%, default 22.1%</li>
 </ul>
 <p><em>Repayment Variables</em></p>
 <ul>
-<li>-2 = no use, -1 = paid in full, 0 = use revolving credit, 1 = payment delay 1 month, 2 = payment delay 2 months, &hellip;, 9 = payment delay 9+ months</li>
-<li>All repayment variables have roughly same distribution and characteristics: over 50% zeros, significantly more -2 &amp; -1 values than values greater than or equal to 1</li>
+<li>-2 = no use, -1 = paid in full, 0 = use of revolving credit, 1= 1 month payment delay, 2= 2 month delay, &hellip;, 9= 9+ month delay (at what point are they coded as defaulted?)</li>
+<li>All six variables have roughly the same, significantly skewed distributions (50%+ of values are 0, few values &gt;= 1)</li>
 </ul>
 <p> </p>
 <h4 id="billing-variables">Billing Variables</h4>
 <ul>
-<li>All billing variables have negative minimum values. If valid data points, perhaps CreditOne is overcharging customers and having to issue credits.
-<ul>
-<li>Consider removing or transforming negative values to improve model performance.</li>
+<li>The distributions for all six variables are roughly the same and just like the payment variables.</li>
+<li>All variables have a non-trival number of negative values (this merits investigation for data integrity since negative values on bills presumably mean a customer was overcharged then issued a credit).</li>
 </ul>
-</li>
-<li>Distributions for all variables are roughly the same.
-<ul>
-<li>Very significant left skew</li>
-<li>Lots of zeros</li>
-</ul>
-</li>
-<li>Suspicious data points: some customers have bill amounts that exceed their balance limits. Does that mean credit one is not enforcing those limits?
-<ul>
-<li>Maybe I should engineer a logical var that is true iff the the customer&rsquo;s bill amount is bigger than their balance limit.</li>
-</ul>
-</li>
-</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p> </p>
@@ -368,41 +358,29 @@ df[[<span style="color:#e6db74">&#39;bill_ap&#39;</span>, <span style="color:#e6
 <h2 id="credit-limit-analysis">Credit Limit Analysis</h2>
 <p>In this section I perform statistical tests to determine whether any of the dependent variables are related to the limit_bal target variable.</p>
 <p> </p>
-<h3 id="sex--credit-limit">Sex &amp; Credit Limit</h3>
+<h3 id="age-sex--credit-limit">Age, Sex, &amp; Credit Limit</h3>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <figure>
-    <img src="https://katherinepiatti.com/images/creditone_sex_credit_box.png"/> 
+    <img src="https://katherinepiatti.com/images/creditone_age_sex_plots.png"/> 
 </figure>
 
-<p>The similarity between the box plots for female and male indicates there is no difference in credit limits between men and women. That means SEX is unlikely to be a helpful variable to include in a model prediting LIMIT_BAL.</p>
+<ul>
+<li>There doesn&rsquo;t appear to be any sort of meaningful relationship between age and credit limit.</li>
+<li>The similarity between the box plots for female and male indicates there is no difference in credit limits between men and women. That means SEX is unlikely to be a helpful variable to include in a model prediting LIMIT_BAL.</li>
+</ul>
 <p> </p>
-<h3 id="education--credit-limit">Education &amp; Credit Limit</h3>
+<h3 id="education-marriage--credit-limit">Education, Marriage, &amp; Credit Limit</h3>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <figure>
-    <img src="https://katherinepiatti.com/images/creditone_edu_credit_box.png"/> 
+    <img src="https://katherinepiatti.com/images/creditone_edu_marriage_box.png"/> 
 </figure>
 
-<p>The box plots for all education levels are very similar. Customers with a graduate education enjoy credit limits that are on average higher than the other groups. It also appears the credit limits for customers with a high school education are slightly skewed to the lower end. The differences aren&rsquo;t dramatic, but a customer&rsquo;s credit limit does appear to be somewhat related to their level of education</p>
-<p> </p>
-<h3 id="marriage--credit-limit">Marriage &amp; Credit Limit</h3>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<figure>
-    <img src="https://katherinepiatti.com/images/creditone_marriage_credit_box.png"/> 
-</figure>
-
-<p>Although there are some small differences in the plots, it does not appear that a customer&rsquo;s credit limit is related to their marital status.</p>
-<p> </p>
-<h3 id="age--credit-limit">Age &amp; Credit Limit</h3>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<figure>
-    <img src="https://katherinepiatti.com/images/creditone_age_credit_box.png"/> 
-</figure>
-
-<p>There doesn&rsquo;t appear to be any sort of meaningful relationship between age and credit limit.</p>
+<ul>
+<li>The box plots for all education levels are very similar. Customers with a graduate education enjoy credit limits that are on average higher than the other groups. It also appears the credit limits for customers with a high school education are slightly skewed to the lower end. The differences aren&rsquo;t dramatic, but a customer&rsquo;s credit limit does appear to be somewhat related to their level of education</li>
+<li>Although there are some small differences in the plots, it does not appear that a customer&rsquo;s credit limit is related to their marital status.</li>
+</ul>
 <p> </p>
 <h2 id="credit-default-analysis">Credit Default analysis</h2>
 <p>In this section I perform statistical tests to determine whether any of the dependent variables are related to whether or not customers in the sample default on their loans (DEFUALT).</p>
@@ -426,7 +404,7 @@ df[[<span style="color:#e6db74">&#39;bill_ap&#39;</span>, <span style="color:#e6
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <figure>
-    <img src="https://katherinepiatti.com/images/creditone_edu_default.png"/> 
+    <img src="https://katherinepiatti.com/images/creditone_edu.png"/> 
 </figure>
 
 <p><em>Observations</em></p>
@@ -438,11 +416,9 @@ df[[<span style="color:#e6db74">&#39;bill_ap&#39;</span>, <span style="color:#e6
 <!-- raw HTML omitted -->
 <p> </p>
 <h4 id="age--default">Age &amp; Default</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sns<span style="color:#f92672">.</span>catplot(data<span style="color:#f92672">=</span>df, kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;box&#39;</span>, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;AGE&#39;</span>)
-
-<span style="color:#75715e">#save plot as png</span>
-plt<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#39;creditone_age_default.png&#39;</span>)
-</code></pre></div><figure>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<figure>
     <img src="https://katherinepiatti.com/images/creditone_age_default.png"/> 
 </figure>
 
@@ -481,24 +457,23 @@ axes[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>se
 sns<span style="color:#f92672">.</span>histplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">2</span>], data<span style="color:#f92672">=</span>nodflt, x <span style="color:#f92672">=</span><span style="color:#e6db74">&#39;MARRIAGE&#39;</span>, stat<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;probability&#39;</span>, discrete<span style="color:#f92672">=</span>True, shrink<span style="color:#f92672">=.</span><span style="color:#ae81ff">8</span>)
 axes[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>set_xticklabels(labels<span style="color:#f92672">=</span>labels, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">45</span>)
 axes[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;&#39;</span>)
-</code></pre></div><p><em>Observations</em></p>
+</code></pre></div><figure>
+    <img src="https://katherinepiatti.com/images/creditone_marriage_default_notdefault.png"/> 
+</figure>
+
+<p><em>Observations</em></p>
 <ul>
 <li>From a comparison on the above plots, there appears that single customers are relatively less likely to default on their loans.</li>
 </ul>
 <p> </p>
-<h3 id="billing-variables--credit-default">Billing Variables &amp; Credit Default</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, axes <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">18</span>), sharey<span style="color:#f92672">=</span>True)
+<h3 id="billing--credit-default">Billing &amp; Credit Default</h3>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<figure>
+    <img src="https://katherinepiatti.com/images/creditone_billing_default.png"/> 
+</figure>
 
-fig<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">&#39;Monthly Bill Amounts Grouped by DEFAULT&#39;</span>)
-
-sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], data<span style="color:#f92672">=</span>df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bill_ap&#39;</span>)
-sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], data<span style="color:#f92672">=</span>df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bill_m&#39;</span>)
-sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>], data<span style="color:#f92672">=</span>df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bill_ju&#39;</span>)
-sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>], data<span style="color:#f92672">=</span>df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bill_jy&#39;</span>)
-sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], data<span style="color:#f92672">=</span>df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bill_ag&#39;</span>)
-sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], data<span style="color:#f92672">=</span>df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bill_s&#39;</span>)
-
-</code></pre></div><p><em>Observations</em></p>
+<p><em>Observations</em></p>
 <ul>
 <li>I have more questions than observations.
 <ul>
@@ -508,7 +483,7 @@ sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</
 </li>
 </ul>
 <p> </p>
-<h3 id="payment-variables--default">Payment Variables &amp; Default</h3>
+<h3 id="payment--default">Payment &amp; Default</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, axes <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">25</span>), sharey<span style="color:#f92672">=</span>True)
 
 fig<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">&#39;Monthly Payment Variables Grouped by DEFAULT&#39;</span>)
@@ -529,7 +504,7 @@ sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</
 <!-- raw HTML omitted -->
 <p> </p>
 <h2 id="predicting-customer-credit-limits">Predicting Customer Credit Limits</h2>
-<p>In this notebook I am only going to create and test models that attempt to predict customer credit limits. Which means the target variable in all models will be &lsquo;limit&rsquo; (i.e. limit_bal).</p>
+<p>In this section my goal is to build and test models that attempt to predict customer credit limits. Which means the target variable in all models will be &lsquo;limit&rsquo; (i.e. limit_bal).</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
 <span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 <span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
