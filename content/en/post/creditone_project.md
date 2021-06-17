@@ -538,51 +538,54 @@ prof.to_file(output_file='output.html')```
 &nbsp;
 #### Demographic Variables
 
-*Sex*
-* 60.4% female, 39.6% male
+*Age* & *Sex*
+{{< figure src="/images/creditone_age_sex_dist_plots.png" >}}
 
-*Education*
+* Age range 21 - 79, Mean 35, Median 34
+* 60.4% female, 39.6% male
+<!--* Consider binnning: young, middle age, 65+-->
+
+
+&nbsp;
+*Education* & *Marriage*
+{{< figure src="/images/creditone_edu_mar_count_plots.png" >}}
+
 * HS 16.4%, University 46.8%, Graduate School 35.3%, Other 1.6%
-* Compared to US population, sample has a lot of customers with university and graduate school degrees, and a small number with high school degrees.
-* May consider combining university and graduate school categories later.
-Marital Status
+* A disproportionate number of customers have university & graduate degrees (compared to US population)
 * Married (1) 45.5%, Single (2) 53.6%, Divorced (3) 1.1%, Other 0.2%
 
-*Age*
-* Range 21 - 79.
-* Mean 35, Median 34
-* Consider binnning: young, middle age, 65+
+<!--* May consider combining university and graduate school categories later.-->
+
 
 &nbsp;
 #### Account Variables
 
-*Credit Limit* (target for model predicting LIMIT_BAL)
-* Continuous variable, range - 10k to 1 million
-* Only 81 distinct values (consider 8 bins)
-* Mean: 167,484
-* Distribution significantly skewed toward low end
-* Mode: 50k limit (11.2%)
-* Only 1 customer with 1 million limit  
+*Credit Limit*: the $ amount of credit each customer currently has
+* Mean: 167,484; Mode: 50k (11.2%)
+* Distribution significantly skewed toward low limits
+* Wide range: 10k - 1M
+* Low variability: only 81 distinct values
 
-*Default* (target for model predicting customer defaults)
-* Not defult 77.9%, default 22.1%
+*Default*: dummy variable, indicate whether the customer has or has not defaulted on their loans (we don't know the time frame determining this value, e.g. lifetime of account, at least once during last 7 yrs).
+* Not default 77.9%, default 22.1%
 
 *Repayment Variables*
-* -2 = no use, -1 = paid in full, 0 = use revolving credit, 1 = payment delay 1 month, 2 = payment delay 2 months, ..., 9 = payment delay 9+ months
-* All repayment variables have roughly same distribution and characteristics: over 50% zeros, significantly more -2 & -1 values than values greater than or equal to 1
+* -2 = no use, -1 = paid in full, 0 = use of revolving credit, 1= 1 month payment delay, 2= 2 month delay, ..., 9= 9+ month delay (at what point are they coded as defaulted?)
+* All six variables have roughly the same, significantly skewed distributions (50%+ of values are 0, few values >= 1)
 
 
 &nbsp;
 #### Billing Variables
 
-* All billing variables have negative minimum values. If valid data points, perhaps CreditOne is overcharging customers and having to issue credits.
-  * Consider removing or transforming negative values to improve model performance.
-* Distributions for all variables are roughly the same.
-    * Very significant left skew
-    * Lots of zeros
-* Suspicious data points: some customers have bill amounts that exceed their balance limits. Does that mean credit one is not enforcing those limits?
-  * Maybe I should engineer a logical var that is true iff the the customer's bill amount is bigger than their balance limit.
+- The distributions for all six variables are roughly the same and just like the payment variables.  
+- All variables have a non-trival number of negative values (this merits investigation for data integrity since negative values on bills presumably mean a customer was overcharged then issued a credit).
 
+
+<!--
+* Suspicious data points: some customers have bill amounts that exceed their balance limits. Does that mean credit one is not enforcing those limits?
+* Consider removing or transforming negative values to improve model performance.
+* Maybe I should engineer a logical var that is true iff the the customer's bill amount is bigger than their balance limit.
+-->
 
 <!--
 ```python
@@ -704,7 +707,7 @@ In this section I perform statistical tests to determine whether any of the depe
 
 
 &nbsp;
-### Sex & Credit Limit
+### Age, Sex, & Credit Limit
 <!--
 ```python
 sns.boxplot(data=df, x='SEX',y='LIMIT_BAL' )
@@ -713,13 +716,14 @@ sns.boxplot(data=df, x='SEX',y='LIMIT_BAL' )
 plt.savefig("creditone_sex_credit_box1.png")
 ```
 -->
-{{< figure src="/images/creditone_sex_credit_box.png" >}}
+{{< figure src="/images/creditone_age_sex_plots.png" >}}
 
-The similarity between the box plots for female and male indicates there is no difference in credit limits between men and women. That means SEX is unlikely to be a helpful variable to include in a model prediting LIMIT_BAL.
+- There doesn't appear to be any sort of meaningful relationship between age and credit limit.
+- The similarity between the box plots for female and male indicates there is no difference in credit limits between men and women. That means SEX is unlikely to be a helpful variable to include in a model prediting LIMIT_BAL.
 
 
 &nbsp;
-### Education & Credit Limit
+### Education, Marriage, & Credit Limit
 <!--
 ```python
 sns.catplot(data=df, kind='box', x='EDUCATION', y='LIMIT_BAL').set_xticklabels(rotation=45)
@@ -728,39 +732,12 @@ sns.catplot(data=df, kind='box', x='EDUCATION', y='LIMIT_BAL').set_xticklabels(r
 plt.savefig("creditone_edu_credit_box.png")
 ```
 -->
-{{< figure src="/images/creditone_edu_credit_box.png" >}}
+{{< figure src="/images/creditone_edu_marriage_box.png" >}}
 
-The box plots for all education levels are very similar. Customers with a graduate education enjoy credit limits that are on average higher than the other groups. It also appears the credit limits for customers with a high school education are slightly skewed to the lower end. The differences aren't dramatic, but a customer's credit limit does appear to be somewhat related to their level of education  
-
-
-&nbsp;
-### Marriage & Credit Limit
-<!--
-```python
-sns.boxplot(data=df, x='MARRIAGE', y='LIMIT_BAL')
-
-# save plot as png
-plt.savefig("creditone_marriage_credit_box.png")
-```
--->
-{{< figure src="/images/creditone_marriage_credit_box.png" >}}
-
-Although there are some small differences in the plots, it does not appear that a customer's credit limit is related to their marital status.
+- The box plots for all education levels are very similar. Customers with a graduate education enjoy credit limits that are on average higher than the other groups. It also appears the credit limits for customers with a high school education are slightly skewed to the lower end. The differences aren't dramatic, but a customer's credit limit does appear to be somewhat related to their level of education  
+- Although there are some small differences in the plots, it does not appear that a customer's credit limit is related to their marital status.
 
 
-&nbsp;
-### Age & Credit Limit
-<!--
-```python
-sns.scatterplot(data=df, x='AGE', y='LIMIT_BAL')
-
-# save plot as png
-plt.savefig("creditone_age_credit_box.png")
-```
--->
-{{< figure src="/images/creditone_age_credit_box.png" >}}
-
-There doesn't appear to be any sort of meaningful relationship between age and credit limit.
 
 
 &nbsp;
@@ -909,7 +886,7 @@ sns.displot(data=df, x ="EDUCATION", discrete=True, shrink = .8, stat='probabili
 sns.displot(data=df, x ="EDUCATION", col = 'DEFAULT', shrink = .8, stat='probability').set_xticklabels(rotation=45)
 ```
 -->
-{{< figure src="/images/creditone_edu_default.png" >}}
+{{< figure src="/images/creditone_edu.png" >}}
 
 
 *Observations*
@@ -933,13 +910,14 @@ g.set_xticklabels(rotation=45)
 
 &nbsp;
 #### Age & Default
-
+<!--
 ```python
 sns.catplot(data=df, kind='box', x='DEFAULT', y='AGE')
 
 #save plot as png
 plt.savefig('creditone_age_default.png')
 ```
+-->
 {{< figure src="/images/creditone_age_default.png" >}}
 
 *Observations*
@@ -1043,13 +1021,19 @@ axes[2].set_xticklabels(labels=labels, rotation=45)
 axes[2].set_xlabel('')
 ```
 
+{{< figure src="/images/creditone_marriage_default_notdefault.png" >}}
+
 *Observations*
 * From a comparison on the above plots, there appears that single customers are relatively less likely to default on their loans.
 
 
-&nbsp;
-### Billing Variables & Credit Default
 
+
+
+
+&nbsp;
+### Billing & Credit Default
+<!--
 ```python
 fig, axes = plt.subplots(2, 3, figsize=(20,18), sharey=True)
 
@@ -1063,15 +1047,18 @@ sns.boxplot(ax=axes[1, 1], data=df, x='DEFAULT', y='bill_ag')
 sns.boxplot(ax=axes[1, 2], data=df, x='DEFAULT', y='bill_s')
 
 ```
-
+-->
+{{< figure src="/images/creditone_billing_default.png" >}}
 
 *Observations*
 * I have more questions than observations.
   * It looks like there are some significant outliers. How can we find those data points in our df.
   * Other than some differences in outliers and a noticable difference in the length of the wiskers in bill_ag, all the box plots are basically the same. What, if anything, can we conclude from that?
 
+
+
 &nbsp;
-### Payment Variables & Default
+### Payment & Default
 
 ```python
 fig, axes = plt.subplots(2, 3, figsize=(20,25), sharey=True)
@@ -1207,7 +1194,7 @@ nzbill3.shape
 
 &nbsp;
 ## Predicting Customer Credit Limits
-In this notebook I am only going to create and test models that attempt to predict customer credit limits. Which means the target variable in all models will be 'limit' (i.e. limit_bal).
+In this section my goal is to build and test models that attempt to predict customer credit limits. Which means the target variable in all models will be 'limit' (i.e. limit_bal).
 
 ```python
 import pandas as pd
