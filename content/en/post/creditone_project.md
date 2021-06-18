@@ -542,7 +542,7 @@ prof.to_file(output_file='output.html')```
 {{< figure src="/images/creditone_age_sex_dist_plots.png" >}}
 
 * Age range 21 - 79, Mean 35, Median 34
-* 60.4% female, 39.6% male
+* There are slightly more female customers (60.4% to 39.6%)
 <!--* Consider binnning: young, middle age, 65+-->
 
 
@@ -561,21 +561,30 @@ prof.to_file(output_file='output.html')```
 #### Account Variables
 
 *Credit Limit*: the $ amount of credit each customer currently has
+{{< figure src="/images/creditone_crlim_dist.png" >}}
+
 * Mean: 167,484; Mode: 50k (11.2%)
 * Distribution significantly skewed toward low limits
 * Wide range: 10k - 1M
 * Low variability: only 81 distinct values
 
+
 *Default*: dummy variable, indicate whether the customer has or has not defaulted on their loans (we don't know the time frame determining this value, e.g. lifetime of account, at least once during last 7 yrs).
+{{< figure src="/images/creditone_dflt_dist.png" >}}
+
 * Not default 77.9%, default 22.1%
 
+
 *Repayment Variables*
+
+
 * -2 = no use, -1 = paid in full, 0 = use of revolving credit, 1= 1 month payment delay, 2= 2 month delay, ..., 9= 9+ month delay (at what point are they coded as defaulted?)
 * All six variables have roughly the same, significantly skewed distributions (50%+ of values are 0, few values >= 1)
 
 
 &nbsp;
 #### Billing Variables
+{{< figure src="/images/creditone_bill_dist.png" >}}
 
 - The distributions for all six variables are roughly the same and just like the payment variables.  
 - All variables have a non-trival number of negative values (this merits investigation for data integrity since negative values on bills presumably mean a customer was overcharged then issued a credit).
@@ -624,6 +633,7 @@ df[ ['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s']].describe()
 -->
 &nbsp;
 #### Payment Variables
+{{< figure src="/images/creditone_pmt_dist.png" >}}
 
 * There are 6 continuous payment variables - each represents the amount the customer paid towards their bill for the months of April to September 2005.
 * The distributions of the payment and billing variables have similar shapes.
@@ -632,13 +642,13 @@ df[ ['bill_ap', 'bill_m', 'bill_ju', 'bill_jy', 'bill_ag', 'bill_s']].describe()
   * The payment variables don't contain any negative values.
 
 
-&nbsp;
 
+&nbsp;
 ### Correlation Analysis
 If any of the features are highly correlated, that may be because they are actually tracking/representing the same information. Since high correlation between dependent variables can harm the performance of ML models, it needs to be handled.  
 
 &nbsp;
-### *Are the 6 billing variables correlated?*
+#### *Are the 6 billing variables correlated?*
 
 <!--
 ```python
@@ -672,8 +682,10 @@ plt.savefig('creditone_bill_pairplot.png')
 * In general, the correlation is highest between each monthly billing variable and the variable representing the month after. The correlation declines with each proceeding month (e.g. the correlation is highest between the April (bill_ap) and May (bill_m) billing variables, and declines for each subsequent month.)  
     * May impact model performance. Consider only using one of the billing variables in model.
 
+
+
 &nbsp;
-### *Are the 6 payment variables correlated?*
+#### *Are the 6 payment variables correlated?*
 <!--
 ```python
 #look at kendall's tau correlations b/t payment variables
@@ -689,8 +701,10 @@ sns.pairplot(smpl, hue='DEFAULT', kind='scatter', vars=['pmt_ap','pmt_m', 'pmt_j
 * The kendall's correlation coefficients are between 0.348 and 0.4126. But the scatter plots don't show any relationship.
 * This suggests, somewhat surprising, that the amount customers pay each month is not really related to the amount they are billed.
 
+
+
 &nbsp;
-### *Are the payment variables correlated with the billing variables?*
+#### *Are the payment variables correlated with the billing variables?*
 
 ```python
 #look at kendall's tau correlations b/t payment variables
@@ -741,8 +755,8 @@ plt.savefig("creditone_edu_credit_box.png")
 
 
 &nbsp;
-## Credit Default analysis
-In this section I perform statistical tests to determine whether any of the dependent variables are related to whether or not customers in the sample default on their loans (DEFUALT).
+## Credit Default Analysis
+In this section I examine whether there is a meaningful relationship between any of the dependent variables--demographic, account, billing, & payment variables--and whether or not a customer has defaulted on their loans.
 <!--
 ```python
 #obtain correlation co-efficients for all features and target
@@ -851,6 +865,7 @@ df.corr().to_markdown
 
 &nbsp;
 #### Sex & Default
+A quick and intuitive way to examine the relationship between two categorical variables is to compare how sex is distributed in the entire sample to how it's distributed in customers who have defaulted vs. not-defaulted. If whether or not a customer defaults on their loans is related to their gender, the distributions will be different.
 <!--
 ```python
 sns.displot(data=df, x="SEX", stat='density', shrink=.8)
@@ -867,12 +882,12 @@ plt.savefig('creditone_sex_default_notdefault.png')
 {{< figure src="/images/creditone_sex_default_notdefault.png" >}}
 
 *Observations*
-* From the first plot, we can see that CreditOne's customers are slightly more likely to be female than male.
-* From the second set of plots, when we compare the data for customers who have defualted on their loans to the data for the customers who have not defaulted on their loans, it looks like customers who have defaulted on their loans are slightly more likely to be male than customers overall--however, it's unlikely this difference is statistically significant.
-* The fact that the relative probabilities of being female vs. male is almost the same among the customers who have defaulted and the customers who have not defualted suggests that sex will not be an important feature in a model predicting whether a customer will defualt on their loans.
+* When we compare the male/female breakdown in the entire sample to the breakdowns among customers who have and have not defaulted on their loans, they are all very similar, suggesting whether or not a customer defaults on their loans is unrelated to their gender.
+<!--
+* Consequently, sex is unlikely to be useful feature (dependent variable)  predicting whether a customer will default on their loans.
+-->
 
-
-
+&nbsp;
 #### Education & Default
 <!--
 ```python
@@ -890,8 +905,7 @@ sns.displot(data=df, x ="EDUCATION", col = 'DEFAULT', shrink = .8, stat='probabi
 
 
 *Observations*
-* Since higher levels of education are highly correlated with higher levels of income, and higher levels of income are presumably correlated with lower rates of defaulting on loans. I was anticipating that customers with university and graduate school levels of education to be relatively less likely to default on their loans.
-* However, comparing the distributions of education levels for customers who have defaulted to the ebb
+* Since higher levels of education are correlated with higher incomes, and presumably higher incomes are correlated with lower rates of credit default, I was expecting to see some kind of relationship. However, the distributions of education levels for customers who have and haven't defaulted on their loans are similar to one another and similar to the distribution in the entire sample.
 
 <!--
 ```python
@@ -918,17 +932,16 @@ sns.catplot(data=df, kind='box', x='DEFAULT', y='AGE')
 plt.savefig('creditone_age_default.png')
 ```
 -->
-{{< figure src="/images/creditone_age_default.png" >}}
+{{< figure src="/images/creditone_age_full_dflt_box.png" >}}
 
 *Observations*
-* We can see in the above boxplot the the mean, IQR (middle 50% of data points), and range for the age variable are nearly identical for customers who defaulted on their loans (blue box) and for customers who did not defualt on their loans (orange box).
-* This suggests there is no significant relationship between a customer's age and whether or not she defaulted on her loans, which means AGE will not be an important feature in a model predicting whether a customer will default.  
+* Comparing the above boxplots, we can see the mean, IQR (middle 50% of data points), and range for age is nearly identical in all three plots. As before, this suggests that whether or not customers default on their loans is unrelated to their age (which I find surprising).  
 
 
 
 &nbsp;
 #### Marriage & Default
-Add description of method.
+
 <!--
 ```python
 #filter the df to return only rows where value for DEFAULT == default
@@ -1024,7 +1037,7 @@ axes[2].set_xlabel('')
 {{< figure src="/images/creditone_marriage_default_notdefault.png" >}}
 
 *Observations*
-* From a comparison on the above plots, there appears that single customers are relatively less likely to default on their loans.
+*  Comparing the above plots, it appears that single customers may be slightly less likely to default on their loans than customers in the other three categories. However, the difference is small. The larger story is that customer's maritial status appears to have very little to do with whether or not they default on their loans.
 
 
 
@@ -1032,7 +1045,7 @@ axes[2].set_xlabel('')
 
 
 &nbsp;
-### Billing & Credit Default
+#### Billing, Payment, & Credit Default
 <!--
 ```python
 fig, axes = plt.subplots(2, 3, figsize=(20,18), sharey=True)
@@ -1051,12 +1064,14 @@ sns.boxplot(ax=axes[1, 2], data=df, x='DEFAULT', y='bill_s')
 {{< figure src="/images/creditone_billing_default.png" >}}
 
 *Observations*
-* I have more questions than observations.
-  * It looks like there are some significant outliers. How can we find those data points in our df.
+* I only included the plots for the billing variables here, but the boxplots for the payment variables are nearly identical.
+* The distributions for all the payment and billing variables are very similar all the groups of interest. However, I am not confident this warrants drawing the same conclusions. I have more questions than observations:
+  * We saw earlier that the billing variables are highly correlated with each other. How should I account for that in both my analysis and model building?
+  * There are some significant outliers. How can I identify and remove them? Is it worth it?
   * Other than some differences in outliers and a noticable difference in the length of the wiskers in bill_ag, all the box plots are basically the same. What, if anything, can we conclude from that?
 
 
-
+<!--
 &nbsp;
 ### Payment & Default
 
@@ -1073,10 +1088,9 @@ sns.boxplot(ax=axes[1, 1], data=df, x='DEFAULT', y='pmt_ag')
 sns.boxplot(ax=axes[1, 2], data=df, x='DEFAULT', y='pmt_s')
 
 ```
+-->
 
-*Observations*
-* I assume the boxplots for the payment variables look like this because there is a high % of zeros in these variables.
-* I also seem some signigicant outliers.
+
 
 
 
@@ -1194,16 +1208,18 @@ nzbill3.shape
 
 &nbsp;
 ## Predicting Customer Credit Limits
-In this section my goal is to build and test models that attempt to predict customer credit limits. Which means the target variable in all models will be 'limit' (i.e. limit_bal).
+In this section I build and test machine learning models that attempt to predict customer credit limits. Which means the target variable in all models will be 'limit' (i.e. limit_bal).
 
 ```python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#the inline magic line is needed to make some data visualizations come out right when you are using jupyter notebooks
 %matplotlib inline
 import seaborn as sns
 from math import sqrt
+
+#for one hot encoding
+from sklearn.preprocessing import LabelEncoder
 
 #ML algorithms (estimators)
 from sklearn.ensemble import RandomForestRegressor
@@ -1220,10 +1236,18 @@ from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
 ```
 
+Because credit limit is a continuous variable, I know I will have to use a regression model to predict it. But I don't have a principled reason to choose one regression algorithm over others, so I'll compare the predictions of models using Random Forest p9idifferent regression algorithms to find the one that works best on this task.
+* I will run each model through a 3-fold cross validation test. Using R squared to score the models.
+
+
 
 &nbsp;
-### Data Preparation
-Add description and reasons for data transformations--one hot encoding
+#### *Data Preparation*
+
+- To make things easier, before doing anything I'm going to move LIMIT_BAL to the last column in my dataframe and rename it.
+- One-Hot-Encoding: Because credit limit (target) is a continuous variable, we have to use regression, and  one hot encoding
+- Specify the independent (target) variable.
+
 <!--
 ## Import & Verify Data
 
@@ -1288,6 +1312,21 @@ df.info()
 
 Everything with my dataset looks as I expect. So I will move on to specifying the variables I was to use as features (IVs) and the one I want to use as target for my model predicting credit limit.
 -->
+<!--
+```python
+#step 1: create a variabled to hold the LIMIT_BAL var
+lim=df['LIMIT_BAL']
+
+#step 2: drop the LIMIT_BAL column
+df.drop(labels='LIMIT_BAL', axis=1, inplace=True)
+
+#step 3: insert 'lim' as last column of df
+df.insert(loc=30, column='limit', value=lim)
+
+df.head()
+```
+-->
+
 
 <!--
 # Transform Non-numeric Values
@@ -1403,29 +1442,10 @@ num_df.to_csv('num_only_credit_one_data.csv', index = False, header=True)
 
 
 
-#### Re-ordering df Columns
-To make things easier, before doing anything I'm going to move LIMIT_BAL to the last column in my df and rename it.
 
 
-```python
-#step 1: create a variabled to hold the LIMIT_BAL var
-lim=df['LIMIT_BAL']
-
-#step 2: drop the LIMIT_BAL column
-df.drop(labels='LIMIT_BAL', axis=1, inplace=True)
-
-#step 3: insert 'lim' as last column of df
-df.insert(loc=30, column='limit', value=lim)
-
-df.head()
-```
-
-
-
-
+<!--
 ### Specify the Target Variable
-Now I will specify the dependent or target variable for models attempting to predict customer credit limits.
-
 
 ```python
 #filter the data to return my dependent var (the limit column)
@@ -1457,17 +1477,14 @@ y.shape
 
 
     (30000,)
-
+-->
 
 &nbsp;
-## Model 1: Using All Dependent Variables
+## Model 1: All Dependent Variables
 None of the variables stood out as ones that should be included or excluded from the model, so in this first model I'm going to include them all.
 
-### Specify the Feature Variables
-
-
 ```python
-#filter the data to return only columns for my feature vars
+# filter df to specify the feature variables
 X = df.iloc[:, 1:30]
 
 #verify that all but the ID and limit columns were selected
@@ -1476,15 +1493,7 @@ X.head()
 ```
 
 
-
-## Train & Test Model 1 Using 3 Different Regression Algorithms
-Because credit limit is a continuous variable, I know I will have to use a regression model to predict it. But I don't have a principled reason to choose one regression algorithm over others, so I'll compare the predictions of models using Random Forest p9idifferent regression algorithms to find the one that works best on this task.
-* I will run each model through a 3-fold cross validation test. Using R squared to score the models.
-* The model with the highest mean CV sore will be labeled best.
-
-### Setup
-
-
+<!--
 ```python
 #create a dictionary to hold the algos
 algosClass = [ ]
@@ -1497,16 +1506,22 @@ algosClass.append(('Linear Regression',LinearRegression()))
 
 #add the SV regressor to the dictionary
 algosClass.append(('Support Vector Regression',SVR()))
+```
+-->
 
-#verify every algo was added to the list
-print(algosClass)
+
+
+&nbsp;
+### Train-Test Split
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state=123)
 ```
 
-    [('Random Forest Regressor', RandomForestRegressor()), ('Linear Regression', LinearRegression()), ('Support Vector Regression', SVR())]
 
 
-### Train & Test Models
-
+&nbsp;
+### Train Model & Make Predictions
 
 ```python
 #create two empty lists to hold the names and cross validation results from each model
@@ -1520,8 +1535,10 @@ for name, model in algosClass:
     results.append(result)
 ```
 
-### Performance Results
 
+
+&nbsp;
+### Performance Results
 
 ```python
 #run the for loop and print the mean cross validation score for each model
@@ -1536,13 +1553,14 @@ for i in range(len(names)):
 
 The model built using the random forest regressor performed slightly better than the other two models. However, did little better than chance at predicting customer's credit limits (i.e.limit_bal).
 
+
+
+
+&nbsp;
 ## Model 2: Excluding Demographic Variables
 
-
 ```python
-## Select the Feature Variables
-
-#filter the data to return only columns for bill amount, payment amount, payment history, and default var
+## Select Feature Variables: filter the data to return only columns for bill amount, payment amount, payment history, and default var
 X2 = df.iloc[:, 3:22]
 
 print('Summary of Model 2 Features')
@@ -1561,29 +1579,28 @@ for name, model in algosClass:
     result = cross_val_score(model, X2,y, cv=3, scoring='r2')
     names2.append(name)
     results2.append(result)
-```
 
-
-```python
 #run the for loop and print the mean cross validation score for each model
 print("Summary of Model2 Cross Validation Scores")
 
 for i in range(len(names2)):
     print(names[i],results[i].mean())
-```
+---
 
     Summary of Model2 Cross Validation Scores
     Random Forest Regressor 0.46700202592747336
     Linear Regression 0.35871695390197167
     Support Vector Regression -0.05039128320492573
+```
 
 
-## Train & Test the Model
 
+&nbsp;
+#### Train & Test the Model
 
 ```python
 #instantiate the random forest regression algo
-# rfr = RandomForestRegressor()
+rfr = RandomForestRegressor()
 ```
 
 
@@ -1598,13 +1615,7 @@ for i in range(len(names2)):
 
 
 
-## Split Data into Training and Testing Sets
-
-
-```python
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state=123)
-```
-
+<!--
 >*Coding Notes*
 >* The ```test_size =``` parameter specifies what percent of you dataset will be used for training and training. If you don't specify an amount, the default is 0.25.
 >* The ```random_state =``` parameter can be set to any number. The purpose of it is to make sure that every time the model is run,  the same observations are used in the training and testing sets. If this parameter is not included, every time you run the model it may select a slightly different set of observations.
@@ -1623,7 +1634,7 @@ r2_score(y_test, y_predict)
 ```python
 mean_squared_error(y_test, y_predict)
 ```
-
+-->
 
 
 [Link to GitHub Repository](https://github.com/kpiatti/creditone-project)
