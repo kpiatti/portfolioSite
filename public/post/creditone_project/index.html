@@ -43,7 +43,7 @@ Obtain Data I obtained the raw data for this project from a MySQL database by es
 <meta itemprop="description" content="The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.
 Obtain Data I obtained the raw data for this project from a MySQL database by establishing a connection to the server, executing a simple SELECT * query, and saving the result/output as a .">
 
-<meta itemprop="wordCount" content="2474">
+<meta itemprop="wordCount" content="2139">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Credit Risk Assessment with Python"/>
 <meta name="twitter:description" content="The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.
@@ -198,8 +198,8 @@ Obtain Data I obtained the raw data for this project from a MySQL database by es
 
       
       
-        <span class="f6 mv4 dib tracked"> - 12 minutes read</span>
-        <span class="f6 mv4 dib tracked"> - 2474 words</span>
+        <span class="f6 mv4 dib tracked"> - 11 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 2139 words</span>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.</p>
@@ -248,7 +248,7 @@ df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>re
 </p>
 <ul>
 <li>Age range 21 - 79, Mean 35, Median 34</li>
-<li>60.4% female, 39.6% male</li>
+<li>There are slightly more female customers (60.4% to 39.6%)</li>
 </ul>
 <!-- raw HTML omitted -->
 <p> 
@@ -265,14 +265,22 @@ df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>re
 <!-- raw HTML omitted -->
 <p> </p>
 <h4 id="account-variables">Account Variables</h4>
-<p><em>Credit Limit</em>: the $ amount of credit each customer currently has</p>
+<p><em>Credit Limit</em>: the $ amount of credit each customer currently has
+<figure>
+    <img src="https://katherinepiatti.com/images/creditone_crlim_dist.png"/> 
+</figure>
+</p>
 <ul>
 <li>Mean: 167,484; Mode: 50k (11.2%)</li>
 <li>Distribution significantly skewed toward low limits</li>
 <li>Wide range: 10k - 1M</li>
 <li>Low variability: only 81 distinct values</li>
 </ul>
-<p><em>Default</em>: dummy variable, indicate whether the customer has or has not defaulted on their loans (we don&rsquo;t know the time frame determining this value, e.g. lifetime of account, at least once during last 7 yrs).</p>
+<p><em>Default</em>: dummy variable, indicate whether the customer has or has not defaulted on their loans (we don&rsquo;t know the time frame determining this value, e.g. lifetime of account, at least once during last 7 yrs).
+<figure>
+    <img src="https://katherinepiatti.com/images/creditone_dflt_dist.png"/> 
+</figure>
+</p>
 <ul>
 <li>Not default 77.9%, default 22.1%</li>
 </ul>
@@ -283,6 +291,10 @@ df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>re
 </ul>
 <p> </p>
 <h4 id="billing-variables">Billing Variables</h4>
+<figure>
+    <img src="https://katherinepiatti.com/images/creditone_bill_dist.png"/> 
+</figure>
+
 <ul>
 <li>The distributions for all six variables are roughly the same and just like the payment variables.</li>
 <li>All variables have a non-trival number of negative values (this merits investigation for data integrity since negative values on bills presumably mean a customer was overcharged then issued a credit).</li>
@@ -293,6 +305,10 @@ df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>re
 <!-- raw HTML omitted -->
 <p> </p>
 <h4 id="payment-variables">Payment Variables</h4>
+<figure>
+    <img src="https://katherinepiatti.com/images/creditone_pmt_dist.png"/> 
+</figure>
+
 <ul>
 <li>There are 6 continuous payment variables - each represents the amount the customer paid towards their bill for the months of April to September 2005.</li>
 <li>The distributions of the payment and billing variables have similar shapes.</li>
@@ -307,7 +323,7 @@ df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>re
 <h3 id="correlation-analysis">Correlation Analysis</h3>
 <p>If any of the features are highly correlated, that may be because they are actually tracking/representing the same information. Since high correlation between dependent variables can harm the performance of ML models, it needs to be handled.</p>
 <p> </p>
-<h3 id="are-the-6-billing-variables-correlated"><em>Are the 6 billing variables correlated?</em></h3>
+<h4 id="are-the-6-billing-variables-correlated"><em>Are the 6 billing variables correlated?</em></h4>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#calculate kendall&#39;s tau correlation between billing vars</span>
@@ -334,7 +350,7 @@ plt<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#39;
 </li>
 </ul>
 <p> </p>
-<h3 id="are-the-6-payment-variables-correlated"><em>Are the 6 payment variables correlated?</em></h3>
+<h4 id="are-the-6-payment-variables-correlated"><em>Are the 6 payment variables correlated?</em></h4>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <figure>
@@ -347,7 +363,7 @@ plt<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#39;
 <li>This suggests, somewhat surprising, that the amount customers pay each month is not really related to the amount they are billed.</li>
 </ul>
 <p> </p>
-<h3 id="are-the-payment-variables-correlated-with-the-billing-variables"><em>Are the payment variables correlated with the billing variables?</em></h3>
+<h4 id="are-the-payment-variables-correlated-with-the-billing-variables"><em>Are the payment variables correlated with the billing variables?</em></h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#look at kendall&#39;s tau correlations b/t payment variables</span>
 df[[<span style="color:#e6db74">&#39;bill_ap&#39;</span>, <span style="color:#e6db74">&#39;bill_m&#39;</span>, <span style="color:#e6db74">&#39;bill_ju&#39;</span>, <span style="color:#e6db74">&#39;bill_jy&#39;</span>, <span style="color:#e6db74">&#39;bill_ag&#39;</span>, <span style="color:#e6db74">&#39;bill_s&#39;</span>,<span style="color:#e6db74">&#39;pmt_ap&#39;</span>, <span style="color:#e6db74">&#39;pmt_m&#39;</span>, <span style="color:#e6db74">&#39;pmt_ju&#39;</span>, <span style="color:#e6db74">&#39;pmt_jy&#39;</span>, <span style="color:#e6db74">&#39;pmt_ag&#39;</span>, <span style="color:#e6db74">&#39;pmt_s&#39;</span>]]<span style="color:#f92672">.</span>corr(method<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;kendall&#39;</span>)
 </code></pre></div><ul>
@@ -382,12 +398,13 @@ df[[<span style="color:#e6db74">&#39;bill_ap&#39;</span>, <span style="color:#e6
 <li>Although there are some small differences in the plots, it does not appear that a customer&rsquo;s credit limit is related to their marital status.</li>
 </ul>
 <p> </p>
-<h2 id="credit-default-analysis">Credit Default analysis</h2>
-<p>In this section I perform statistical tests to determine whether any of the dependent variables are related to whether or not customers in the sample default on their loans (DEFUALT).</p>
+<h2 id="credit-default-analysis">Credit Default Analysis</h2>
+<p>In this section I examine whether there is a meaningful relationship between any of the dependent variables&ndash;demographic, account, billing, &amp; payment variables&ndash;and whether or not a customer has defaulted on their loans.</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p> </p>
 <h4 id="sex--default">Sex &amp; Default</h4>
+<p>A quick and intuitive way to examine the relationship between two categorical variables is to compare how sex is distributed in the entire sample to how it&rsquo;s distributed in customers who have defaulted vs. not-defaulted. If whether or not a customer defaults on their loans is related to their gender, the distributions will be different.</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <figure>
@@ -396,10 +413,11 @@ df[[<span style="color:#e6db74">&#39;bill_ap&#39;</span>, <span style="color:#e6
 
 <p><em>Observations</em></p>
 <ul>
-<li>From the first plot, we can see that CreditOne&rsquo;s customers are slightly more likely to be female than male.</li>
-<li>From the second set of plots, when we compare the data for customers who have defualted on their loans to the data for the customers who have not defaulted on their loans, it looks like customers who have defaulted on their loans are slightly more likely to be male than customers overall&ndash;however, it&rsquo;s unlikely this difference is statistically significant.</li>
-<li>The fact that the relative probabilities of being female vs. male is almost the same among the customers who have defaulted and the customers who have not defualted suggests that sex will not be an important feature in a model predicting whether a customer will defualt on their loans.</li>
+<li>When we compare the male/female breakdown in the entire sample to the breakdowns among customers who have and have not defaulted on their loans, they are all very similar, suggesting whether or not a customer defaults on their loans is unrelated to their gender.</li>
 </ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <h4 id="education--default">Education &amp; Default</h4>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
@@ -409,8 +427,7 @@ df[[<span style="color:#e6db74">&#39;bill_ap&#39;</span>, <span style="color:#e6
 
 <p><em>Observations</em></p>
 <ul>
-<li>Since higher levels of education are highly correlated with higher levels of income, and higher levels of income are presumably correlated with lower rates of defaulting on loans. I was anticipating that customers with university and graduate school levels of education to be relatively less likely to default on their loans.</li>
-<li>However, comparing the distributions of education levels for customers who have defaulted to the ebb</li>
+<li>Since higher levels of education are correlated with higher incomes, and presumably higher incomes are correlated with lower rates of credit default, I was expecting to see some kind of relationship. However, the distributions of education levels for customers who have and haven&rsquo;t defaulted on their loans are similar to one another and similar to the distribution in the entire sample.</li>
 </ul>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
@@ -419,17 +436,15 @@ df[[<span style="color:#e6db74">&#39;bill_ap&#39;</span>, <span style="color:#e6
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <figure>
-    <img src="https://katherinepiatti.com/images/creditone_age_default.png"/> 
+    <img src="https://katherinepiatti.com/images/creditone_age_full_dflt_box.png"/> 
 </figure>
 
 <p><em>Observations</em></p>
 <ul>
-<li>We can see in the above boxplot the the mean, IQR (middle 50% of data points), and range for the age variable are nearly identical for customers who defaulted on their loans (blue box) and for customers who did not defualt on their loans (orange box).</li>
-<li>This suggests there is no significant relationship between a customer&rsquo;s age and whether or not she defaulted on her loans, which means AGE will not be an important feature in a model predicting whether a customer will default.</li>
+<li>Comparing the above boxplots, we can see the mean, IQR (middle 50% of data points), and range for age is nearly identical in all three plots. As before, this suggests that whether or not customers default on their loans is unrelated to their age (which I find surprising).</li>
 </ul>
 <p> </p>
 <h4 id="marriage--default">Marriage &amp; Default</h4>
-<p>Add description of method.</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, axes <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">13</span>,<span style="color:#ae81ff">5</span>), sharey<span style="color:#f92672">=</span>True)
@@ -463,10 +478,10 @@ axes[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>se
 
 <p><em>Observations</em></p>
 <ul>
-<li>From a comparison on the above plots, there appears that single customers are relatively less likely to default on their loans.</li>
+<li>Comparing the above plots, it appears that single customers may be slightly less likely to default on their loans than customers in the other three categories. However, the difference is small. The larger story is that customer&rsquo;s maritial status appears to have very little to do with whether or not they default on their loans.</li>
 </ul>
 <p> </p>
-<h3 id="billing--credit-default">Billing &amp; Credit Default</h3>
+<h4 id="billing-payment--credit-default">Billing, Payment, &amp; Credit Default</h4>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <figure>
@@ -475,43 +490,31 @@ axes[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>se
 
 <p><em>Observations</em></p>
 <ul>
-<li>I have more questions than observations.
+<li>I only included the plots for the billing variables here, but the boxplots for the payment variables are nearly identical.</li>
+<li>The distributions for all the payment and billing variables are very similar all the groups of interest. However, I am not confident this warrants drawing the same conclusions. I have more questions than observations:
 <ul>
-<li>It looks like there are some significant outliers. How can we find those data points in our df.</li>
+<li>We saw earlier that the billing variables are highly correlated with each other. How should I account for that in both my analysis and model building?</li>
+<li>There are some significant outliers. How can I identify and remove them? Is it worth it?</li>
 <li>Other than some differences in outliers and a noticable difference in the length of the wiskers in bill_ag, all the box plots are basically the same. What, if anything, can we conclude from that?</li>
 </ul>
 </li>
 </ul>
-<p> </p>
-<h3 id="payment--default">Payment &amp; Default</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, axes <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">25</span>), sharey<span style="color:#f92672">=</span>True)
-
-fig<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">&#39;Monthly Payment Variables Grouped by DEFAULT&#39;</span>)
-
-sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], data<span style="color:#f92672">=</span>df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;pmt_ap&#39;</span>)
-sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], data<span style="color:#f92672">=</span>df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;pmt_m&#39;</span>)
-sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>], data<span style="color:#f92672">=</span>df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;pmt_ju&#39;</span>)
-sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>], data<span style="color:#f92672">=</span>df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;pmt_jy&#39;</span>)
-sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], data<span style="color:#f92672">=</span>df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;pmt_ag&#39;</span>)
-sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</span>axes[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>], data<span style="color:#f92672">=</span>df, x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DEFAULT&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;pmt_s&#39;</span>)
-
-</code></pre></div><p><em>Observations</em></p>
-<ul>
-<li>I assume the boxplots for the payment variables look like this because there is a high % of zeros in these variables.</li>
-<li>I also seem some signigicant outliers.</li>
-</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p> </p>
 <h2 id="predicting-customer-credit-limits">Predicting Customer Credit Limits</h2>
-<p>In this section my goal is to build and test models that attempt to predict customer credit limits. Which means the target variable in all models will be &lsquo;limit&rsquo; (i.e. limit_bal).</p>
+<p>In this section I build and test machine learning models that attempt to predict customer credit limits. Which means the target variable in all models will be &lsquo;limit&rsquo; (i.e. limit_bal).</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
 <span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 <span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
-<span style="color:#75715e">#the inline magic line is needed to make some data visualizations come out right when you are using jupyter notebooks</span>
 <span style="color:#f92672">%</span>matplotlib inline
 <span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
 <span style="color:#f92672">from</span> math <span style="color:#f92672">import</span> sqrt
+
+<span style="color:#75715e">#for one hot encoding</span>
+<span style="color:#f92672">from</span> sklearn.preprocessing <span style="color:#f92672">import</span> LabelEncoder
 
 <span style="color:#75715e">#ML algorithms (estimators)</span>
 <span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> RandomForestRegressor
@@ -526,79 +529,43 @@ sns<span style="color:#f92672">.</span>boxplot(ax<span style="color:#f92672">=</
 
 <span style="color:#75715e">#cross validation</span>
 <span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
-</code></pre></div><p> </p>
-<h3 id="data-preparation">Data Preparation</h3>
-<p>Add description and reasons for data transformations&ndash;one hot encoding</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h4 id="re-ordering-df-columns">Re-ordering df Columns</h4>
-<p>To make things easier, before doing anything I&rsquo;m going to move LIMIT_BAL to the last column in my df and rename it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#step 1: create a variabled to hold the LIMIT_BAL var</span>
-lim<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#39;LIMIT_BAL&#39;</span>]
-
-<span style="color:#75715e">#step 2: drop the LIMIT_BAL column</span>
-df<span style="color:#f92672">.</span>drop(labels<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;LIMIT_BAL&#39;</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, inplace<span style="color:#f92672">=</span>True)
-
-<span style="color:#75715e">#step 3: insert &#39;lim&#39; as last column of df</span>
-df<span style="color:#f92672">.</span>insert(loc<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>, column<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;limit&#39;</span>, value<span style="color:#f92672">=</span>lim)
-
-df<span style="color:#f92672">.</span>head()
-</code></pre></div><h3 id="specify-the-target-variable">Specify the Target Variable</h3>
-<p>Now I will specify the dependent or target variable for models attempting to predict customer credit limits.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#filter the data to return my dependent var (the limit column)</span>
-y <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>loc[:,<span style="color:#e6db74">&#39;limit&#39;</span>]
-
-<span style="color:#75715e">#verify that the first 5 values in y match the values in the limit column above</span>
-y<span style="color:#f92672">.</span>head()
-</code></pre></div><pre><code>0     20000
-1    120000
-2     90000
-3     50000
-4     50000
-Name: limit, dtype: int64
-</code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#verify that y has 30,000 rows</span>
-y<span style="color:#f92672">.</span>shape
-</code></pre></div><pre><code>(30000,)
-</code></pre>
+</code></pre></div><p>Because credit limit is a continuous variable, I know I will have to use a regression model to predict it. But I don&rsquo;t have a principled reason to choose one regression algorithm over others, so I&rsquo;ll compare the predictions of models using Random Forest p9idifferent regression algorithms to find the one that works best on this task.</p>
+<ul>
+<li>I will run each model through a 3-fold cross validation test. Using R squared to score the models.</li>
+</ul>
 <p> </p>
-<h2 id="model-1-using-all-dependent-variables">Model 1: Using All Dependent Variables</h2>
+<h4 id="data-preparation"><em>Data Preparation</em></h4>
+<ul>
+<li>To make things easier, before doing anything I&rsquo;m going to move LIMIT_BAL to the last column in my dataframe and rename it.</li>
+<li>One-Hot-Encoding: Because credit limit (target) is a continuous variable, we have to use regression, and  one hot encoding</li>
+<li>Specify the independent (target) variable.</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<h2 id="model-1-all-dependent-variables">Model 1: All Dependent Variables</h2>
 <p>None of the variables stood out as ones that should be included or excluded from the model, so in this first model I&rsquo;m going to include them all.</p>
-<h3 id="specify-the-feature-variables">Specify the Feature Variables</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#filter the data to return only columns for my feature vars</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># filter df to specify the feature variables</span>
 X <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">30</span>]
 
 <span style="color:#75715e">#verify that all but the ID and limit columns were selected</span>
 <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Summary of Feature Variables&#39;</span>)
 X<span style="color:#f92672">.</span>head()
-</code></pre></div><h2 id="train--test-model-1-using-3-different-regression-algorithms">Train &amp; Test Model 1 Using 3 Different Regression Algorithms</h2>
-<p>Because credit limit is a continuous variable, I know I will have to use a regression model to predict it. But I don&rsquo;t have a principled reason to choose one regression algorithm over others, so I&rsquo;ll compare the predictions of models using Random Forest p9idifferent regression algorithms to find the one that works best on this task.</p>
-<ul>
-<li>I will run each model through a 3-fold cross validation test. Using R squared to score the models.</li>
-<li>The model with the highest mean CV sore will be labeled best.</li>
-</ul>
-<h3 id="setup">Setup</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#create a dictionary to hold the algos</span>
-algosClass <span style="color:#f92672">=</span> [ ]
-
-<span style="color:#75715e">#add the randomn forest regressor to the dictionary</span>
-algosClass<span style="color:#f92672">.</span>append((<span style="color:#e6db74">&#39;Random Forest Regressor&#39;</span>,RandomForestRegressor()))
-
-<span style="color:#75715e">#add the liner regression algo to the dictionary</span>
-algosClass<span style="color:#f92672">.</span>append((<span style="color:#e6db74">&#39;Linear Regression&#39;</span>,LinearRegression()))
-
-<span style="color:#75715e">#add the SV regressor to the dictionary</span>
-algosClass<span style="color:#f92672">.</span>append((<span style="color:#e6db74">&#39;Support Vector Regression&#39;</span>,SVR()))
-
-<span style="color:#75715e">#verify every algo was added to the list</span>
-<span style="color:#66d9ef">print</span>(algosClass)
-</code></pre></div><pre><code>[('Random Forest Regressor', RandomForestRegressor()), ('Linear Regression', LinearRegression()), ('Support Vector Regression', SVR())]
-</code></pre>
-<h3 id="train--test-models">Train &amp; Test Models</h3>
+</code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<h3 id="train-test-split">Train-Test Split</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(X, y, test_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">123</span>)
+</code></pre></div><p> </p>
+<h3 id="train-model--make-predictions">Train Model &amp; Make Predictions</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#create two empty lists to hold the names and cross validation results from each model</span>
 results <span style="color:#f92672">=</span> []
 names <span style="color:#f92672">=</span> []
@@ -608,7 +575,8 @@ names <span style="color:#f92672">=</span> []
     result <span style="color:#f92672">=</span> cross_val_score(model, X,y, cv<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, scoring<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r2&#39;</span>)
     names<span style="color:#f92672">.</span>append(name)
     results<span style="color:#f92672">.</span>append(result)
-</code></pre></div><h3 id="performance-results">Performance Results</h3>
+</code></pre></div><p> </p>
+<h3 id="performance-results">Performance Results</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#run the for loop and print the mean cross validation score for each model</span>
 <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(names)):
     <span style="color:#66d9ef">print</span>(names[i],results[i]<span style="color:#f92672">.</span>mean())
@@ -617,10 +585,9 @@ Linear Regression 0.35871695390197167
 Support Vector Regression -0.05039128320492573
 </code></pre>
 <p>The model built using the random forest regressor performed slightly better than the other two models. However, did little better than chance at predicting customer&rsquo;s credit limits (i.e.limit_bal).</p>
+<p> </p>
 <h2 id="model-2-excluding-demographic-variables">Model 2: Excluding Demographic Variables</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">## Select the Feature Variables</span>
-
-<span style="color:#75715e">#filter the data to return only columns for bill amount, payment amount, payment history, and default var</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">## Select Feature Variables: filter the data to return only columns for bill amount, payment amount, payment history, and default var</span>
 X2 <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">3</span>:<span style="color:#ae81ff">22</span>]
 
 <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Summary of Model 2 Features&#39;</span>)
@@ -634,37 +601,30 @@ names2 <span style="color:#f92672">=</span> []
     result <span style="color:#f92672">=</span> cross_val_score(model, X2,y, cv<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, scoring<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r2&#39;</span>)
     names2<span style="color:#f92672">.</span>append(name)
     results2<span style="color:#f92672">.</span>append(result)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#run the for loop and print the mean cross validation score for each model</span>
+
+<span style="color:#75715e">#run the for loop and print the mean cross validation score for each model</span>
 <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Summary of Model2 Cross Validation Scores&#34;</span>)
 
 <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(names2)):
     <span style="color:#66d9ef">print</span>(names[i],results[i]<span style="color:#f92672">.</span>mean())
-</code></pre></div><pre><code>Summary of Model2 Cross Validation Scores
-Random Forest Regressor 0.46700202592747336
-Linear Regression 0.35871695390197167
-Support Vector Regression -0.05039128320492573
-</code></pre>
-<h2 id="train--test-the-model">Train &amp; Test the Model</h2>
+<span style="color:#f92672">---</span>
+
+    Summary of Model2 Cross Validation Scores
+    Random Forest Regressor <span style="color:#ae81ff">0.46700202592747336</span>
+    Linear Regression <span style="color:#ae81ff">0.35871695390197167</span>
+    Support Vector Regression <span style="color:#f92672">-</span><span style="color:#ae81ff">0.05039128320492573</span>
+</code></pre></div><p> </p>
+<h4 id="train--test-the-model">Train &amp; Test the Model</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#instantiate the random forest regression algo</span>
-<span style="color:#75715e"># rfr = RandomForestRegressor()</span>
+rfr <span style="color:#f92672">=</span> RandomForestRegressor()
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#train the rfr model on X_train and y_train</span>
 <span style="color:#75715e"># model = rfr.fit(X_train, y_train)</span>
 
 <span style="color:#75715e">#use trained model to predict credit limit amounts for the X_test data</span>
 <span style="color:#75715e"># y_predict = model_1.predict(X_test)</span>
-</code></pre></div><h2 id="split-data-into-training-and-testing-sets">Split Data into Training and Testing Sets</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(X, y, test_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">123</span>)
-</code></pre></div><blockquote>
-<p><em>Coding Notes</em></p>
-<ul>
-<li>The <code>test_size =</code> parameter specifies what percent of you dataset will be used for training and training. If you don&rsquo;t specify an amount, the default is 0.25.</li>
-<li>The <code>random_state =</code> parameter can be set to any number. The purpose of it is to make sure that every time the model is run,  the same observations are used in the training and testing sets. If this parameter is not included, every time you run the model it may select a slightly different set of observations.</li>
-</ul>
-</blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cross_val_score(rfr, X, y, cv<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">r2_score(y_test, y_predict)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">mean_squared_error(y_test, y_predict)
-</code></pre></div><p><a href="https://github.com/kpiatti/creditone-project">Link to GitHub Repository</a></p>
+</code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/kpiatti/creditone-project">Link to GitHub Repository</a></p>
 <ul class="pa0">
   
 </ul>
