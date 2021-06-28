@@ -1208,45 +1208,42 @@ nzbill3.shape
 
 &nbsp;
 ## Predicting Customer Credit Limits
-In this section I build and test machine learning models that attempt to predict customer credit limits. Which means the target variable in all models will be 'limit' (i.e. limit_bal).
+In this section I try building a machine learning model that can accurately predict each customer's credit limit (i.e. limit_bal) from their demographic, account, billing, and payment data.
+
 
 ```python
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-%matplotlib inline
-import seaborn as sns
 from math import sqrt
 
-#for one hot encoding
+# for one hot encoding categorical variables
 from sklearn.preprocessing import LabelEncoder
 
-#ML algorithms (estimators)
+# ML algorithms
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.svm import SVR
 from sklearn import linear_model
 
-#model metrics
+# model metrics
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 from sklearn.model_selection import cross_val_score
 
-#cross validation
+# for splitting data into training and test sets
 from sklearn.model_selection import train_test_split
 ```
 
-Because credit limit is a continuous variable, I know I will have to use a regression model to predict it. But I don't have a principled reason to choose one regression algorithm over others, so I'll compare the predictions of models using Random Forest p9idifferent regression algorithms to find the one that works best on this task.
-* I will run each model through a 3-fold cross validation test. Using R squared to score the models.
 
 
 
 &nbsp;
 #### *Data Preparation*
 
-- To make things easier, before doing anything I'm going to move LIMIT_BAL to the last column in my dataframe and rename it.
-- One-Hot-Encoding: Because credit limit (target) is a continuous variable, we have to use regression, and  one hot encoding
-- Specify the independent (target) variable.
+- For convenience, I moved LIMIT_BAL to the last column in my dataframe.
+- Turn categorical variables into a set of dummy variables using *One-Hot-Encoding*.
+- Identify which columns are the feature variables and which is the target.
+- Split the data into a training data set and a testing data set (80/20 split).
 
 <!--
 ## Import & Verify Data
@@ -1477,12 +1474,14 @@ y.shape
 
 
     (30000,)
--->
+
 
 &nbsp;
-## Model 1: All Dependent Variables
-None of the variables stood out as ones that should be included or excluded from the model, so in this first model I'm going to include them all.
+### *Model 1: All Dependent Variables*
+-->
+I included all demographic, account, billing, and payment variables as features in my initial model.
 
+<!--
 ```python
 # filter df to specify the feature variables
 X = df.iloc[:, 1:30]
@@ -1493,7 +1492,7 @@ X.head()
 ```
 
 
-<!--
+
 ```python
 #create a dictionary to hold the algos
 algosClass = [ ]
@@ -1507,7 +1506,6 @@ algosClass.append(('Linear Regression',LinearRegression()))
 #add the SV regressor to the dictionary
 algosClass.append(('Support Vector Regression',SVR()))
 ```
--->
 
 
 
@@ -1517,11 +1515,11 @@ algosClass.append(('Support Vector Regression',SVR()))
 ```python
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state=123)
 ```
-
+-->
 
 
 &nbsp;
-### Train Model & Make Predictions
+#### Train Model & Make Predictions
 
 ```python
 #create two empty lists to hold the names and cross validation results from each model
@@ -1538,26 +1536,26 @@ for name, model in algosClass:
 
 
 &nbsp;
-### Performance Results
+#### Model Performance
 
 ```python
 #run the for loop and print the mean cross validation score for each model
 for i in range(len(names)):
     print(names[i],results[i].mean())
-```
+---
 
     Random Forest Regressor 0.46700202592747336
     Linear Regression 0.35871695390197167
     Support Vector Regression -0.05039128320492573
-
+```
 
 The model built using the random forest regressor performed slightly better than the other two models. However, did little better than chance at predicting customer's credit limits (i.e.limit_bal).
 
 
 
-
+<!--
 &nbsp;
-## Model 2: Excluding Demographic Variables
+### *Model 2: Excluding Demographic Variables*
 
 ```python
 ## Select Feature Variables: filter the data to return only columns for bill amount, payment amount, payment history, and default var
@@ -1611,7 +1609,7 @@ rfr = RandomForestRegressor()
 #use trained model to predict credit limit amounts for the X_test data
 # y_predict = model_1.predict(X_test)
 ```
-
+-->
 
 
 
