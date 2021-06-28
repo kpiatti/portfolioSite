@@ -605,10 +605,7 @@ algo = DecisionTreeClassifier(max_depth=3)
 
 #train the model on the training data set
 model = algo.fit(X_train, y_train)
-```
 
-
-```python
 #test the model on testing data to see how good the predictions are
 preds = model.predict(X_test)
 
@@ -649,10 +646,7 @@ import graphviz
 # additional pkgs needed to plot tree using graphviz
 from sklearn import tree
 import pydotplus
-```
 
-
-```python
 #plot the decision tree
 fig = plt.figure(figsize=(30,15))
 tree = plot_tree(model, max_depth=3, feature_names=X.columns,
@@ -684,18 +678,17 @@ graph.render("decision_tree_graphivz")
 
 *Notes*
 
-* The tree from ```plot_tree()``` was too crowded, so I used the graphviz pkg instead.
-* Each node of the tree tells us the *feature-value* the model selected for splitting the data during each iteration (e.g. first split at amount <= to 499.95).
-* Each node/leaf also tells us the *gini co-efficient* for that node. Gini is a measure of impurity—lower values are better.
-  * If a partition has all and only observations within a single region, the gini will be 0.
-* samples = tells us how many observations from the data set are in that partition, so as we move down a branch from top to bottom the sample = number should be getting smaller and smaller as the model partitions the data into smaller and smaller sections.
-* the value = line tells us how many observations are in each partition at that node/leaf. (e.g. in the age<= 55.5 node we find out that there are 4091 obs. in region 1, 0 in region 2, 3676 in region 3, and 2047 in region 4).
-* class = is telling us the what region the model is predicting (at that point in the tree) for all the observations in that partition...i'm not sure this make sense, review later.  
-* decision trees can also be plotted using the dtreeviz pkg—these are the best looking. For more info see [this github post](https://github.com/parrt/dtreeviz).
+* The tree from ```plot_tree()``` was too crowded, so I used the graphviz pkg instead. The dtreeviz pkg produces good looking trees  (see [this github post](https://github.com/parrt/dtreeviz).
+* Each node/leaf of the tree tells us (from top to bottom):
+  - The *feature/variable* and *value* (e.g. *age <= 27.5) that was selected for splitting the data.
+  - The *gini co-efficient* is the measure of impurity—lower values are better. Can use
+  - The *samples* is the number of observations in the partition. As we move down a branch the sample should get smaller.
+  - The *value* is a list/array of numbers indicating how many samples are in each class (of the target variable). The sum of values should = number of samples in that node.
+  - The *class* indicates the class the model is predicting (at that point in the tree) for all the observations in that partition (check).  
 
-### Parameter Experimentation
-- gini vs. entropy
-- tree depth: max depth 1, 4
+### Hyper-Parameter Experimentation
+- Gini vs. Entropy
+- Tree Depth: max depth 1, 4
 
 <!--
 #### gini → entropy
@@ -791,7 +784,7 @@ print(classification_report(y_test, preds_ent1))
 ---
 -->
 
-
+<!--
 &nbsp;
 ## Model Performance
 
@@ -800,7 +793,7 @@ print(classification_report(y_test, preds_ent1))
 how does cross validation decrease the chance that a ML model will be overfit?
 * basically because you are testing and training the model on several smaller datasets (the folds), and then averaging the results of each of those to come up with the final model, it's more likely the overfitting will be smoothed out in the average. say the first model is overfit by .6, ***I DON'T THINK THIS IS CORRECT. I'VE DONE A LOT OF RESEARCH AND CANNOT FIND A SATISFACTORY ANSWER***
 - tried: 3, 4, 8, and 20 fold
-
+-->
 <!--
 #### 3-fold CV
 
@@ -868,7 +861,7 @@ print(scores)
 avg_score = np.mean(scores)
 print(avg_score)
 ```
--->
+
 
 *Notes*  
 * i'm not sure how to choose the optimal number of folds.
@@ -876,7 +869,7 @@ print(avg_score)
 * however, after talking to david i now know that is not how it works.
 * when you specify the type of algorithm (e.g. decision tree, random forest), set the various parameters, and specify your feature and target variables—the model is set. the model is not changed/refined in the training on each fold. the same model is used on every fold
 * but then how does cross validation cut the risk of overfitting? basically, the accuracy scores on each fold should be roughly the same. if one accuracy score is very different than the others, you know that something is going on with that part of the data and you need to investigate to figure it out. (***verify: i'm not sure about this***)
-
+-->
 
 <!--
 ### Feature Importance
