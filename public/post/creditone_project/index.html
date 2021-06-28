@@ -43,7 +43,7 @@ Obtain Data I obtained the raw data for this project from a MySQL database by es
 <meta itemprop="description" content="The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.
 Obtain Data I obtained the raw data for this project from a MySQL database by establishing a connection to the server, executing a simple SELECT * query, and saving the result/output as a .">
 
-<meta itemprop="wordCount" content="2139">
+<meta itemprop="wordCount" content="1847">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Credit Risk Assessment with Python"/>
 <meta name="twitter:description" content="The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.
@@ -198,8 +198,8 @@ Obtain Data I obtained the raw data for this project from a MySQL database by es
 
       
       
-        <span class="f6 mv4 dib tracked"> - 11 minutes read</span>
-        <span class="f6 mv4 dib tracked"> - 2139 words</span>
+        <span class="f6 mv4 dib tracked"> - 9 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 1847 words</span>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.</p>
@@ -505,40 +505,34 @@ axes[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>se
 <!-- raw HTML omitted -->
 <p> </p>
 <h2 id="predicting-customer-credit-limits">Predicting Customer Credit Limits</h2>
-<p>In this section I build and test machine learning models that attempt to predict customer credit limits. Which means the target variable in all models will be &lsquo;limit&rsquo; (i.e. limit_bal).</p>
+<p>In this section I try building a machine learning model that can accurately predict each customer&rsquo;s credit limit (i.e. limit_bal) from their demographic, account, billing, and payment data.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
 <span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
-<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
-<span style="color:#f92672">%</span>matplotlib inline
-<span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
 <span style="color:#f92672">from</span> math <span style="color:#f92672">import</span> sqrt
 
-<span style="color:#75715e">#for one hot encoding</span>
+<span style="color:#75715e"># for one hot encoding categorical variables</span>
 <span style="color:#f92672">from</span> sklearn.preprocessing <span style="color:#f92672">import</span> LabelEncoder
 
-<span style="color:#75715e">#ML algorithms (estimators)</span>
+<span style="color:#75715e"># ML algorithms</span>
 <span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> RandomForestRegressor
 <span style="color:#f92672">from</span> sklearn.linear_model <span style="color:#f92672">import</span> LinearRegression
 <span style="color:#f92672">from</span> sklearn.svm <span style="color:#f92672">import</span> SVR
 <span style="color:#f92672">from</span> sklearn <span style="color:#f92672">import</span> linear_model
 
-<span style="color:#75715e">#model metrics</span>
+<span style="color:#75715e"># model metrics</span>
 <span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> mean_squared_error
 <span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> r2_score
 <span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> cross_val_score
 
-<span style="color:#75715e">#cross validation</span>
+<span style="color:#75715e"># for splitting data into training and test sets</span>
 <span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
-</code></pre></div><p>Because credit limit is a continuous variable, I know I will have to use a regression model to predict it. But I don&rsquo;t have a principled reason to choose one regression algorithm over others, so I&rsquo;ll compare the predictions of models using Random Forest p9idifferent regression algorithms to find the one that works best on this task.</p>
-<ul>
-<li>I will run each model through a 3-fold cross validation test. Using R squared to score the models.</li>
-</ul>
-<p> </p>
+</code></pre></div><p> </p>
 <h4 id="data-preparation"><em>Data Preparation</em></h4>
 <ul>
-<li>To make things easier, before doing anything I&rsquo;m going to move LIMIT_BAL to the last column in my dataframe and rename it.</li>
-<li>One-Hot-Encoding: Because credit limit (target) is a continuous variable, we have to use regression, and  one hot encoding</li>
-<li>Specify the independent (target) variable.</li>
+<li>For convenience, I moved LIMIT_BAL to the last column in my dataframe.</li>
+<li>Turn categorical variables into a set of dummy variables using <em>One-Hot-Encoding</em>.</li>
+<li>Identify which columns are the feature variables and which is the target.</li>
+<li>Split the data into a training data set and a testing data set (80/20 split).</li>
 </ul>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
@@ -550,22 +544,11 @@ axes[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>se
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
-<p> </p>
-<h2 id="model-1-all-dependent-variables">Model 1: All Dependent Variables</h2>
-<p>None of the variables stood out as ones that should be included or excluded from the model, so in this first model I&rsquo;m going to include them all.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># filter df to specify the feature variables</span>
-X <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">30</span>]
-
-<span style="color:#75715e">#verify that all but the ID and limit columns were selected</span>
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Summary of Feature Variables&#39;</span>)
-X<span style="color:#f92672">.</span>head()
-</code></pre></div><!-- raw HTML omitted -->
+<p>I included all demographic, account, billing, and payment variables as features in my initial model.</p>
+<!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p> </p>
-<h3 id="train-test-split">Train-Test Split</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(X, y, test_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">123</span>)
-</code></pre></div><p> </p>
-<h3 id="train-model--make-predictions">Train Model &amp; Make Predictions</h3>
+<h4 id="train-model--make-predictions">Train Model &amp; Make Predictions</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#create two empty lists to hold the names and cross validation results from each model</span>
 results <span style="color:#f92672">=</span> []
 names <span style="color:#f92672">=</span> []
@@ -576,53 +559,19 @@ names <span style="color:#f92672">=</span> []
     names<span style="color:#f92672">.</span>append(name)
     results<span style="color:#f92672">.</span>append(result)
 </code></pre></div><p> </p>
-<h3 id="performance-results">Performance Results</h3>
+<h4 id="model-performance">Model Performance</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#run the for loop and print the mean cross validation score for each model</span>
 <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(names)):
     <span style="color:#66d9ef">print</span>(names[i],results[i]<span style="color:#f92672">.</span>mean())
-</code></pre></div><pre><code>Random Forest Regressor 0.46700202592747336
-Linear Regression 0.35871695390197167
-Support Vector Regression -0.05039128320492573
-</code></pre>
-<p>The model built using the random forest regressor performed slightly better than the other two models. However, did little better than chance at predicting customer&rsquo;s credit limits (i.e.limit_bal).</p>
-<p> </p>
-<h2 id="model-2-excluding-demographic-variables">Model 2: Excluding Demographic Variables</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">## Select Feature Variables: filter the data to return only columns for bill amount, payment amount, payment history, and default var</span>
-X2 <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">3</span>:<span style="color:#ae81ff">22</span>]
-
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Summary of Model 2 Features&#39;</span>)
-X2<span style="color:#f92672">.</span>head()
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#create two empty lists to hold the names and cross validation results from each model</span>
-results2 <span style="color:#f92672">=</span> []
-names2 <span style="color:#f92672">=</span> []
-
-<span style="color:#75715e">#get cross validation scores for model 2</span>
-<span style="color:#66d9ef">for</span> name, model <span style="color:#f92672">in</span> algosClass:
-    result <span style="color:#f92672">=</span> cross_val_score(model, X2,y, cv<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, scoring<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r2&#39;</span>)
-    names2<span style="color:#f92672">.</span>append(name)
-    results2<span style="color:#f92672">.</span>append(result)
-
-<span style="color:#75715e">#run the for loop and print the mean cross validation score for each model</span>
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Summary of Model2 Cross Validation Scores&#34;</span>)
-
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(names2)):
-    <span style="color:#66d9ef">print</span>(names[i],results[i]<span style="color:#f92672">.</span>mean())
 <span style="color:#f92672">---</span>
 
-    Summary of Model2 Cross Validation Scores
     Random Forest Regressor <span style="color:#ae81ff">0.46700202592747336</span>
     Linear Regression <span style="color:#ae81ff">0.35871695390197167</span>
     Support Vector Regression <span style="color:#f92672">-</span><span style="color:#ae81ff">0.05039128320492573</span>
-</code></pre></div><p> </p>
-<h4 id="train--test-the-model">Train &amp; Test the Model</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#instantiate the random forest regression algo</span>
-rfr <span style="color:#f92672">=</span> RandomForestRegressor()
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#train the rfr model on X_train and y_train</span>
-<span style="color:#75715e"># model = rfr.fit(X_train, y_train)</span>
-
-<span style="color:#75715e">#use trained model to predict credit limit amounts for the X_test data</span>
-<span style="color:#75715e"># y_predict = model_1.predict(X_test)</span>
-</code></pre></div><!-- raw HTML omitted -->
+</code></pre></div><p>The model built using the random forest regressor performed slightly better than the other two models. However, did little better than chance at predicting customer&rsquo;s credit limits (i.e.limit_bal).</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p><a href="https://github.com/kpiatti/creditone-project">Link to GitHub Repository</a></p>
 <ul class="pa0">

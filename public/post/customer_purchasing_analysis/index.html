@@ -43,7 +43,7 @@
 <meta itemprop="description" content="The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
  Data Wrangling Getting the raw data ready for analysis is typically an intensive, time consuming process. However, the raw data for this project was already in good shape when I got it.">
 
-<meta itemprop="wordCount" content="1787">
+<meta itemprop="wordCount" content="1413">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Customer Purchasing Patterns (Python)"/>
 <meta name="twitter:description" content="The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
@@ -198,8 +198,8 @@
 
       
       
-        <span class="f6 mv4 dib tracked"> - 9 minutes read</span>
-        <span class="f6 mv4 dib tracked"> - 1787 words</span>
+        <span class="f6 mv4 dib tracked"> - 7 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 1413 words</span>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.</p>
@@ -442,7 +442,8 @@ algo <span style="color:#f92672">=</span> DecisionTreeClassifier(max_depth<span 
 
 <span style="color:#75715e">#train the model on the training data set</span>
 model <span style="color:#f92672">=</span> algo<span style="color:#f92672">.</span>fit(X_train, y_train)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#test the model on testing data to see how good the predictions are</span>
+
+<span style="color:#75715e">#test the model on testing data to see how good the predictions are</span>
 preds <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(X_test)
 
 <span style="color:#75715e">#create classification report on how well model did on the testing data</span>
@@ -460,7 +461,8 @@ preds <span style="color:#f92672">=</span> model<span style="color:#f92672">.</s
 <span style="color:#75715e"># additional pkgs needed to plot tree using graphviz</span>
 <span style="color:#f92672">from</span> sklearn <span style="color:#f92672">import</span> tree
 <span style="color:#f92672">import</span> pydotplus
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#plot the decision tree</span>
+
+<span style="color:#75715e">#plot the decision tree</span>
 fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">15</span>))
 tree <span style="color:#f92672">=</span> plot_tree(model, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, feature_names<span style="color:#f92672">=</span>X<span style="color:#f92672">.</span>columns,
                  class_names <span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;0&#39;</span>,<span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span>,<span style="color:#e6db74">&#39;3&#39;</span>],
@@ -490,45 +492,28 @@ graph<span style="color:#f92672">.</span>render(<span style="color:#e6db74">&#34
 
 <p><em>Notes</em></p>
 <ul>
-<li>The tree from <code>plot_tree()</code> was too crowded, so I used the graphviz pkg instead.</li>
-<li>Each node of the tree tells us the <em>feature-value</em> the model selected for splitting the data during each iteration (e.g. first split at amount &lt;= to 499.95).</li>
-<li>Each node/leaf also tells us the <em>gini co-efficient</em> for that node. Gini is a measure of impurity—lower values are better.
+<li>The tree from <code>plot_tree()</code> was too crowded, so I used the graphviz pkg instead. The dtreeviz pkg produces good looking trees  (see <a href="https://github.com/parrt/dtreeviz">this github post</a>.</li>
+<li>Each node/leaf of the tree tells us (from top to bottom):
 <ul>
-<li>If a partition has all and only observations within a single region, the gini will be 0.</li>
+<li>The <em>feature/variable</em> and <em>value</em> (e.g. *age &lt;= 27.5) that was selected for splitting the data.</li>
+<li>The <em>gini co-efficient</em> is the measure of impurity—lower values are better. Can use</li>
+<li>The <em>samples</em> is the number of observations in the partition. As we move down a branch the sample should get smaller.</li>
+<li>The <em>value</em> is a list/array of numbers indicating how many samples are in each class (of the target variable). The sum of values should = number of samples in that node.</li>
+<li>The <em>class</em> indicates the class the model is predicting (at that point in the tree) for all the observations in that partition (check).</li>
 </ul>
 </li>
-<li>samples = tells us how many observations from the data set are in that partition, so as we move down a branch from top to bottom the sample = number should be getting smaller and smaller as the model partitions the data into smaller and smaller sections.</li>
-<li>the value = line tells us how many observations are in each partition at that node/leaf. (e.g. in the age&lt;= 55.5 node we find out that there are 4091 obs. in region 1, 0 in region 2, 3676 in region 3, and 2047 in region 4).</li>
-<li>class = is telling us the what region the model is predicting (at that point in the tree) for all the observations in that partition&hellip;i&rsquo;m not sure this make sense, review later.</li>
-<li>decision trees can also be plotted using the dtreeviz pkg—these are the best looking. For more info see <a href="https://github.com/parrt/dtreeviz">this github post</a>.</li>
 </ul>
-<h3 id="parameter-experimentation">Parameter Experimentation</h3>
+<h3 id="hyper-parameter-experimentation">Hyper-Parameter Experimentation</h3>
 <ul>
-<li>gini vs. entropy</li>
-<li>tree depth: max depth 1, 4</li>
+<li>Gini vs. Entropy</li>
+<li>Tree Depth: max depth 1, 4</li>
 </ul>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
-<p> </p>
-<h2 id="model-performance">Model Performance</h2>
-<h3 id="cross-validation">Cross Validation</h3>
-<p>how does cross validation decrease the chance that a ML model will be overfit?</p>
-<ul>
-<li>basically because you are testing and training the model on several smaller datasets (the folds), and then averaging the results of each of those to come up with the final model, it&rsquo;s more likely the overfitting will be smoothed out in the average. say the first model is overfit by .6, <em><strong>I DON&rsquo;T THINK THIS IS CORRECT. I&rsquo;VE DONE A LOT OF RESEARCH AND CANNOT FIND A SATISFACTORY ANSWER</strong></em></li>
-</ul>
-<ul>
-<li>tried: 3, 4, 8, and 20 fold</li>
-</ul>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
-<p><em>Notes</em></p>
-<ul>
-<li>i&rsquo;m not sure how to choose the optimal number of folds.</li>
-<li>i expected the accuracy of the model to improve at least slightly (up to a point) the more folds you used in the cv model because i was mistakenly thinking that in a cv model, the model was adjusted after being trained on each fold, so that after training the final model was basically the average of the models trained on each fold.</li>
-<li>however, after talking to david i now know that is not how it works.</li>
-<li>when you specify the type of algorithm (e.g. decision tree, random forest), set the various parameters, and specify your feature and target variables—the model is set. the model is not changed/refined in the training on each fold. the same model is used on every fold</li>
-<li>but then how does cross validation cut the risk of overfitting? basically, the accuracy scores on each fold should be roughly the same. if one accuracy score is very different than the others, you know that something is going on with that part of the data and you need to investigate to figure it out. (<em><strong>verify: i&rsquo;m not sure about this</strong></em>)</li>
-</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p>                                      <a href="https://github.com/kpiatti/customer-purchasing-patterns">Link to GitHub Repository</a></p>
