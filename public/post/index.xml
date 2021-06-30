@@ -13,7 +13,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://katherinepiatti.com/post/creditone_project/</guid>
-      <description>The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.
+      <description>The objective for this project was to outline and then implement a data science process—like CRISP-DM—to obtain, clean/process, and explore customer credit data resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.
 Obtain Data I obtained the raw data for this project from a MySQL database by establishing a connection to the server, executing a simple SELECT * query, and saving the result/output as a .</description>
     </item>
     

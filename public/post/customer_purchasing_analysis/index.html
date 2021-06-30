@@ -43,7 +43,7 @@
 <meta itemprop="description" content="The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
  Data Wrangling Getting the raw data ready for analysis is typically an intensive, time consuming process. However, the raw data for this project was already in good shape when I got it.">
 
-<meta itemprop="wordCount" content="1413">
+<meta itemprop="wordCount" content="1263">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Customer Purchasing Patterns (Python)"/>
 <meta name="twitter:description" content="The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.
@@ -198,8 +198,8 @@
 
       
       
-        <span class="f6 mv4 dib tracked"> - 7 minutes read</span>
-        <span class="f6 mv4 dib tracked"> - 1413 words</span>
+        <span class="f6 mv4 dib tracked"> - 6 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 1263 words</span>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>The purpose of this project was to learn how to use Anaconda, Python, Jupyter Lab, and version control/reproducibility practices and tools such as virtual environments, Git, and GitHub while analyzing a dataset of customer demographic and transaction information from an regional electronics retailer.</p>
@@ -265,11 +265,11 @@ corr_mat <span style="color:#f92672">=</span> df<span style="color:#f92672">.</s
 abr<span style="color:#f92672">=</span>sns<span style="color:#f92672">.</span>catplot(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;region_name&#39;</span>, y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;amount&#39;</span>, data <span style="color:#f92672">=</span> df, kind <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;violin&#39;</span>,
             aspect <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.5</span>)
 abr<span style="color:#f92672">.</span>set_xticklabels( rotation <span style="color:#f92672">=</span> <span style="color:#ae81ff">45</span>) <span style="color:#75715e">#argument({&#39;tic 1&#39;, &#39;tic 2&#39;,...}, rotation=45)</span>
-abr<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">&#39;Regional Spending&#39;</span>)
+abr<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">&#39;Regional Spending Distributions&#39;</span>)
 abr<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>subplots_adjust(top<span style="color:#f92672">=</span><span style="color:#ae81ff">0.9</span>)
 abr<span style="color:#f92672">.</span>set_axis_labels(<span style="color:#e6db74">&#39;Region&#39;</span>, <span style="color:#e6db74">&#39;Spending per Transaction&#39;</span>)
 </code></pre></div><figure>
-    <img src="https://katherinepiatti.com/images/output_60_0.png"/> 
+    <img src="https://katherinepiatti.com/images/blackwell_regional_spending_violin.jpeg"/> 
 </figure>
 
 <p><em>Observations</em></p>
@@ -297,9 +297,9 @@ ax1<span style="color:#f92672">.</span>pie(sizes, explode<span style="color:#f92
 ax1<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;equal&#39;</span>)  <span style="color:#75715e"># Equal aspect ratio ensures that pie is drawn as a circle.</span>
 
 <span style="color:#75715e">#add plot title</span>
-fig1<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">&#39;Revenue by Region&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>)
+fig1<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">% o</span><span style="color:#e6db74">f Total Revenue Contributed by Regin&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>)
 </code></pre></div><figure>
-    <img src="https://katherinepiatti.com/images/output_67_0.png"/> 
+    <img src="https://katherinepiatti.com/images/blackwell_revenue_byregion_pie.jpeg"/> 
 </figure>
 
 <p>The pie chart nicely illustrates that the West brings in the most revenue and the South brings in the least.</p>
@@ -319,7 +319,7 @@ oir<span style="color:#f92672">.</span>legend<span style="color:#f92672">.</span
 oir<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">&#34;Online vs. In-Store Spending&#34;</span>,
                   fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>, fontdict<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;weight&#34;</span>: <span style="color:#e6db74">&#34;bold&#34;</span>}, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.05</span>)
 </code></pre></div><figure>
-    <img src="https://katherinepiatti.com/images/output_72_0.png"/> 
+    <img src="https://katherinepiatti.com/images/oir_plot.png"/> 
 </figure>
 
 <p><em>Observations</em></p>
@@ -332,27 +332,6 @@ oir<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>su
 <p>Add brief description of discretization and why using it</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#define new discritized age variable, two bins: under 65 and 65+</span>
-young <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>cut(df<span style="color:#f92672">.</span>age, bins<span style="color:#f92672">=</span>[<span style="color:#ae81ff">18</span>,<span style="color:#ae81ff">63</span>,<span style="color:#ae81ff">84</span>], labels<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;Under 65&#39;</span>, <span style="color:#e6db74">&#39;65+&#39;</span>])
-
-<span style="color:#75715e">#add new young variable to df</span>
-df[<span style="color:#e6db74">&#39;young&#39;</span>]<span style="color:#f92672">=</span>young
-
-<span style="color:#75715e">#create plot of over/under 65 by region</span>
-ca <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>countplot(data<span style="color:#f92672">=</span>df,
-                  x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;region_name&#39;</span>, y<span style="color:#f92672">=</span>None, hue<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;young&#39;</span>)
-ca<span style="color:#f92672">.</span>set(xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Region&#39;</span>, ylabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Count&#39;</span>)
-ca<span style="color:#f92672">.</span>legend()<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;&#39;</span>)
-</code></pre></div><figure>
-    <img src="https://katherinepiatti.com/images/output_78_0.png"/> 
-</figure>
-
-<ul>
-<li>This bar chart tells us that (1) all customers in the Western region are under 65, and the Southern region has the most number of customers over 65. This suggests marketing target at age groups may be more successful in those two regions.</li>
-<li>That being said, the relatively small size of Blackwell&rsquo;s customer base that is 65+ makes it an area for big potential gains.</li>
-</ul>
-<p> </p>
-<h3 id="generational-analysis">Generational Analysis</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#define new generation variable</span>
 gen <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>cut(df<span style="color:#f92672">.</span>age,
              bins<span style="color:#f92672">=</span>[<span style="color:#ae81ff">18</span>,<span style="color:#ae81ff">23</span>,<span style="color:#ae81ff">39</span>,<span style="color:#ae81ff">55</span>,<span style="color:#ae81ff">74</span>,<span style="color:#ae81ff">85</span>],
@@ -370,14 +349,14 @@ gen_plot <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</
                   x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;region_name&#39;</span>, y<span style="color:#f92672">=</span>None, hue<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gen&#39;</span>, kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;count&#39;</span>,
                       height<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, aspect<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
 gen_plot<span style="color:#f92672">.</span>set(xlabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Region&#39;</span>, ylabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Count&#39;</span>,
-            title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Regional Transactions by Age Group&#39;</span>)
+            title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Number of Customers by Generation&#39;</span>)
 gen_plot<span style="color:#f92672">.</span>set_xticklabels(rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">45</span>)
 
 gen_plot<span style="color:#f92672">.</span>legend<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;&#39;</span>)
 
 gen_plot<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#39;pic_gen_plot.png&#39;</span>)
 </code></pre></div><figure>
-    <img src="https://katherinepiatti.com/images/output_80_0.png"/> 
+    <img src="https://katherinepiatti.com/images/blackwell_generational_count_byregion.jpeg"/> 
 </figure>
 
 <p><em>Observations</em></p>
@@ -387,19 +366,10 @@ gen_plot<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">
 <li>There are no Gen Z customers in the South.</li>
 </ul>
 <h3 id="generational-differences-in-spending"><em>Generational differences in spending?</em></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#violin plot of spending by customers under 65 and 65+ in each region</span>
-car <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>catplot(data<span style="color:#f92672">=</span>df, kind<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;violin&#39;</span>,
-                  x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;region_name&#39;</span>, y<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;amount&#39;</span>, hue<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;young&#39;</span>,
-                  palette<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;rocket&#39;</span>, legend_out<span style="color:#f92672">=</span>True, ci <span style="color:#f92672">=</span> None)
-car<span style="color:#f92672">.</span>despine(left<span style="color:#f92672">=</span>True)
-car<span style="color:#f92672">.</span>set_xticklabels( rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">45</span>)
-car<span style="color:#f92672">.</span>set_axis_labels(<span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&#39;Spending per Transaction&#39;</span>)
-car<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>suptitle(<span style="color:#e6db74">&#34;Customer Spending by Age: Under 65 vs 65+&#34;</span>,
-                  fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>, fontdict<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;weight&#34;</span>: <span style="color:#e6db74">&#34;bold&#34;</span>})
-<span style="color:#75715e">#car.fig.legend(title=&#34;&#34;, labels=[&#39;Online&#39;, &#39;In-store&#39;])</span>
-car<span style="color:#f92672">.</span>legend<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;&#39;</span>)
-</code></pre></div><figure>
-    <img src="https://katherinepiatti.com/images/output_87_0.png"/> 
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<figure>
+    <img src="https://katherinepiatti.com/images/gen_spending_plot.png"/> 
 </figure>
 
 <!-- raw HTML omitted -->
