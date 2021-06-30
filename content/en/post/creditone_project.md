@@ -6,7 +6,7 @@ title: "Credit Risk Assessment with Python"
 show_reading_time: true
 show_date: false
 ---
-The prescribed objective for this project was to outline and then implement a data science process—like CRISP-DM—resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.  
+The objective for this project was to outline and then implement a data science process—like CRISP-DM—to obtain, clean/process, and explore customer credit data  resulting in a model that could reliably predict whether or not a customer would default on their loan(s) from their demographic information, as well as six months worth of data on their billing and payment history.  
 
 <!--
 ```python

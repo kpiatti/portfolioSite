@@ -339,12 +339,12 @@ df.head()
 abr=sns.catplot(x = 'region_name', y = 'amount', data = df, kind = 'violin',
             aspect = 1.5)
 abr.set_xticklabels( rotation = 45) #argument({'tic 1', 'tic 2',...}, rotation=45)
-abr.fig.suptitle('Regional Spending')
+abr.fig.suptitle('Regional Spending Distributions')
 abr.fig.subplots_adjust(top=0.9)
 abr.set_axis_labels('Region', 'Spending per Transaction')
 ```
 
-{{< figure src="/images/output_60_0.png" >}}
+{{< figure src="/images/blackwell_regional_spending_violin.jpeg" >}}
 
 *Observations*  
 - Are there regional differences in spending? Short answer: *YES*.
@@ -385,9 +385,9 @@ ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
 ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
 #add plot title
-fig1.suptitle('Revenue by Region', fontsize=16)
+fig1.suptitle('% of Total Revenue Contributed by Regin', fontsize=16)
 ```
-{{< figure src="/images/output_67_0.png" >}}
+{{< figure src="/images/blackwell_revenue_byregion_pie.jpeg" >}}
 
 The pie chart nicely illustrates that the West brings in the most revenue and the South brings in the least.
 
@@ -410,7 +410,7 @@ oir.legend.set_title('')
 oir.fig.suptitle("Online vs. In-Store Spending",
                   fontsize=16, fontdict={"weight": "bold"}, y = 1.05)
 ```
-{{< figure src="/images/output_72_0.png" >}}
+{{< figure src="/images/oir_plot.png" >}}
 
 *Observations*
 * The Southern region has *no in-store* sales, and the Northern region has **no online** sales. *This is suspicious and should be investigated further before any conclusions are drawn.*
@@ -437,7 +437,7 @@ Add brief description of discretization and why using it
 - *equal width* — separate all values into 'N' number of bins, each having the same width (i.e. span of values)
 - *equal frequency* — separate the values in 'N' number of bins, each containing the same number of observations.
 - *K-means* — use k-means clustering to to group data.
--->
+
 
 ```python
 #define new discritized age variable, two bins: under 65 and 65+
@@ -458,9 +458,8 @@ ca.legend().set_title('')
 
 * This bar chart tells us that (1) all customers in the Western region are under 65, and the Southern region has the most number of customers over 65. This suggests marketing target at age groups may be more successful in those two regions.
 * That being said, the relatively small size of Blackwell's customer base that is 65+ makes it an area for big potential gains.
+-->
 
-&nbsp;
-### Generational Analysis
 
 ```python
 #define new generation variable
@@ -480,7 +479,7 @@ gen_plot = sns.catplot(data=df,
                   x='region_name', y=None, hue='gen', kind='count',
                       height=4, aspect=1)
 gen_plot.set(xlabel='Region', ylabel='Count',
-            title='Regional Transactions by Age Group')
+            title='Number of Customers by Generation')
 gen_plot.set_xticklabels(rotation=45)
 
 gen_plot.legend.set_title('')
@@ -488,7 +487,7 @@ gen_plot.legend.set_title('')
 gen_plot.savefig('pic_gen_plot.png')
 ```
 
-{{< figure src="/images/output_80_0.png" >}}
+{{< figure src="/images/blackwell_generational_count_byregion.jpeg" >}}
 
 *Observations*
 * All customers of the Silent Generation are in the South.
@@ -496,7 +495,7 @@ gen_plot.savefig('pic_gen_plot.png')
 * There are no Gen Z customers in the South.
 
 ### *Generational differences in spending?*
-
+<!--
 ```python
 #violin plot of spending by customers under 65 and 65+ in each region
 car = sns.catplot(data=df, kind='violin',
@@ -510,7 +509,8 @@ car.fig.suptitle("Customer Spending by Age: Under 65 vs 65+",
 #car.fig.legend(title="", labels=['Online', 'In-store'])
 car.legend.set_title('')
 ```
-{{< figure src="/images/output_87_0.png" >}}
+-->
+{{< figure src="/images/gen_spending_plot.png" >}}
 
 <!--
 ```python
