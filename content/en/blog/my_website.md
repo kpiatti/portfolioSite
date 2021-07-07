@@ -4,7 +4,7 @@ description: ""
 featured_image: ""
 title: "How I Built THIS Website"
 omit_header_text: true
-show_reading_time: true
+show_reading_time: false
 draft:
 ---
 {{< figure src="/images/website_logos.png" >}}
