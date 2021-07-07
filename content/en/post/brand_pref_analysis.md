@@ -3,7 +3,7 @@ date: 2021-01-26
 description: ""
 featured_image: "/images/brand_pref_feature.webp"
 title: "Brand Preference Analysis with R"
-show_reading_time: true
+show_reading_time: FALSE
 draft: true
 ---
 
