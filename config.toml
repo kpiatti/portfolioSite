@@ -26,7 +26,7 @@ canonifyURLs = true
 
 [params]
   favicon = ""
-  site_logo = "/images/home.png"
+  site_logo = "/images/home_icon.png"
   description = ""
   facebook = ""
   twitter = ""
