@@ -2,7 +2,7 @@
 date: false
 description: ""
 featured_image: "/images/credit_feature.webp"
-title: "Credit Risk Assessment with Python"
+title: "Credit Risk Assessment (Python)"
 show_reading_time: false
 show_date: false
 ---

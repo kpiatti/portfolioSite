@@ -3,7 +3,7 @@ date: 2020-11-10T11:00:59-04:00
 description: ""
 featured_image: "/images/product_sales_feature.jpg"
 title: "The Impact of Customer Reviews on Product Sales"
-show_reading_time: true
+show_reading_time: false
 draft: TRUE
 ---
 

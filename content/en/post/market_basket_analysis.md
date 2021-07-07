@@ -3,7 +3,7 @@ date:
 description: ""
 featured_image: "/images/basket_feature.webp"
 title: "Market Basket Analysis"
-show_reading_time: true
+show_reading_time: false
 draft: true
 ---
 

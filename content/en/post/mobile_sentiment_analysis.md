@@ -1,9 +1,8 @@
 ---
-date: 2021-05-12
 description: ""
 featured_image: "/images/sentiment_feature.webp"
 title: "Mobile Device Sentiment Analysis with AWS & R"
-show_reading_time: true
+show_reading_time: false
 draft: true
 ---
 

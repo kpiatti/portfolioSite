@@ -3,7 +3,7 @@ date: 2021-05-05T11:14:48-04:00
 description: ""
 featured_image: "/images/wifi_feature.webp"
 title: "Wifi Fingerprinting"
-show_reading_time: true
+show_reading_time: false
 draft: TRUE
 ---
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare felis sem, vel ornare urna mattis nec. Vivamus imperdiet dapibus ex. Fusce eget ante purus. Vestibulum tempus tristique consectetur. Nunc ipsum magna, pharetra at pellentesque vel, placerat vitae tortor.

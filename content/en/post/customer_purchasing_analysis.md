@@ -4,7 +4,7 @@ description: ""
 featured_image: "/images/purchasing_feature.webp"
 title: "Customer Purchasing Patterns (Python)"
 tag: "data wrangling"
-show_reading_time: true
+show_reading_time: false
 ---
 
 

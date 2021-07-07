@@ -3,7 +3,7 @@ date: "00-00-0000"
 description: ""
 featured_image: "/images/submeter_feature.webp"
 title: "Energy Consumption Analysis (R)"
-show_reading_time: true
+show_reading_time: false
 draft:
 ---
 <!--
