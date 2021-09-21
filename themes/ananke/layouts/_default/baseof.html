@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ $.Site.LanguageCode | default "en" }}">
   <head>
-    {{ if .Site.Params.GoogleAnalytics }}
+    {{ if .Site.Params.GoogleAnalyticsID }}
     {{ partial "analytics-gtag.html" . }}
     {{ end }}
     <meta charset="utf-8">
