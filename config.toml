@@ -8,8 +8,7 @@ resourceDir = "../resources"
 DefaultContentLanguage = "en"
 SectionPagesMenu = "main"
 Paginate = 6 # this is set low for demonstrating with dummy content. Set to a higher number
-# Google Analytics 4 using Measurement ID
-googleAnalyticsID = "G-GY7EDNF0DB"
+
 enableRobotsTXT = true
 canonifyURLs = true
 
@@ -26,6 +25,8 @@ canonifyURLs = true
   filename = "sitemap.xml"
 
 [params]
+# Google Analytics 4 using Measurement ID
+googleAnalyticsID = "G-GY7EDNF0DB"
   favicon = ""
   site_logo = "/images/home_icon.png"
   description = ""
